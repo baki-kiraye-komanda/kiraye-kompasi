@@ -391,7 +391,7 @@ def map_header() -> str:
     legend = "".join(f'<span style="display:inline-flex;align-items:center;gap:6px;margin-right:12px"><span class="dot" style="background:{c}"></span>{t}</span>'
                      for t, c in [("50%+", C["green"]), ("20–50%", C["amber"]), ("5–20%", C["coral"]), ("5%-dən az", C["red"])])
     return (f'<div class="kk"><div class="eyebrow">Bakı xəritəsi</div>'
-            f'<div class="dim" style="font-size:.78rem;margin:2px 0 4px">dairə = elan sayı · rəqəm və rəng = büdcənə uyğun elanların payı · rayonun adı üçün üstünə gətir</div>'
+            f'<div class="dim" style="font-size:.78rem;margin:2px 0 4px">dairə = elan sayı · rəng = büdcənə uyğun elanların payı · faiz və rayon adı üçün dairənin üstünə gətir</div>'
             f'<div class="muted" style="font-size:.78rem;margin-bottom:8px">{legend}</div></div>')
 
 

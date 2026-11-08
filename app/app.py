@@ -107,18 +107,13 @@ def district_map(dist) -> None:
     nmax = d["n"].max()
     d["radius"] = 450 + 1500 * (d["n"] / nmax) ** 0.5
     d["color"] = [ui.share_rgb(s) + [190] for s in d["share"]]
-    d["label"] = (d["share"] * 100).round().astype(int).astype(str) + "%"  # rayon adı tooltip-dədir
     d["median_txt"] = d["median"].map(ui.az)
     d["share_txt"] = (d["share"] * 100).round().astype(int).astype(str) + "%"
-    d = d[["district_name", "latitude", "longitude", "radius", "color", "label", "median_txt", "share_txt", "n", "fit"]]
+    d = d[["district_name", "latitude", "longitude", "radius", "color", "median_txt", "share_txt", "n", "fit"]]
     circles = pdk.Layer("ScatterplotLayer", d, get_position="[longitude, latitude]", get_radius="radius",
                         get_fill_color="color", stroked=True, get_line_color=[255, 255, 255], line_width_min_pixels=2,
                         pickable=True, radius_min_pixels=8)
-    # mətn dairələrin üstündə çəkilsin (eyni hündürlükdə dərinlik testi mətni gizlədirdi)
-    labels = pdk.Layer("TextLayer", d, get_position="[longitude, latitude, 30]", get_text="label", get_size=14, size_units="pixels", size_scale=4,
-                       get_color=[255, 255, 255, 255], font_family="Arial", font_weight="bold", pickable=False,
-                       parameters={"depthTest": False, "depthCompare": "always"})
-    deck = pdk.Deck(layers=[circles, labels], map_provider="carto", map_style="light",
+    deck = pdk.Deck(layers=[circles], map_provider="carto", map_style="light",
                     initial_view_state=pdk.ViewState(latitude=40.405, longitude=49.90, zoom=10.1, pitch=0),
                     tooltip={"html": "<b>{district_name}</b><br/>büdcəyə uyğun: <b>{share_txt}</b> ({fit} / {n} elan)<br/>median kirayə: {median_txt} AZN",
                              "style": {"background": "#1B2433", "color": "#fff", "borderRadius": "10px", "fontSize": "13px", "padding": "8px 10px"}})
