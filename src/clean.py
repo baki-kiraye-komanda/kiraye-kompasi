@@ -45,9 +45,11 @@ BAKU_CITY_IDS = {k for k, (_, city) in DISTRICTS.items() if city == "Y"}
 
 
 def latest_snapshot() -> str:
-    # meta.json yalnız toplama TAM bitəndə yazılır: yarımçıq qalmış snapshot təmizlənmir
+    # meta.json yalnız toplama bitəndə yazılır; INCOMPLETE — elanların 95%-dən azı toplanıb.
+    # Belə snapshot-lar təmizlənmir: köhnə, tam məlumat istifadə olunur.
     snaps = sorted(p.name for p in DATA_RAW.iterdir()
-                   if (p / "listings_raw.csv").exists() and (p / "meta.json").exists())
+                   if (p / "listings_raw.csv").exists() and (p / "meta.json").exists()
+                   and not (p / "INCOMPLETE").exists())
     if not snaps:
         raise SystemExit("data/raw-da snapshot tapılmadı. Əvvəl scrape.py işlədin.")
     return snaps[-1]

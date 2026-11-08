@@ -32,6 +32,7 @@ URL = "https://bina.az/graphql"
 PAGE_SIZE = 25          # bina.az bir sorğuda maksimum 25 elan qaytarır
 PAUSE_SEC = 1.0         # sorğular arası fasilə
 MAX_RETRIES = 4
+MIN_COMPLETENESS = 0.95  # saytdakı elanların ən azı 95%-i toplanmalıdır
 
 HEADERS = {
     "content-type": "application/json",
@@ -166,8 +167,18 @@ def main() -> int:
                 logging.info("%-10s %-13s saytda=%5s toplandı=%5s", dname, bname, site_total, got)
 
     meta["rows"] = rows_written
+    site_sum = sum(g["site_total"] or 0 for g in meta["groups"])
+    meta["completeness"] = round(rows_written / site_sum, 4) if site_sum else 0
     (out_dir / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
-    logging.info("Bitdi: %s elan -> %s", rows_written, out_dir)
+    logging.info("Bitdi: %s elan (saytda %s, tamlıq %.1f%%) -> %s",
+                 rows_written, site_sum, meta["completeness"] * 100, out_dir)
+    # Qoruma: elanların 95%-dən azı toplanıbsa (sayt cavab vermədi və s.), yarımçıq məlumat
+    # Oracle-a və sayta getməsin — köhnə, tam məlumat qalsın (run_pipeline.bat burada dayanır).
+    if meta["completeness"] < MIN_COMPLETENESS:
+        logging.error("Tamlıq %.1f%% < %.0f%% — snapshot istifadə olunmayacaq",
+                      meta["completeness"] * 100, MIN_COMPLETENESS * 100)
+        (out_dir / "INCOMPLETE").write_text("yarımçıq toplama", encoding="utf-8")
+        return 2
     print(f"SNAPSHOT_ID={snapshot_id}")
     return 0
 

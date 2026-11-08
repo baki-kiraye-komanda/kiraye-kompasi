@@ -32,4 +32,12 @@ Gizli parametrlər `.env` faylındadır (`env.example.txt`-ə baxın) və GitHub
 3. **Advanced settings → Secrets**: `.streamlit/secrets.toml.example`-dəki iki sətri öz Gemini açarınızla yazın.
 4. **Deploy**. Paketlər `app/requirements.txt`-dən quraşdırılır.
 
-Məlumat həftəlik yenilənəndə (`run_pipeline.bat`) `app/data/` qovluğunu GitHub-a yenidən yükləmək kifayətdir — sayt özü yenilənir.
+## Həftəlik avtomatik yeniləmə
+Bir dəfə `setup_autoupdate.bat` işlədin (Git lazımdır: https://git-scm.com/download/win). O:
+1. qovluğu bu GitHub reposu ilə əlaqələndirir (fayllar dəyişmir);
+2. GitHub-a girişi yoxlayır (lazım olsa brauzerdə bir dəfə daxil olursunuz);
+3. Windows Task Scheduler-də **hər bazar 12:00** tapşırığı yaradır (kompüter sönülü olsa — açılan kimi).
+
+Hər dəfə `run_pipeline.bat`: bina.az → təmizləmə → Oracle → CSV → **GitHub** → sayt 1–2 dəqiqəyə özü yenilənir.
+Toplama yarımçıqdırsa (elanların 95%-dən azı), köhnə tam məlumat qalır. Nəticə: `logs\pipeline.log`.
+Power BI faylı lokaldır: açanda **Refresh** basmaq kifayətdir.
