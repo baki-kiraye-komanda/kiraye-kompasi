@@ -114,8 +114,10 @@ def district_map(dist) -> None:
     circles = pdk.Layer("ScatterplotLayer", d, get_position="[longitude, latitude]", get_radius="radius",
                         get_fill_color="color", stroked=True, get_line_color=[255, 255, 255], line_width_min_pixels=2,
                         pickable=True, radius_min_pixels=8)
-    labels = pdk.Layer("TextLayer", d, get_position="[longitude, latitude]", get_text="label", get_size=13,
-                       get_color=[255, 255, 255, 255], font_family="Arial", font_weight=700, pickable=False)
+    # mətn dairələrin üstündə çəkilsin (eyni hündürlükdə dərinlik testi mətni gizlədirdi)
+    labels = pdk.Layer("TextLayer", d, get_position="[longitude, latitude, 30]", get_text="label", get_size=14,
+                       get_color=[255, 255, 255, 255], font_family="Arial", font_weight="bold", pickable=False,
+                       parameters={"depthTest": False, "depthCompare": "always"})
     deck = pdk.Deck(layers=[circles, labels], map_provider="carto", map_style="light",
                     initial_view_state=pdk.ViewState(latitude=40.405, longitude=49.90, zoom=10.1, pitch=0),
                     tooltip={"html": "<b>{district_name}</b><br/>büdcəyə uyğun: <b>{share_txt}</b> ({fit} / {n} elan)<br/>median kirayə: {median_txt} AZN",
