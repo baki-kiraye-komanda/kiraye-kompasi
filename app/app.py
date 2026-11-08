@@ -50,8 +50,8 @@ date = data.captured_at[8:10] + "." + data.captured_at[5:7] + "." + data.capture
 show(ui.nav(facts["n"], date))
 show(ui.hero(facts))
 
-med = data.listings.groupby("district_name")["price_azn"].agg(["size", "median"])
-med = med[med["size"] >= 20].sort_values("median", ascending=False)
+med = data.listings.groupby("district_name").agg(size=("price_azn", "size"), median=("price_azn", "median"), m2=("price_per_m2", "median"))
+med = med[med["size"] >= 20].sort_values(["median", "m2"], ascending=False)  # bərabər median: 1 m² qiyməti həll edir (Power BI-dakı kimi)
 items = [("2 otaqlı · Bakı", ui.az(facts["median_2_city"]) + " AZN", ui.C["amber"]),
          ("Lazım olan maaş", ui.az(facts["need_salary_2"]) + " AZN", ui.C["coral"]),
          ("Masazır · 2 otaq", ui.az(facts["masazir_2"]) + " AZN", ui.C["teal"]) if facts["masazir_2"] else None,

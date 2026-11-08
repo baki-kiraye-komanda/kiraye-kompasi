@@ -14,6 +14,7 @@ import pandas as pd
 DATA = Path(__file__).resolve().parent / "data"
 NORM = 0.30  # kirayə gəlirin 30%-dən çox olmamalıdır (beynəlxalq praktika)
 MIN_N = 20   # rayon statistikası üçün minimum elan sayı (az elanla median etibarlı deyil)
+FEW = 30     # bundan az elan olanda saytda «az elan» xəbərdarlığı göstərilir
 TOTAL_ROW = "İqtisadiyyat üzrə - cəmi"
 BAKU_ROW = "Bakı şəhəri - cəmi"
 
@@ -169,8 +170,8 @@ def market_facts(data: Data) -> dict:
     city = l[l["area"] == "Bakı şəhəri"]
     med2 = float(city[city["rooms_group"] == "2"]["price_azn"].median())
     rooms = l.groupby("rooms_group")["price_azn"].median().round().astype(int).to_dict()
-    by_d = l.groupby("district_name")["price_azn"].agg(["size", "median"])
-    by_d = by_d[by_d["size"] >= 30].sort_values("median")
+    by_d = l.groupby("district_name").agg(size=("price_azn", "size"), median=("price_azn", "median"), m2=("price_per_m2", "median"))
+    by_d = by_d[by_d["size"] >= 30].sort_values(["median", "m2"])  # bərabər median: 1 m² qiyməti həll edir
     mas = l[(l["location_name"].str.contains("Masazır", na=False)) & (l["rooms_group"] == "2")]
     return {
         "n": len(l),

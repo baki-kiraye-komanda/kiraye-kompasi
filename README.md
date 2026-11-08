@@ -4,6 +4,8 @@ Data final layihəsi. bina.az-dakı bütün aylıq kirayə elanları (22 262 xam
 təmizlənir, Oracle-a yazılır, SQL view-larında hesablanır və iki yerdə göstərilir:
 **Power BI dashboard** və **Streamlit saytı** (Gemini AI izahı ilə). Maaş: Dövlət Statistika Komitəsi.
 
+🌐 **Sayt:** https://kiraye-kompasi.streamlit.app
+
 ## Quruluş
 | Qovluq | Nə var |
 |---|---|
@@ -18,6 +20,8 @@ təmizlənir, Oracle-a yazılır, SQL view-larında hesablanır və iki yerdə g
 1. `setup.bat` — mühit və paketlər (bir dəfə).
 2. `run_pipeline.bat` — toplama → təmizləmə → Oracle → maaş → ixrac.
 3. Power BI: `powerbi/BakuKiraye.pbip` → **Refresh**.
+   Başqa kompüterdə ilk dəfə açanda: **Home → Transform data → Edit parameters → ExportFolder** —
+   öz kompüterinizdəki `exports\` qovluğunun tam yolunu yazın (sonunda `\` olsun) → **Apply changes**.
 4. Sayt: `run_site.bat` → brauzerdə `http://localhost:8501`.
 
 Gizli parametrlər `.env` faylındadır (`env.example.txt`-ə baxın) və GitHub-a yüklənmir.

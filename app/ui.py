@@ -30,7 +30,11 @@ def az(n: float, dec: int = 0) -> str:
 
 
 def pct(x: float) -> str:
-    return "—" if x is None or x != x else f"{round(x * 100)}%"
+    if x is None or x != x:
+        return "—"
+    if 0 < x < 0.005:  # 0.4% «0%» görünməsin — elan var, sadəcə azdır
+        return "<1%"
+    return f"{round(x * 100)}%"
 
 
 def up(s: str) -> str:
@@ -349,6 +353,14 @@ def mini(k: str, v: str, col: str) -> str:
             f'<div class="dim" style="font-size:.74rem">{esc(k)}</div><div class="disp" style="font-size:1.05rem;color:{col};margin-top:3px">{esc(v)}</div></div>')
 
 
+def few_note(n: int) -> str:
+    """Az elan olanda median etibarlı deyil — istifadəçini xəbərdar et."""
+    if n >= 30:
+        return ""
+    return (f'<div style="margin-top:8px;font-size:.82rem;color:{C["amber"]};font-weight:600">'
+            f'⚠ Bu filtrlərlə cəmi {az(n)} elan var — rəqəmlər az elana əsaslanır, ehtiyatla bax.</div>')
+
+
 def result_card(r, f: dict) -> str:
     p = r.p
     v_txt, v_tone = r.verdict
@@ -377,6 +389,7 @@ def result_card(r, f: dict) -> str:
 </div>
 <div style="display:flex;justify-content:space-between;font-size:.78rem;margin-top:6px" class="dim"><span>0%</span><span style="color:{C['green']};font-weight:600">norma 30%</span><span>100%</span></div>
 <div style="margin-top:10px;font-size:.95rem">Median kirayə <b>{az(r.median)} AZN</b> → gəlirin <b style="color:{tone}">{pct(r.burden)}</b>-i</div>
+{few_note(r.seg_n)}
 </div>
 </div>
 <div class="grid3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px">
