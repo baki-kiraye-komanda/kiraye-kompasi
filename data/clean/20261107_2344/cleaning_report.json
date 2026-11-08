@@ -1,0 +1,18 @@
+{
+  "raw_rows": 22262,
+  "R1_duplicates_removed": 0,
+  "R2_daily_removed": 0,
+  "R3_usd_converted": 0,
+  "R3_other_currency_removed": 0,
+  "R4_bad_price_removed": 5,
+  "R5_no_rooms_removed": 0,
+  "R6_bad_area_removed": 2,
+  "R7_bad_floors_fixed": 4,
+  "R7_floor_fixed": 0,
+  "R8_outliers_flagged": 431,
+  "R10_room_share_flagged": 81,
+  "R9_duplicates_flagged": 4428,
+  "clean_rows": 22255,
+  "analysis_rows": 17347,
+  "snapshot_id": "20261107_2344"
+}

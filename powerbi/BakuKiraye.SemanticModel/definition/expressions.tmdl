@@ -1,0 +1,6 @@
+/// exports/ qovluğunun yolu. Hesabatı başqa kompüterdə açanda yalnız bunu dəyişin.
+expression ExportFolder = "C:\Users\Fidan\Desktop\Final Project DATA AND GEN\exports\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: d8ef0af1-ad5a-400e-95b1-462532e61b7a
+
+	annotation PBI_ResultType = Text
+

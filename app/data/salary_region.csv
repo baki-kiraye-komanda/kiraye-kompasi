@@ -1,0 +1,400 @@
+year,region_name,avg_salary_azn,source_url
+2021,Abşeron rayonu,569.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Abşeron-Xızı iqtisadi rayonu - cəmi,605.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Astara rayonu,439.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Azərbaycan Respublikası,732.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Ağcabədi rayonu,427.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Ağdam rayonu,413.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Ağdaş rayonu,431.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Ağstafa rayonu,421.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Ağsu rayonu,485.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Bakı şəhəri - cəmi,951.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Balakən rayonu,416.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Beyləqan rayonu,446.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Biləsuvar rayonu,556.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Bərdə rayonu,425.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Cəbrayıl rayonu,495.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Cəlilabad rayonu,480.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Dağlıq Şirvan iqtisadi rayonu - cəmi,471.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Daşkəsən rayonu,709.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Füzuli rayonu,467.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Goranboy rayonu,463.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Göygöl rayonu,473.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Göyçay rayonu,441.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Gədəbəy rayonu,667.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Gəncə şəhəri,548.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Gəncə-Daşkəsən iqtisadi rayonu - cəmi,528.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Hacıqabul rayonu,510.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Kürdəmir rayonu,430.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Kəlbəcər rayonu,463.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Laçın rayonu,455.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Lerik rayonu,453.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Lənkəran rayonu,466.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Lənkəran-Astara iqtisadi rayonu - cəmi,460.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Masallı rayonu,448.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Mil-Muğan iqtisadi rayonu - cəmi,454.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Mingəçevir şəhəri,481.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Mərkəzi Aran iqtisadi rayonu- cəmi,454.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Naftalan şəhəri,476.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Naxçıvan iqtisadi rayonu - cəmi,553.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Neftçala rayonu,461.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Oğuz rayonu,453.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qarabağ iqtisadi rayonu - cəmi,437.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qax rayonu,399.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qazax rayonu,479.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qazax-Tovuz iqtisadi rayonu - cəmi,498.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qobustan rayonu,495.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Quba rayonu,510.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Quba-Xaçmaz iqtisadi rayonu - cəmi,507.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qubadlı rayonu,559.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qusar rayonu,484.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Qəbələ rayonu,503.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Saatlı rayonu,432.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Sabirabad rayonu,426.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Salyan rayonu,529.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Samux rayonu,465.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Siyəzən rayonu,559.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Sumqayıt şəhəri,638.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Tovuz rayonu,443.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Tərtər rayonu,429.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Ucar rayonu,470.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Xaçmaz rayonu,501.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Xocalı rayonu,537.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Xocavənd rayonu,523.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Xızı rayonu,420.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Yardımlı rayonu,465.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Yevlax rayonu,463.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Zaqatala rayonu,411.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Zəngilan rayonu,525.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Zərdab rayonu,437.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,İmişli rayonu,511.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,İsmayıllı rayonu,460.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şabran rayonu,494.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şamaxı rayonu,461.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şirvan şəhəri,604.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şirvan-Salyan iqtisadi rayonu - cəmi,542.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şuşa rayonu,542.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şəki rayonu,458.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şəki-Zaqatala iqtisadi rayonu - cəmi,443.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şəmkir rayonu,519.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2021,Şərqi Zəngəzur iqtisadi rayonu - cəmi,482.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Abşeron rayonu,637.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Abşeron-Xızı iqtisadi rayonu - cəmi,689.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Astara rayonu,529.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Azərbaycan Respublikası,840.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Ağcabədi rayonu,510.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Ağdam rayonu,527.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Ağdaş rayonu,505.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Ağstafa rayonu,505.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Ağsu rayonu,562.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Bakı şəhəri - cəmi,1080.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Balakən rayonu,479.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Beyləqan rayonu,497.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Biləsuvar rayonu,630.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Bərdə rayonu,544.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Cəbrayıl rayonu,610.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Cəlilabad rayonu,565.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Dağlıq Şirvan iqtisadi rayonu - cəmi,556.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Daşkəsən rayonu,956.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Füzuli rayonu,524.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Goranboy rayonu,545.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Göygöl rayonu,544.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Göyçay rayonu,516.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Gədəbəy rayonu,736.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Gəncə şəhəri,622.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Gəncə-Daşkəsən iqtisadi rayonu - cəmi,611.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Hacıqabul rayonu,600.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Kürdəmir rayonu,506.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Kəlbəcər rayonu,572.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Laçın rayonu,529.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Lerik rayonu,556.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Lənkəran rayonu,550.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Lənkəran-Astara iqtisadi rayonu - cəmi,543.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Masallı rayonu,519.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Mil-Muğan iqtisadi rayonu - cəmi,524.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Mingəçevir şəhəri,536.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Mərkəzi Aran iqtisadi rayonu- cəmi,525.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Naftalan şəhəri,519.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Naxçıvan iqtisadi rayonu - cəmi,610.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Neftçala rayonu,545.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Oğuz rayonu,535.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qarabağ iqtisadi rayonu - cəmi,536.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qax rayonu,451.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qazax rayonu,577.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qazax-Tovuz iqtisadi rayonu - cəmi,577.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qobustan rayonu,579.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Quba rayonu,589.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Quba-Xaçmaz iqtisadi rayonu - cəmi,577.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qubadlı rayonu,679.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qusar rayonu,556.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Qəbələ rayonu,590.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Saatlı rayonu,508.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Sabirabad rayonu,506.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Salyan rayonu,595.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Samux rayonu,535.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Siyəzən rayonu,643.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Sumqayıt şəhəri,734.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Tovuz rayonu,523.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Tərtər rayonu,512.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Ucar rayonu,535.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Xaçmaz rayonu,560.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Xocalı rayonu,630.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Xocavənd rayonu,630.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Xızı rayonu,495.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Yardımlı rayonu,546.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Yevlax rayonu,545.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Zaqatala rayonu,480.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Zəngilan rayonu,638.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Zərdab rayonu,519.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,İmişli rayonu,582.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,İsmayıllı rayonu,536.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şabran rayonu,564.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şamaxı rayonu,562.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şirvan şəhəri,700.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şirvan-Salyan iqtisadi rayonu - cəmi,625.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şuşa rayonu,712.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şəki rayonu,528.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şəki-Zaqatala iqtisadi rayonu - cəmi,514.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şəmkir rayonu,587.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2022,Şərqi Zəngəzur iqtisadi rayonu - cəmi,583.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Abşeron rayonu,713.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Abşeron-Xızı iqtisadi rayonu - cəmi,774.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Astara rayonu,586.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Azərbaycan Respublikası,933.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Ağcabədi rayonu,563.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Ağdam rayonu,608.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Ağdaş rayonu,558.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Ağstafa rayonu,568.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Ağsu rayonu,609.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Bakı şəhəri - cəmi,1183.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Balakən rayonu,528.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Beyləqan rayonu,583.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Biləsuvar rayonu,661.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Bərdə rayonu,597.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Cəbrayıl rayonu,696.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Cəlilabad rayonu,614.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Dağlıq Şirvan iqtisadi rayonu - cəmi,614.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Daşkəsən rayonu,942.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Füzuli rayonu,589.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Goranboy rayonu,633.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Göygöl rayonu,631.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Göyçay rayonu,578.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Gədəbəy rayonu,813.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Gəncə şəhəri,694.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Gəncə-Daşkəsən iqtisadi rayonu - cəmi,683.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Hacıqabul rayonu,667.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Kürdəmir rayonu,574.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Kəlbəcər rayonu,599.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Laçın rayonu,596.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Lerik rayonu,614.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Lənkəran rayonu,611.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Lənkəran-Astara iqtisadi rayonu - cəmi,598.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Masallı rayonu,573.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Mil-Muğan iqtisadi rayonu - cəmi,593.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Mingəçevir şəhəri,604.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Mərkəzi Aran iqtisadi rayonu- cəmi,588.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Naftalan şəhəri,593.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Naxçıvan iqtisadi rayonu - cəmi,689.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Neftçala rayonu,616.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Oğuz rayonu,591.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qarabağ iqtisadi rayonu - cəmi,602.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qax rayonu,502.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qazax rayonu,651.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qazax-Tovuz iqtisadi rayonu - cəmi,642.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qobustan rayonu,609.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Quba rayonu,651.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Quba-Xaçmaz iqtisadi rayonu - cəmi,640.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qubadlı rayonu,770.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qusar rayonu,606.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Qəbələ rayonu,644.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Saatlı rayonu,572.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Sabirabad rayonu,581.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Salyan rayonu,649.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Samux rayonu,611.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Siyəzən rayonu,705.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Sumqayıt şəhəri,828.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Tovuz rayonu,589.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Tərtər rayonu,578.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Ucar rayonu,611.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Xaçmaz rayonu,628.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Xocalı rayonu,691.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Xocavənd rayonu,686.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Xızı rayonu,560.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Yardımlı rayonu,580.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Yevlax rayonu,606.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Zaqatala rayonu,549.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Zəngilan rayonu,812.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Zərdab rayonu,575.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,İmişli rayonu,632.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,İsmayıllı rayonu,583.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şabran rayonu,639.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şamaxı rayonu,650.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şirvan şəhəri,796.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şirvan-Salyan iqtisadi rayonu - cəmi,691.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şuşa rayonu,851.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şəki rayonu,607.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şəki-Zaqatala iqtisadi rayonu - cəmi,577.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şəmkir rayonu,643.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2023,Şərqi Zəngəzur iqtisadi rayonu - cəmi,653.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Abşeron rayonu,747.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Abşeron-Xızı iqtisadi rayonu - cəmi,807.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Astara rayonu,638.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Azərbaycan Respublikası,1009.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Ağcabədi rayonu,604.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Ağdam rayonu,649.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Ağdaş rayonu,583.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Ağdərə rayonu,944.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Ağstafa rayonu,591.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Ağsu rayonu,650.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Bakı şəhəri - cəmi,1269.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Balakən rayonu,570.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Beyləqan rayonu,617.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Biləsuvar rayonu,662.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Bərdə rayonu,631.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Cəbrayıl rayonu,718.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Cəlilabad rayonu,665.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Dağlıq Şirvan iqtisadi rayonu - cəmi,647.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Daşkəsən rayonu,1145.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Füzuli rayonu,618.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Goranboy rayonu,669.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Göygöl rayonu,677.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Göyçay rayonu,606.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Gədəbəy rayonu,839.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Gəncə şəhəri,717.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Gəncə-Daşkəsən iqtisadi rayonu - cəmi,722.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Hacıqabul rayonu,706.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Kürdəmir rayonu,612.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Kəlbəcər rayonu,654.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Laçın rayonu,685.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Lerik rayonu,610.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Lənkəran rayonu,649.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Lənkəran-Astara iqtisadi rayonu - cəmi,634.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Masallı rayonu,601.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Mil-Muğan iqtisadi rayonu - cəmi,634.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Mingəçevir şəhəri,650.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Mərkəzi Aran iqtisadi rayonu- cəmi,621.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Naftalan şəhəri,621.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Naxçıvan iqtisadi rayonu - cəmi,782.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Neftçala rayonu,640.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Oğuz rayonu,610.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qarabağ iqtisadi rayonu - cəmi,645.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qax rayonu,538.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qazax rayonu,731.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qazax-Tovuz iqtisadi rayonu - cəmi,686.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qobustan rayonu,673.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Quba rayonu,691.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Quba-Xaçmaz iqtisadi rayonu - cəmi,675.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qubadlı rayonu,818.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qusar rayonu,651.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Qəbələ rayonu,690.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Saatlı rayonu,638.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Sabirabad rayonu,617.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Salyan rayonu,686.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Samux rayonu,639.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Siyəzən rayonu,745.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Sumqayıt şəhəri,863.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Tovuz rayonu,631.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Tərtər rayonu,617.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Ucar rayonu,637.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Xankəndi şəhəri,1216.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Xaçmaz rayonu,660.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Xocalı rayonu,844.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Xocavənd rayonu,695.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Xızı rayonu,581.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Yardımlı rayonu,608.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Yevlax rayonu,627.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Zaqatala rayonu,611.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Zəngilan rayonu,909.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Zərdab rayonu,616.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,İmişli rayonu,668.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,İsmayıllı rayonu,609.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şabran rayonu,646.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şamaxı rayonu,674.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şirvan şəhəri,858.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şirvan-Salyan iqtisadi rayonu - cəmi,727.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şuşa rayonu,887.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şəki rayonu,648.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şəki-Zaqatala iqtisadi rayonu - cəmi,622.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şəmkir rayonu,680.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2024,Şərqi Zəngəzur iqtisadi rayonu - cəmi,718.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Abşeron rayonu,802.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Abşeron-Xızı iqtisadi rayonu - cəmi,870.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Astara rayonu,715.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Azərbaycan Respublikası,1103.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Ağcabədi rayonu,654.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Ağdam rayonu,740.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Ağdaş rayonu,636.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Ağdərə rayonu,886.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Ağstafa rayonu,636.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Ağsu rayonu,716.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Bakı şəhəri - cəmi,1383.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Balakən rayonu,620.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Beyləqan rayonu,659.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Biləsuvar rayonu,720.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Bərdə rayonu,689.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Cəbrayıl rayonu,805.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Cəlilabad rayonu,715.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Dağlıq Şirvan iqtisadi rayonu - cəmi,704.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Daşkəsən rayonu,1255.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Füzuli rayonu,708.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Goranboy rayonu,695.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Göygöl rayonu,732.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Göyçay rayonu,656.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Gədəbəy rayonu,939.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Gəncə şəhəri,761.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Gəncə-Daşkəsən iqtisadi rayonu - cəmi,769.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Hacıqabul rayonu,727.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Kürdəmir rayonu,725.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Kəlbəcər rayonu,739.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Laçın rayonu,751.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Lerik rayonu,661.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Lənkəran rayonu,702.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Lənkəran-Astara iqtisadi rayonu - cəmi,688.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Masallı rayonu,649.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Mil-Muğan iqtisadi rayonu - cəmi,675.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Mingəçevir şəhəri,722.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Mərkəzi Aran iqtisadi rayonu- cəmi,685.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Naftalan şəhəri,668.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Naxçıvan iqtisadi rayonu - cəmi,822.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Neftçala rayonu,701.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Oğuz rayonu,656.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qarabağ iqtisadi rayonu - cəmi,725.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qax rayonu,581.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qazax rayonu,776.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qazax-Tovuz iqtisadi rayonu - cəmi,738.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qobustan rayonu,695.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Quba rayonu,719.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Quba-Xaçmaz iqtisadi rayonu - cəmi,727.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qubadlı rayonu,876.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qusar rayonu,725.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Qəbələ rayonu,791.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Saatlı rayonu,656.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Sabirabad rayonu,654.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Salyan rayonu,775.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Samux rayonu,682.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Siyəzən rayonu,814.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Sumqayıt şəhəri,934.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Tovuz rayonu,671.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Tərtər rayonu,651.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Ucar rayonu,673.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Xankəndi şəhəri,1554.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Xaçmaz rayonu,712.7,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Xocalı rayonu,989.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Xocavənd rayonu,724.0,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Xızı rayonu,628.5,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Yardımlı rayonu,656.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Yevlax rayonu,692.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Zaqatala rayonu,671.3,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Zəngilan rayonu,1008.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Zərdab rayonu,668.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,İmişli rayonu,731.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,İsmayıllı rayonu,658.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şabran rayonu,696.8,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şamaxı rayonu,745.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şirvan şəhəri,907.9,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şirvan-Salyan iqtisadi rayonu - cəmi,783.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şuşa rayonu,979.2,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şəki rayonu,699.4,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şəki-Zaqatala iqtisadi rayonu - cəmi,683.1,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şəmkir rayonu,728.6,https://www.stat.gov.az/source/labour/az/009_6.xls
+2025,Şərqi Zəngəzur iqtisadi rayonu - cəmi,797.1,https://www.stat.gov.az/source/labour/az/009_6.xls

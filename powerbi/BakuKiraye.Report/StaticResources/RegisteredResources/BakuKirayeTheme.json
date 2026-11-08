@@ -1,0 +1,112 @@
+{
+  "name": "Baku Kiraye Dark",
+  "dataColors": [
+    "#22E5FF",
+    "#FF3FD1",
+    "#8B5CFF",
+    "#FFC23F",
+    "#2DF5C4",
+    "#3D8BFF",
+    "#FF5A7A",
+    "#94A3B8"
+  ],
+  "foreground": "#F2F5FF",
+  "foregroundNeutralSecondary": "#9AA6D6",
+  "foregroundNeutralTertiary": "#5B6699",
+  "background": "#0A0F33",
+  "backgroundLight": "#1A2366",
+  "backgroundNeutral": "#232E7A",
+  "tableAccent": "#22E5FF",
+  "good": "#2DF5C4",
+  "neutral": "#FFC23F",
+  "bad": "#FF5A7A",
+  "maximum": "#FF5A7A",
+  "center": "#FFC23F",
+  "minimum": "#2DF5C4",
+  "textClasses": {
+    "callout": {
+      "fontSize": 36,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F2F5FF"
+    },
+    "title": {
+      "fontSize": 13,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#9AA6D6"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F2F5FF"
+    },
+    "label": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI",
+      "color": "#C9D3EE"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false,
+            "transparency": 100
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ],
+        "visualTooltip": [
+          {
+            "background": {
+              "solid": {
+                "color": "#0D1440"
+              }
+            },
+            "titleFontColor": {
+              "solid": {
+                "color": "#9AA6D6"
+              }
+            },
+            "valueFontColor": {
+              "solid": {
+                "color": "#F2F5FF"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#04061A"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

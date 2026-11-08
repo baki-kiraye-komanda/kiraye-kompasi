@@ -1,0 +1,39 @@
+/// Dövlət Statistika Komitəsi: iqtisadi rayonlar və şəhərlər üzrə orta aylıq nominal əməkhaqqı (Bakı şəhəri daxil)
+table 'Region maaşı'
+	lineageTag: 680a31ed-cd43-42ff-b258-3f68bf790f7b
+
+	column İl
+		dataType: int64
+		lineageTag: 05f19ca2-d6c1-4896-9c04-96a99f1286f5
+		summarizeBy: none
+		sourceColumn: İl
+
+	column Region
+		dataType: string
+		lineageTag: 9201fac2-a8c0-405a-a28b-1948af1acac5
+		sourceColumn: Region
+
+	column 'Orta maaş (AZN)'
+		dataType: double
+		formatString: #,0
+		lineageTag: a617923d-4d96-4010-8854-1ab2ecff3d38
+		summarizeBy: none
+		sourceColumn: Orta maaş (AZN)
+
+	column Mənbə
+		dataType: string
+		lineageTag: 0eed3834-6abd-42c7-8d7a-e92bf6146de7
+		dataCategory: WebUrl
+		sourceColumn: Mənbə
+
+	partition 'Region maaşı' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportFolder & "salary_region.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"year", Int64.Type}, {"avg_salary_azn", type number}}, "en-US"),
+				    Renamed = Table.RenameColumns(Typed, {{"year", "İl"}, {"region_name", "Region"}, {"avg_salary_azn", "Orta maaş (AZN)"}, {"source_url", "Mənbə"}})
+				in
+				    Renamed
+

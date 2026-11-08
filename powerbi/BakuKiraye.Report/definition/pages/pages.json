@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "34f92686e8eb5293919d",
+    "market",
+    "budget",
+    "salary",
+    "method",
+    "9a5cbde2a2708060d800",
+    "d324fa85b2010c802001"
+  ],
+  "activePageName": "34f92686e8eb5293919d"
+}

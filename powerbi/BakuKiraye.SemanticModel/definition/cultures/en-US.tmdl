@@ -1,0 +1,254 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "rayon.rayon": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Rayon",
+			          "ConceptualProperty": "Rayon"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ölçülər.elan_sayı": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ölçülər",
+			          "ConceptualProperty": "Elan sayı"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ölçülər.median_kirayə": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ölçülər",
+			          "ConceptualProperty": "Median kirayə"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ölçülər.adambaşına_median": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ölçülər",
+			          "ConceptualProperty": "Adambaşına median"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ölçülər.büdcə_fərqi": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ölçülər",
+			          "ConceptualProperty": "Büdcə fərqi"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ölçülər.büdcəyə_uyğun_elan": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Ölçülər",
+			          "ConceptualProperty": "Büdcəyə uyğun elan"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "elanlar.məkan": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Məkan"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Məkan": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.otaq": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Otaq"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Otaq": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.sahə_m": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Sahə (m²)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sahə, m²": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.mərtəbə": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Mərtəbə"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mərtəbə": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.kirayə_azn_ay": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Kirayə (AZN/ay)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Kirayə, AZN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.column1_m_qiyməti_azn": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "1 m² qiyməti (AZN)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "1 m², AZN": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.tikili_növü": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Tikili növü"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Tikili": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.elanı_verən": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Elanı verən"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Elanı verən": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "elanlar.link": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Elanlar",
+			          "ConceptualProperty": "Link"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Link": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

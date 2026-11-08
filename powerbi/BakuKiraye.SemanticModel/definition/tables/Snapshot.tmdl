@@ -1,0 +1,51 @@
+/// Məlumatın toplanma tarixi və həcmi
+table Snapshot
+	lineageTag: ad4483bf-1a86-42a8-8e02-9e2f41667ed1
+
+	column 'Snapshot ID'
+		dataType: string
+		lineageTag: 554c5e57-5f28-4f63-9e17-f975a8a8b8c2
+		sourceColumn: Snapshot ID
+
+	column 'Toplanma vaxtı'
+		dataType: dateTime
+		formatString: dd.MM.yyyy HH:mm
+		lineageTag: 97c288ea-6fda-4cec-b671-d9be88f078da
+		sourceColumn: Toplanma vaxtı
+
+	column 'Xam elan'
+		dataType: int64
+		lineageTag: 219f9611-23a9-47c7-a127-efc578cdd749
+		summarizeBy: none
+		sourceColumn: Xam elan
+
+	column 'Təmiz elan'
+		dataType: int64
+		lineageTag: 97c7e3ee-72ed-4080-8ab5-64165f0a783c
+		summarizeBy: none
+		sourceColumn: Təmiz elan
+
+	column 'Qeyri-adi qiymət'
+		dataType: int64
+		lineageTag: 6e816130-267b-4a6b-9633-b3c9bf5fbf35
+		summarizeBy: none
+		sourceColumn: Qeyri-adi qiymət
+
+	/// R9: eyni mənzil üçün təkrar verilmiş elanlar (analizdən çıxarılır)
+	column 'Təkrar elan'
+		dataType: int64
+		lineageTag: cac41a77-7f52-43eb-9f4d-ca697f935e7e
+		summarizeBy: none
+		sourceColumn: Təkrar elan
+
+	partition Snapshot = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportFolder & "snapshot.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"captured_at", type datetime}, {"rows_raw", Int64.Type}, {"rows_clean", Int64.Type}, {"rows_outlier", Int64.Type}, {"rows_duplicate", Int64.Type}}, "en-US"),
+				    Renamed = Table.RenameColumns(Typed, {{"snapshot_id", "Snapshot ID"}, {"captured_at", "Toplanma vaxtı"}, {"rows_raw", "Xam elan"}, {"rows_clean", "Təmiz elan"}, {"rows_outlier", "Qeyri-adi qiymət"}, {"rows_duplicate", "Təkrar elan"}})
+				in
+				    Renamed
+

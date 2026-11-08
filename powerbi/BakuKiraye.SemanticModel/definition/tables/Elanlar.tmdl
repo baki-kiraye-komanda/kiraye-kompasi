@@ -1,0 +1,112 @@
+/// bina.az: son snapshotun təmiz aylıq kirayə elanları (Oracle v_listing_current)
+table Elanlar
+	lineageTag: 3ec164dd-c119-4e40-85ca-ba5ef549ec64
+
+	column 'Elan ID'
+		dataType: int64
+		isHidden
+		lineageTag: c9938cea-8dba-4695-9f77-d6f3da36f60a
+		summarizeBy: none
+		sourceColumn: Elan ID
+
+	column district_id
+		dataType: int64
+		isHidden
+		lineageTag: 073e3f91-f74d-430c-a273-a95fe648b38e
+		summarizeBy: none
+		sourceColumn: district_id
+
+	column Məkan
+		dataType: string
+		lineageTag: d179f309-2ca8-4fd9-88cb-087b9fcc3fbf
+		sourceColumn: Məkan
+
+	column 'Məkan növü'
+		dataType: string
+		lineageTag: 08f3d9e3-ca4e-4ef2-a448-910297975d25
+		sourceColumn: Məkan növü
+
+	column 'Tikili növü'
+		dataType: string
+		lineageTag: f35d2e80-a6ad-4aa6-9d81-01218562c717
+		sourceColumn: Tikili növü
+
+	column 'Otaq sayı'
+		dataType: int64
+		lineageTag: 4929ed53-8347-4357-ad5b-410e72f3c4ac
+		summarizeBy: none
+		sourceColumn: Otaq sayı
+
+	column Otaq
+		dataType: string
+		lineageTag: 8f37d814-7c0c-4d6b-915f-bed0d44adf18
+		sourceColumn: Otaq
+
+	column 'Sahə (m²)'
+		dataType: double
+		formatString: #,0
+		lineageTag: 895d377f-95b1-4c95-b75e-96e7fbeabda1
+		summarizeBy: none
+		sourceColumn: Sahə (m²)
+
+	column Mərtəbə
+		dataType: int64
+		lineageTag: 40347d12-5989-467e-bce3-5b1c0f69a60f
+		summarizeBy: none
+		sourceColumn: Mərtəbə
+
+	column 'Binanın mərtəbə sayı'
+		dataType: int64
+		lineageTag: a70825d4-7a0a-4a2f-9511-7ca90c1d2c12
+		summarizeBy: none
+		sourceColumn: Binanın mərtəbə sayı
+
+	column 'Kirayə (AZN/ay)'
+		dataType: double
+		formatString: #,0
+		lineageTag: 1d5dbe59-d3cd-4979-bf5c-84d3704226b2
+		summarizeBy: none
+		sourceColumn: Kirayə (AZN/ay)
+
+	column '1 m² qiyməti (AZN)'
+		dataType: double
+		formatString: #,0.0
+		lineageTag: 63daaddd-b93a-4fa5-91ca-73c0529b90de
+		summarizeBy: none
+		sourceColumn: 1 m² qiyməti (AZN)
+
+	column Təmirli
+		dataType: string
+		lineageTag: 015d420b-00b3-4c51-b250-a1d5af6e777d
+		sourceColumn: Təmirli
+
+	column Kupça
+		dataType: string
+		lineageTag: d692aea4-5c8a-4d81-bf05-1f835195b30e
+		sourceColumn: Kupça
+
+	column 'Elanı verən'
+		dataType: string
+		lineageTag: e70d5ed4-addc-4dd8-a35b-10a8be1cfab1
+		sourceColumn: Elanı verən
+
+	column Link
+		dataType: string
+		lineageTag: 79498f82-158c-4be3-9b62-ae6f21c6d19b
+		dataCategory: WebUrl
+		sourceColumn: Link
+
+	partition Elanlar = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportFolder & "listings.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"floor", "floors"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"listing_id", Int64.Type}, {"district_id", Int64.Type}, {"rooms", Int64.Type}, {"area_m2", type number}, {"floor", Int64.Type}, {"floors", Int64.Type}, {"price_azn", type number}, {"price_per_m2", type number}}, "en-US"),
+				    Labels = Table.TransformColumns(Typed, {{"has_repair", each if _ = "Y" then "Bəli" else "Xeyr", type text}, {"has_bill_of_sale", each if _ = "Y" then "Bəli" else "Xeyr", type text}, {"is_agency", each if _ = "Y" then "Vasitəçi" else "Mülkiyyətçi", type text}}),
+				    Removed = Table.RemoveColumns(Labels, {"district_name", "is_baku_city"}),
+				    Renamed = Table.RenameColumns(Removed, {{"listing_id", "Elan ID"}, {"location_name", "Məkan"}, {"location_type", "Məkan növü"}, {"building_type", "Tikili növü"}, {"rooms", "Otaq sayı"}, {"rooms_group", "Otaq"}, {"area_m2", "Sahə (m²)"}, {"floor", "Mərtəbə"}, {"floors", "Binanın mərtəbə sayı"}, {"price_azn", "Kirayə (AZN/ay)"}, {"price_per_m2", "1 m² qiyməti (AZN)"}, {"has_repair", "Təmirli"}, {"has_bill_of_sale", "Kupça"}, {"is_agency", "Elanı verən"}, {"url", "Link"}})
+				in
+				    Renamed
+

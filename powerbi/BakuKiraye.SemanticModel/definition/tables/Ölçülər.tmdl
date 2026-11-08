@@ -1,0 +1,330 @@
+/// Bütün hesablamalar (DAX measure-lər) burada saxlanılır
+table Ölçülər
+	lineageTag: 3640b5d7-aa22-4cde-95bf-a2c1b1b8e584
+
+	/// Seçilmiş filtrlər üzrə elanların sayı
+	measure 'Elan sayı' = COUNTROWS ( Elanlar )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: b4776552-0391-4ccf-9424-8d429d2f3494
+
+	/// Ortadakı qiymət: elanların yarısı bundan ucuz, yarısı bahadır. Çox baha/ucuz elanlar onu orta hesab kimi dəyişmir.
+	measure 'Median kirayə' = MEDIAN ( Elanlar[Kirayə (AZN/ay)] )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: f21a8f6e-691f-4514-9bc3-3c905026feb3
+
+	/// Elanların 25%-i bundan ucuzdur
+	measure 'P25 kirayə' = PERCENTILE.INC ( Elanlar[Kirayə (AZN/ay)], 0.25 )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: 987c1842-645e-46a7-acc2-ba4b05e79ccc
+
+	/// Elanların 75%-i bundan ucuzdur
+	measure 'P75 kirayə' = PERCENTILE.INC ( Elanlar[Kirayə (AZN/ay)], 0.75 )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: 3dc36cfe-d7d8-4895-a26d-4c599835bc18
+
+	/// Elanların orta 50%-nin qiymət intervalı (P25–P75)
+	measure 'Qiymət aralığı' = FORMAT ( [P25 kirayə], "#,0" ) & " – " & FORMAT ( [P75 kirayə], "#,0" ) & " AZN"
+		displayFolder: 1 Əsas
+		lineageTag: 79064198-2d73-47fc-b905-19cdbcc4fda7
+
+	measure 'Median 1 m²' = MEDIAN ( Elanlar[1 m² qiyməti (AZN)] )
+		formatString: #,0.0
+		displayFolder: 1 Əsas
+		lineageTag: d06a1bb2-3e52-4552-aa84-2dafaaa3741c
+
+	measure 'Median sahə' = MEDIAN ( Elanlar[Sahə (m²)] )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: e1d8f54f-e189-4596-8b17-a2ff3c335013
+
+	/// Elanların neçə faizini vasitəçilər (agentlik) verib
+	measure 'Vasitəçi payı' = DIVIDE ( CALCULATE ( [Elan sayı], Elanlar[Elanı verən] = "Vasitəçi" ), [Elan sayı] )
+		formatString: 0%
+		displayFolder: 1 Əsas
+		lineageTag: 0bd41f32-d66e-4498-8ff5-72cc3e3bef33
+
+	measure 'Median yeni tikili' = CALCULATE ( [Median kirayə], Elanlar[Tikili növü] = "Yeni tikili" )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: b79478f7-0321-4d90-9b67-ee3fcc9cbe26
+
+	measure 'Median köhnə tikili' = CALCULATE ( [Median kirayə], Elanlar[Tikili növü] = "Köhnə tikili" )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: e7a3f997-35ed-40b0-bda3-8ad9a0e86e12
+
+	/// Slayderdə seçilən məbləğ (seçilməyibsə 700 AZN)
+	measure 'Seçilmiş büdcə' = SELECTEDVALUE ( 'Büdcə'[Büdcə (AZN)], 700 )
+		formatString: #,0
+		displayFolder: 2 Büdcə
+		lineageTag: 459afbd3-9fa9-4b1e-95d9-2205b6ee9815
+
+	measure 'Seçilmiş nəfər' = SELECTEDVALUE ( 'Nəfər'[Nəfər sayı], 1 )
+		formatString: 0
+		displayFolder: 2 Büdcə
+		lineageTag: 05997a19-de87-419c-a27c-19f670de5d48
+
+	/// Qiyməti / nəfər sayı ≤ büdcə olan elanlar. SQL-dəki 03_budget_query.sql ilə eyni qayda.
+	measure 'Büdcəyə uyğun elan' =
+			VAR LimitForFlat = [Seçilmiş büdcə] * [Seçilmiş nəfər]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( [Elan sayı] ),
+			        COALESCE ( CALCULATE ( COUNTROWS ( Elanlar ), KEEPFILTERS ( Elanlar[Kirayə (AZN/ay)] <= LimitForFlat ) ), 0 )
+			    )
+		formatString: #,0
+		displayFolder: 2 Büdcə
+		lineageTag: e205abe0-9efc-432b-b58d-ac9d2b27fe0a
+
+	measure 'Büdcəyə uyğun pay' = DIVIDE ( [Büdcəyə uyğun elan], [Elan sayı] )
+		formatString: 0%
+		displayFolder: 2 Büdcə
+		lineageTag: 11cbec05-9733-4339-a093-ab1ac6ea26c1
+
+	measure 'Adambaşına median' = DIVIDE ( [Median kirayə], [Seçilmiş nəfər] )
+		formatString: #,0
+		displayFolder: 2 Büdcə
+		lineageTag: 79276445-f68d-4ac6-b2b3-77113378e178
+
+	/// Müsbət: büdcə mediandan çoxdur; mənfi: çatmır
+	measure 'Büdcə fərqi' = IF ( NOT ISBLANK ( [Median kirayə] ), [Seçilmiş büdcə] - [Adambaşına median] )
+		formatString: +#,0;-#,0;0
+		displayFolder: 2 Büdcə
+		lineageTag: b82cf5ce-a725-4f6a-b037-cdb6c5afc81d
+
+	/// Rayonun rəngi: 50%+ yaşıl, 20–50% sarı, 20%-dən az qırmızı
+	measure 'Büdcə rəngi' =
+			VAR p = [Büdcəyə uyğun pay]
+			RETURN SWITCH ( TRUE (), ISBLANK ( p ), "#3A4256", p >= 0.5, "#2DF5C4", p >= 0.2, "#FFC23F", "#FF5A7A" )
+		displayFolder: 9 Dizayn
+		lineageTag: 737f5a08-8de7-4790-9b79-b3d3f307989c
+
+	measure 'Büdcə başlığı' =
+			VAR b = FORMAT ( [Seçilmiş büdcə], "#,0" )
+			VAR n = [Seçilmiş nəfər]
+			RETURN
+			    "Ayda " & b & " AZN ilə elanların " & FORMAT ( [Büdcəyə uyğun pay], "0%" ) & "-i sizə çatır"
+			        & IF ( n = 2, " · 2 nəfərə", "" )
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 05757936-ec06-49d9-89cc-a1688c91bf29
+
+	/// Büdcəyə uyğun elan payı ən yüksək olan rayon (ən azı 30 elan)
+	measure 'Ən əlçatan rayon' =
+			VAR t =
+			    FILTER (
+			        ADDCOLUMNS ( VALUES ( Rayon[Rayon] ), "@pay", [Büdcəyə uyğun pay], "@n", [Elan sayı] ),
+			        [@n] >= 30
+			    )
+			RETURN MAXX ( TOPN ( 1, t, [@pay], DESC, [@n], DESC ), Rayon[Rayon] )
+		displayFolder: 2 Büdcə
+		lineageTag: 7981f1fe-3ccf-46ef-8ef4-00c9673a05d5
+
+	/// Sahə seçilməyibsə: Bakı üzrə orta maaş. Sahə seçilibsə: həmin sahənin ölkə üzrə orta maaşı (DSK-nın sahə cədvəli ölkə üzrədir).
+	measure 'Orta maaş' =
+			VAR LastYear = CALCULATE ( MAX ( 'Maaş'[İl] ), ALL ( 'Maaş' ) )
+			RETURN
+			    IF (
+			        ISFILTERED ( 'Maaş'[Sahə] ),
+			        CALCULATE ( AVERAGE ( 'Maaş'[Orta maaş (AZN)] ), 'Maaş'[İl] = LastYear ),
+			        [Bakı orta maaşı]
+			    )
+		formatString: #,0
+		displayFolder: 4 Maaş
+		lineageTag: 25df9719-ebd9-494c-b4dd-2cce841e38e1
+
+	/// Median kirayə (adambaşına) orta maaşın neçə faizidir. Beynəlxalq tövsiyə: 30%-dən çox olmamalıdır.
+	measure 'Kirayə yükü' = DIVIDE ( [Adambaşına median], [Orta maaş] )
+		formatString: 0%
+		displayFolder: 4 Maaş
+		lineageTag: df283e76-6bc2-4bd6-b117-e6651990b7ef
+
+	measure 'Kirayədən sonra qalan' = [Orta maaş] - [Adambaşına median]
+		formatString: #,0
+		displayFolder: 4 Maaş
+		lineageTag: 31e63c1d-2867-4d58-b7cc-72f090b5a1bf
+
+	/// 30%-ə qədər yaşıl (normal), 30–50% sarı, 50%-dən çox qırmızı
+	measure 'Yük rəngi' =
+			VAR y = [Kirayə yükü]
+			RETURN SWITCH ( TRUE (), ISBLANK ( y ), "#3A4256", y <= 0.3, "#2DF5C4", y <= 0.5, "#FFC23F", "#FF5A7A" )
+		displayFolder: 9 Dizayn
+		lineageTag: 664ff86c-4f15-4d65-8133-12721145b73e
+
+	measure 'Yük başlığı' =
+			VAR room = SELECTEDVALUE ( Elanlar[Otaq] )
+			VAR who = IF ( ISBLANK ( room ), "Bütün mənzillər", room & " otaqlı mənzil" )
+			VAR sec = IF ( ISFILTERED ( 'Maaş'[Sahə] ), LOWER ( SELECTEDVALUE ( 'Maaş'[Sahə], "seçilmiş sahələr" ) ) & " (ölkə üzrə)", "Bakı üzrə orta" )
+			RETURN
+			    who & ": median kirayə " & FORMAT ( [Adambaşına median], "#,0" ) & " AZN — " & sec
+			        & " maaşın (" & FORMAT ( [Orta maaş], "#,0" ) & " AZN) " & FORMAT ( [Kirayə yükü], "0%" ) & "-i"
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 4c9807ac-fe2c-48f1-9efe-ce1882885285
+
+	measure 'Əsas insight' =
+			"Bakıda " & FORMAT ( [Elan sayı], "#,0" ) & " aylıq kirayə elanının median qiyməti " & FORMAT ( [Median kirayə], "#,0" )
+			    & " AZN-dir. Yeni tikilidə " & FORMAT ( [Median yeni tikili], "#,0" ) & ", köhnə tikilidə " & FORMAT ( [Median köhnə tikili], "#,0" )
+			    & " AZN. Elanların " & FORMAT ( [Vasitəçi payı], "0%" ) & "-ni vasitəçilər verib."
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 9dc64141-2ed9-423e-8331-b40f556638b9
+
+	measure 'Mənbə qeydi' = "Mənbə: bina.az · " & FORMAT ( CALCULATE ( [Elan sayı], ALL ( Elanlar ) ), "#,0" ) & " təhlil olunan elan · toplanma: " & FORMAT ( MAX ( Snapshot[Toplanma vaxtı] ), "dd.MM.yyyy HH:mm" ) & " · Maaş: Dövlət Statistika Komitəsi, " & [Maaş ili]
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 43142ddb-406a-42fe-996a-cd298b3f1993
+
+	/// Ən çox elanı olan qrup: 2 otaqlı mənzillər
+	measure 'Median 2 otaqlı' = CALCULATE ( [Median kirayə], Elanlar[Otaq] = "2", Rayon[Ərazi] = "Bakı şəhəri" )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: ed55c177-e149-4c36-98a7-93c5b444df2c
+
+	/// 2 otaqlı mənzilin median kirayəsi Bakıda orta maaşın neçə faizidir
+	measure 'Problem faizi' = DIVIDE ( [Median 2 otaqlı], [Bakı orta maaşı] )
+		formatString: 0%
+		displayFolder: 4 Maaş
+		lineageTag: cb2988ad-3fca-46b9-9c1f-71da4c89645f
+
+	measure 'Problem mətni' = "Bakıda 2 otaqlı mənzilin median kirayəsi " & FORMAT ( [Median 2 otaqlı], "#,0" ) & " AZN-dir — Bakıda orta aylıq maaşın (" & FORMAT ( [Bakı orta maaşı], "#,0" ) & " AZN) " & FORMAT ( [Problem faizi], "0%" ) & "-i. Beynəlxalq praktikada məqbul hədd 30%-dir."
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 6f3c5027-b061-4555-a99b-ec72f4fdd6db
+
+	/// Bakıda orta maaşdan 2 otaqlı mənzilin median kirayəsi çıxıldıqdan sonra qalan
+	measure 'Qalan (2 otaqlı)' = [Bakı orta maaşı] - [Median 2 otaqlı]
+		formatString: #,0
+		displayFolder: 4 Maaş
+		lineageTag: 7aeae629-a9ef-4517-94c6-68d69cd074d3
+
+	/// Xəritə üçün: elanı olmayan rayon göstərilmir
+	measure 'X koordinat' = IF ( [Elan sayı] > 0, MAX ( Rayon[Uzunluq] ) )
+		formatString: 0.000
+		displayFolder: 9 Dizayn
+		lineageTag: 149be663-eb12-43cc-8631-335721a13fbe
+
+	measure 'Y koordinat' = IF ( [Elan sayı] > 0, MAX ( Rayon[Enlik] ) )
+		formatString: 0.000
+		displayFolder: 9 Dizayn
+		lineageTag: 0db38546-76c2-45f9-97c0-27fc1c778531
+
+	/// Median kirayə səviyyəsi: <600 firuzəyi, 600–900 mavi, 900–1100 sarı, 1100+ qırmızı
+	measure 'Median rəngi' =
+			VAR m = [Median kirayə]
+			RETURN SWITCH ( TRUE (), ISBLANK ( m ), "#3A4256", m < 600, "#2DF5C4", m < 900, "#3D8BFF", m < 1100, "#FFC23F", "#FF5A7A" )
+		displayFolder: 9 Dizayn
+		lineageTag: 11848260-0247-42d6-ac77-ebb32d5c0704
+
+	/// Yalnız ən azı 30 elanı olan qruplar: az müşahidə ilə median etibarlı deyil
+	measure 'Median kirayə (30+)' = IF ( [Elan sayı] >= 30, [Median kirayə] )
+		formatString: #,0
+		displayFolder: 1 Əsas
+		lineageTag: 863c103a-dd07-4c0a-a3f0-08e35f760349
+
+	measure 'Büdcəyə uyğun pay (30+)' = IF ( [Elan sayı] >= 30, [Büdcəyə uyğun pay] )
+		formatString: 0%
+		displayFolder: 2 Büdcə
+		lineageTag: 97237b8d-f9a0-413e-b037-61ce9e26f8a3
+
+	measure 'Fərq rəngi' =
+			VAR f = [Büdcə fərqi]
+			RETURN SWITCH ( TRUE (), ISBLANK ( f ), "#8D9BC0", f >= 0, "#2DF5C4", "#FF5A7A" )
+		displayFolder: 9 Dizayn
+		lineageTag: 8d872382-4251-4176-a020-e106b5399f8b
+
+	measure 'Xam elan sayı' = MAX ( Snapshot[Xam elan] )
+		formatString: #,0
+		displayFolder: 5 Metod
+		lineageTag: dbea2833-a2ae-4e9a-b159-276badffd7ca
+
+	measure 'Təmiz elan sayı' = MAX ( Snapshot[Təmiz elan] )
+		formatString: #,0
+		displayFolder: 5 Metod
+		lineageTag: b07a95b5-661f-42da-8199-7de0c5f60c38
+
+	measure 'Qeyri-adi qiymət sayı' = MAX ( Snapshot[Qeyri-adi qiymət] )
+		formatString: #,0
+		displayFolder: 5 Metod
+		lineageTag: ac4332dd-7e90-4571-9000-d4c0391f4793
+
+	/// Elan səviyyəsində filtr: 1 = büdcəyə uyğun
+	measure 'Büdcəyə uyğundur' = IF ( MAX ( Elanlar[Kirayə (AZN/ay)] ) <= [Seçilmiş büdcə] * [Seçilmiş nəfər], 1, 0 )
+		formatString: 0
+		displayFolder: 2 Büdcə
+		lineageTag: 1f26af8c-2f68-4d41-9510-6f8e1e759c34
+
+	measure 'Adambaşına qiymət' = DIVIDE ( MAX ( Elanlar[Kirayə (AZN/ay)] ), [Seçilmiş nəfər] )
+		formatString: #,0
+		displayFolder: 2 Büdcə
+		lineageTag: 91a2deee-5d35-4ea9-83da-c179b72006d4
+
+	/// Kirayə yükünün geniş qəbul olunmuş həddi: gəlirin 30%-i
+	measure 'Əlçatanlıq həddi' = 0.3
+		formatString: 0%
+		displayFolder: 4 Maaş
+		lineageTag: 5a683b98-59ec-4ef3-9a67-5575286f813b
+
+	measure 'Büdcə alt başlığı' = FORMAT ( [Büdcəyə uyğun elan], "#,0" ) & " uyğun mənzil " & UNICHAR ( 183 ) & " adambaşına median kirayə " & FORMAT ( [Adambaşına median], "#,0" ) & " AZN " & UNICHAR ( 183 ) & " fərq " & FORMAT ( [Büdcə fərqi], "+#,0;-#,0;0" ) & " AZN"
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 3b38ec5c-c428-4e84-b593-e047f31a7bf8
+
+	measure 'Problem sətir 1' = "2 otaqlı mənzilin median kirayəsi " & FORMAT ( [Median 2 otaqlı], "#,0" ) & " AZN"
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 4e7c3373-8c54-4c95-ba53-deec2f4c44a8
+
+	measure 'Problem sətir 2' = "= Bakıda orta maaşın (" & FORMAT ( [Bakı orta maaşı], "#,0" ) & " AZN) " & FORMAT ( [Problem faizi], "0%" ) & "-i  " & UNICHAR ( 183 ) & "  məqbul hədd: 30%"
+		displayFolder: 3 Dinamik mətn
+		lineageTag: f7a505a2-220a-4cc0-82ff-8c3bcd729388
+
+	/// DSK: Bakı şəhəri üzrə son ilin orta aylıq nominal əməkhaqqı (kirayə Bakıdadır, ona görə əsas göstərici budur)
+	measure 'Bakı orta maaşı' =
+			VAR LastYear = CALCULATE ( MAX ( 'Region maaşı'[İl] ), ALL ( 'Region maaşı' ) )
+			RETURN CALCULATE ( MAX ( 'Region maaşı'[Orta maaş (AZN)] ), ALL ( 'Region maaşı' ), 'Region maaşı'[İl] = LastYear, 'Region maaşı'[Region] = "Bakı şəhəri - cəmi" )
+		formatString: #,0
+		displayFolder: 4 Maaş
+		lineageTag: b6b593fc-f11a-4b16-a92e-d7faeac31e91
+
+	/// DSK: ölkə üzrə son ilin orta aylıq nominal əməkhaqqı (müqayisə üçün)
+	measure 'Ölkə orta maaşı' =
+			VAR LastYear = CALCULATE ( MAX ( 'Maaş'[İl] ), ALL ( 'Maaş' ) )
+			RETURN CALCULATE ( MAX ( 'Maaş'[Orta maaş (AZN)] ), ALL ( 'Maaş' ), 'Maaş'[İl] = LastYear, 'Maaş'[Sahə] = "İqtisadiyyat üzrə - cəmi" )
+		formatString: #,0
+		displayFolder: 4 Maaş
+		lineageTag: 8051e46f-1620-4fc0-8a8e-7002c643cd4f
+
+	measure 'Maaş ili' = CALCULATE ( MAX ( 'Region maaşı'[İl] ), ALL ( 'Region maaşı' ) )
+		formatString: 0
+		displayFolder: 4 Maaş
+		lineageTag: b2329231-39ee-4a55-82ba-f2f78297cdb4
+
+	/// R9: təkrar elanlar (eyni mənzil, eyni qiymət — fərqli elan nömrəsi)
+	measure 'Təkrar elan sayı' = MAX ( Snapshot[Təkrar elan] )
+		formatString: #,0
+		displayFolder: 5 Metod
+		lineageTag: 9a68eba2-7d27-472a-b9f8-9c5752ab49df
+
+	/// Təhlil olunan elanlar: təmiz elanlardan qeyri-adi qiymət VƏ ya təkrar elan olanlar çıxarılıb (bəzi elan hər ikisidir)
+	measure 'Analiz elan sayı' = CALCULATE ( [Elan sayı], REMOVEFILTERS () )
+		formatString: #,0
+		displayFolder: 5 Metod
+		lineageTag: 92678c63-4ad7-4ae2-a583-e0bddbb48232
+
+	measure 'Çıxarılan elan mətni' = FORMAT ( [Qeyri-adi qiymət sayı], "#,0" ) & " / " & FORMAT ( [Təkrar elan sayı], "#,0" )
+		displayFolder: 5 Metod
+		lineageTag: fb6f4407-d199-407d-9fc9-37ecd87beddc
+
+	/// Drill-through və tooltip səhifələrinin başlığı: seçilmiş rayon
+	measure 'Seçilmiş rayon' = SELECTEDVALUE ( Rayon[Rayon], "Bütün rayonlar" )
+		displayFolder: 3 Dinamik mətn
+		lineageTag: 5e8ce8d1-91a4-4861-95a5-f4d79d998c86
+
+	column _
+		isHidden
+		lineageTag: 2fe33cee-d967-46b1-896a-886823a36b64
+		isNameInferred
+		sourceColumn: [_]
+
+	partition Ölçülər = calculated
+		mode: import
+		source = ROW("_", BLANK())
+

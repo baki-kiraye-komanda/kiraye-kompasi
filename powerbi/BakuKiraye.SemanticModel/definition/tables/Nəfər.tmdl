@@ -1,0 +1,13 @@
+/// Kirayəni neçə nəfər bölür
+table Nəfər
+	lineageTag: 821b6d14-2adc-4c08-ae67-628b3ea6dbb9
+
+	column 'Nəfər sayı'
+		lineageTag: 1cca2ac8-15a1-4a31-983d-d97b62c5cd40
+		isNameInferred
+		sourceColumn: [Nəfər sayı]
+
+	partition Nəfər = calculated
+		mode: import
+		source = DATATABLE("Nəfər sayı", INTEGER, {{1}, {2}})
+

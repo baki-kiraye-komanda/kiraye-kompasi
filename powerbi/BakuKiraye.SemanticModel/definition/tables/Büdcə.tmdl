@@ -1,0 +1,13 @@
+/// What-if parametr: bir nəfərin ayıra biləcəyi kirayə büdcəsi (AZN)
+table Büdcə
+	lineageTag: aed51fbd-4b98-41e7-b4a5-d4bb2c57cce0
+
+	column 'Büdcə (AZN)'
+		lineageTag: dd28f17c-3ec4-4aca-ab4f-35c7f57c18ce
+		isNameInferred
+		sourceColumn: [Büdcə (AZN)]
+
+	partition Büdcə = calculated
+		mode: import
+		source = SELECTCOLUMNS(GENERATESERIES(200, 3000, 50), "Büdcə (AZN)", [Value])
+

@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+logs/
+data/raw/
+*.pbix.bak
+
+# Streamlit gizli açarlar (Cloud-da Settings -> Secrets)
+.streamlit/secrets.toml
+app/.streamlit/secrets.toml
+# Power BI lokal fayllar
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf
+# müvəqqəti fayllar
+_update.zip
+_apply_update.bat
+__pycache__/

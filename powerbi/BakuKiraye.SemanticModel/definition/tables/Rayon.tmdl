@@ -1,0 +1,49 @@
+/// Rayonlar (bina.az məkan lüğəti, koordinatlarla)
+table Rayon
+	lineageTag: 764c289e-002d-4f67-a05f-083996b82830
+
+	column district_id
+		dataType: int64
+		isHidden
+		lineageTag: 4f630cb6-aa20-4a4a-9249-2536a0d7cc3f
+		summarizeBy: none
+		sourceColumn: district_id
+
+	/// bina.az-ın rayon filtri ilə müəyyənləşdirilib
+	column Rayon
+		dataType: string
+		lineageTag: 18150df8-f4b1-4315-98da-2da46244917b
+		sourceColumn: Rayon
+
+	column Ərazi
+		dataType: string
+		lineageTag: 251220f3-f997-4a90-9c13-e698c2d4eff3
+		sourceColumn: Ərazi
+
+	column Enlik
+		dataType: double
+		lineageTag: bd0d9aa6-5935-4ea2-9ee6-41d01ab95582
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Enlik
+
+	column Uzunluq
+		dataType: double
+		lineageTag: 21c7330d-f2c0-4e9b-875e-76c6bdd8ce96
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Uzunluq
+
+	partition Rayon = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportFolder & "district.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Blanks = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"latitude", "longitude"}),
+				    Typed = Table.TransformColumnTypes(Blanks, {{"district_id", Int64.Type}, {"latitude", type number}, {"longitude", type number}}, "en-US"),
+				    Area = Table.TransformColumns(Typed, {{"is_baku_city", each if _ = "Y" then "Bakı şəhəri" else "Bakı ətrafı (Abşeron)", type text}}),
+				    Renamed = Table.RenameColumns(Area, {{"district_name", "Rayon"}, {"is_baku_city", "Ərazi"}, {"latitude", "Enlik"}, {"longitude", "Uzunluq"}})
+				in
+				    Renamed
+

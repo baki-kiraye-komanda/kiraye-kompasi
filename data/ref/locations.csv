@@ -1,0 +1,255 @@
+﻿location_id,location_name,location_type,district_id,latitude,longitude,slug
+123,1-ci mikrorayon,Qəsəbə,190,,,baki/nesimi/1-ci-mikrorayon
+73,2-ci Alatava,Qəsəbə,58,,,baki/bineqedi/2-ci-alatava
+124,2-ci mikrorayon,Qəsəbə,190,,,baki/nesimi/2-ci-mikrorayon
+5,20 Yanvar,Metro,,,,baki/20-yanvar
+48,20-ci sahə,Qəsəbə,12,,,baki/sebail/20-ci-sahe
+8,28 May,Metro,,,,baki/28-may
+259,28 May,Qəsəbə,58,,,baki/bineqedi/28may
+125,3-cü mikrorayon,Qəsəbə,190,,,baki/nesimi/3-cu-mikrorayon
+126,4-cü mikrorayon,Qəsəbə,190,,,baki/nesimi/4-cu-mikrorayon
+127,5-ci mikrorayon,Qəsəbə,190,,,baki/nesimi/5-ci-mikrorayon
+128,6-cı mikrorayon,Qəsəbə,58,,,baki/bineqedi/6-ci-mikrorayon
+129,7-ci mikrorayon,Qəsəbə,58,,,baki/bineqedi/7-ci-mikrorayon
+279,8 Noyabr,Metro,,,,baki/8-noyabr
+74,8-ci kilometr,Qəsəbə,11,,,baki/nizami/8-ci-kilometr
+130,8-ci mikrorayon,Qəsəbə,58,,,baki/bineqedi/8-ci-mikrorayon
+131,9-cu mikrorayon,Qəsəbə,58,,,baki/bineqedi/9-cu-mikrorayon
+197,Abşeron,Rayon,197,40.455101,49.734119,baki/abseron
+373,Abşeron Ticarət Mərkəzi,Nişangah,,,,baki/abseron-ticaret-merkezi
+246,Ağ şəhər,Nişangah,,,,baki/ag-seher
+314,Ağ şəhər,Qəsəbə,16,,,baki/xetai/ag-sheher
+30,Axundov bağı,Nişangah,,,,baki/axundov-bagi
+313,Albalılıq,Qəsəbə,13,,,baki/sabuncu/albaliliq
+275,ASAN Xidmət №1,Nişangah,,,,baki/asan-xidmet1
+276,ASAN Xidmət №2,Nişangah,,,,baki/asan-xidmet2
+277,ASAN Xidmət №3,Nişangah,,,,baki/asan-xidmet3
+278,ASAN Xidmət №5,Nişangah,,,,baki/asan-xidmet5
+316,Aşağı Güzdək,Qəsəbə,197,,,baki/abseron/baki-abseron-asagi-guzdek
+362,Atyalı,Qəsəbə,197,,,baki/abseron/atyali
+266,Avtovağzal,Metro,,,,baki/avtovagzal
+31,Ayna Sultanova heykəli,Nişangah,,,,baki/ayna-sultanova-heykeli
+182,Azadlıq meydanı,Nişangah,,,,baki/azadliq-meydani
+6,Azadlıq Prospekti,Metro,,,,baki/azadliq-prospekti
+159,Azərbaycan Dillər Universiteti,Nişangah,,,,baki/azerbaycan-diller-universiteti
+139,Azərbaycan Dövlət Neft və Sənaye Universiteti,Nişangah,,,,baki/neft-akademiyasi
+173,Azərbaycan kinoteatrı,Nişangah,,,,baki/azerbaycan-kinoteatri
+162,Azərbaycan turizm institutu,Nişangah,,,,baki/azerbaycan-turizm-institutu
+174,Azneft meydanı,Nişangah,,,,baki/azneft-meydani
+46,Badamdar,Qəsəbə,12,,,baki/sebail/badamdar
+256,Bahar,Qəsəbə,14,,,baki/suraxani/bahar
+166,Bakı Asiya Universiteti,Nişangah,,,,baki/baki-asiya-universiteti
+164,Bakı Dövlət Universiteti,Nişangah,,,,baki/baki-dovlet-universiteti
+163,Bakı Musiqi Akademiyası,Nişangah,,,,baki/baki-musiqi-akademiyasi
+165,Bakı Slavyan Universiteti,Nişangah,,,,baki/baki-slavyan-universiteti
+69,Bakıxanov,Qəsəbə,13,,,baki/sabuncu/bakixanov
+63,Bakmil,Metro,,,,baki/bakmil
+243,Balaxanı,Qəsəbə,13,,,baki/sabuncu/balaxani
+49,Bayıl,Qəsəbə,12,,,baki/sebail/bayil
+156,Bayıl parkı,Nişangah,,,,baki/bayil-parki
+168,Beşmərtəbə,Nişangah,,,,baki/besmertebe
+47,Bibiheybət,Qəsəbə,12,,,baki/sebail/bibi-heybet
+17,Biləcəri,Qəsəbə,58,,,baki/bineqedi/bileceri
+118,Bilgəh,Qəsəbə,13,,,baki/sabuncu/bilgeh
+79,Binə,Qəsəbə,15,,,baki/xezer/bine
+317,Binə atçılıq mərkəzi,Nişangah,,,,baki/bine-atciliq
+375,Binə Ticarət Mərkəzi,Nişangah,,,,baki/bina-ticaret-merkezi
+58,Binəqədi,Rayon,58,40.4750302,49.82237950000001,baki/bineqedi
+18,Binəqədi,Qəsəbə,58,,,baki/bineqedi/bineqedi-qesebesi
+68,Böyükşor,Qəsəbə,10,,,baki/nerimanov/boyuksor
+117,Buzovna,Qəsəbə,15,,,baki/xezer/buzovna
+244,Bülbülə,Qəsəbə,14,,,baki/suraxani/bulbule
+180,Cavanşir körpüsü,Nişangah,,,,baki/cavansir-korpusu
+258,Ceyranbatan,Qəsəbə,197,,,baki/abseron/ceyranbatan
+383,Circus Sea Breeze,Nişangah,,,,baki/circus-sea-breeze
+318,Crescent Bay,Nişangah,,,,baki/crescentbay
+65,Çiçək,Qəsəbə,197,,,baki/abseron/cicek
+153,Dağüstü parkı,Nişangah,,,,baki/dagustu-parki
+255,Dədə Qorqud,Qəsəbə,14,,,baki/suraxani/gorgud
+61,Dərnəgül,Metro,,,,baki/dernegul
+263,Digah,Qəsəbə,197,,,baki/abseron/digah
+186,DİM,Nişangah,,,,baki/tqdk
+176,Dostluq kinoteatrı,Nişangah,,,,baki/dostluq-kinoteatri
+146,Dövlət İdarəçilik Akademiyası,Nişangah,,,,baki/dovlet-idarecilik-akademiyasi
+170,Dövlət Statistika Komitəsi,Nişangah,,,,baki/dovlet-statistika-komitesi
+97,Dübəndi,Qəsəbə,15,,,baki/xezer/dubendi
+376,Elit Ticarət Mərkəzi,Nişangah,,,,baki/elite-ticaret-merkezi
+34,Elmlər Akademiyası,Metro,,,,baki/elmler-akademiyasi
+377,Eurohome Biləcəri Ticarət Mərkəzi,Nişangah,,,,baki/eurohome-ticaret-merkezi
+100,Əhmədli,Qəsəbə,16,,,baki/xetai/ehmedli-qesebesi
+51,Əhmədli,Metro,,,,baki/ehmedli
+24,Ələt,Qəsəbə,57,,,baki/qaradag/elet
+72,Əmircan,Qəsəbə,14,,,baki/suraxani/emircan
+116,Fatmayı,Qəsəbə,197,,,baki/abseron/fatmayi
+151,Fəvvarələr meydanı,Nişangah,,,,baki/fontanlar-bagi
+150,Filarmoniya bağı,Nişangah,,,,baki/qubernator-parki
+2,Gənclik,Metro,,,,baki/genclik
+194,Görədil,Qəsəbə,197,,,baki/abseron/goredil
+363,Grand Hayat Residence,Nişangah,,,,baki/grandhayatresidence
+91,Günəşli,Qəsəbə,14,,,baki/suraxani/gunesli
+252,Gürgən,Qəsəbə,15,,,baki/xezer/gurgen
+365,Güzdək,Qəsəbə,197,,,baki/abseron/guzdek
+171,Heydər Əliyev adına İdman Kompleksi,Nişangah,,,,baki/idman-kompleksi
+99,Həzi Aslanov,Qəsəbə,16,,,baki/xetai/hezi-aslanov-qesebesi
+33,Həzi Aslanov,Metro,,,,baki/hezi-aslanov
+50,Hökməli,Qəsəbə,197,,,baki/abseron/hokmeli
+93,Hövsan,Qəsəbə,14,,,baki/suraxani/hovsan
+29,Hüseyn Cavid parkı,Nişangah,,,,baki/huseyn-cavid-parki
+155,Xaqani bağı,Nişangah,,,,baki/malokan-bagi
+379,Xaqani Ticarət Mərkəzi,Nişangah,,,,baki/xaqani-ticaret-merkezi
+193,Xalça Muzeyi,Nişangah,,,,baki/xalca-muzeyi
+54,Xalqlar Dostluğu,Metro,,,,baki/xalqlar-dostlugu
+16,Xətai,Rayon,16,40.378181,49.931383,baki/xetai
+15,Xəzər,Rayon,15,40.4702287,50.10033750000002,baki/xezer
+9,Xocəsən,Qəsəbə,58,,,baki/bineqedi/xocesen
+315,Xocəsən,Metro,,,,baki/xocasan
+104,Xutor,Qəsəbə,58,,,baki/bineqedi/xutor
+37,İçəri Şəhər,Metro,,,,baki/iceri-seher-metrosu
+172,İçəri Şəhər,Nişangah,,,,baki/iceri-seher
+143,İqtisad Universiteti,Nişangah,,,,baki/iqtisadiyyat-universiteti
+144,İncəsənət və Mədəniyyət Un.,Nişangah,,,,baki/incesenet-ve-medeniyyet-un
+408,İnqilab Residence,Nişangah,,,,baki/inqilab-residence
+7,İnşaatçılar,Metro,,,,baki/insaatcilar
+138,İzmir parkı,Nişangah,,,,baki/izmir-parki
+399,Javahir Residence,Nişangah,,,,baki/javahir-residence
+105,Keşlə,Qəsəbə,11,,,baki/nizami/kesle
+196,Keşlə bazarı,Nişangah,,,,baki/kesle-bazari
+25,Koala parkı,Nişangah,,,,baki/koala-parki
+4,Koroğlu,Metro,,,,baki/koroglu
+115,Köhnə Corat,Qəsəbə,197,,,baki/abseron/kohne-corat
+200,Köhnə Günəşli,Qəsəbə,16,,,baki/xetai/kohne-gunesli
+406,Kristal Abşeron Bayıl,Nişangah,,,,baki/kristal-absheron-bayil
+403,Kristal Abşeron Əcəmi,Nişangah,,,,baki/kristal-absheron-ecemi
+405,Kristal Abşeron Qara Qarayev,Nişangah,,,,baki/kristal-absheron-qara-qarayev
+409,Kristal Abşeron Yasamal,Nişangah,,,,baki/kristal-absheron-yasamal
+70,Kubinka,Qəsəbə,190,,,baki/nesimi/kubinka
+120,Kürdəxanı,Qəsəbə,13,,,baki/sabuncu/kurdexani
+95,Qala,Qəsəbə,15,,,baki/xezer/qala
+52,Qara Qarayev,Metro,,,,baki/qara-qarayev
+75,Qaraçuxur,Qəsəbə,14,,,baki/suraxani/qaracuxur
+57,Qaradağ,Rayon,57,40.286,49.708,baki/qaradag
+152,Qış parkı,Nişangah,,,,baki/qis-parki
+257,Qızıldaş,Qəsəbə,57,,,baki/qaradag/gizildash
+261,Qobu,Qəsəbə,197,,,baki/abseron/qobu
+45,Qobustan,Qəsəbə,57,,,baki/qaradag/qobustan
+384,Qurtuluş 93 YK,Nişangah,,,,baki/qurtulus-93
+378,Laçın Ticarət Mərkəzi,Nişangah,,,,baki/lacin-ticaret-merkezi
+381,Landau Məktəbi (Sea Breeze),Nişangah,,,,baki/landau-mektebi-sea-breeze
+20,Lökbatan,Qəsəbə,57,,,baki/qaradag/lokbatan
+19,M.Ə.Rəsulzadə,Qəsəbə,58,,,baki/bineqedi/m-e-resulzade
+27,M.Ə.Sabir parkı,Nişangah,,,,baki/m-e-sabir-parki
+137,M.Hüseynzadə parkı,Nişangah,,,,baki/m-huseynzade-parki
+198,Masazır,Qəsəbə,197,,,baki/abseron/masazir
+81,Massiv A,Qəsəbə,14,,,baki/suraxani/massiv-a
+82,Massiv B,Qəsəbə,14,,,baki/suraxani/massiv-b
+85,Massiv D,Qəsəbə,14,,,baki/suraxani/massiv-d
+84,Massiv G,Qəsəbə,14,,,baki/suraxani/massiv-g
+83,Massiv V,Qəsəbə,14,,,baki/suraxani/massiv-v
+122,Maştağa,Qəsəbə,13,,,baki/sabuncu/mastaga
+112,Mehdiabad,Qəsəbə,197,,,baki/abseron/mehdiabad
+402,Melissa Azadlıq,Nişangah,,,,baki/melissa-azadliq
+364,Melissa Park,Nişangah,,,,baki/melissa-park
+59,Memar Əcəmi,Metro,,,,baki/memar-ecemi
+141,Memarlıq və İnşaat Universiteti,Nişangah,,,,baki/memarliq-ve-insaat-universiteti
+404,Merida Premium,Nişangah,,,,baki/merida-premium
+374,Meyvəli Ticarət Mərkəzi,Nişangah,,,,baki/meyveli-ticaret-merkezi
+265,Məmmədli,Qəsəbə,197,,,baki/abseron/mammadli
+109,Mərdəkan,Qəsəbə,15,,,baki/xezer/merdekan
+157,Mərkəzi Nəbatat bağı,Nişangah,,,,baki/botanika-bagi
+361,Mərkəzi Park,Nişangah,,,,baki/merkezi-park
+167,Mərkəzi Univermaq,Nişangah,,,,baki/merkezi-univermaq
+401,MIDA Hövsan,Nişangah,,,,baki/mida-hovsan
+398,MIDA Hövsan 2,Nişangah,,,,baki/mida-hovsan-2
+400,MIDA Yasamal,Nişangah,,,,baki/mida-yasamal
+161,Milli Konservatoriya,Nişangah,,,,baki/milli-konservatoriya
+132,Montin bazarı,Nişangah,,,,baki/montin-bazari
+98,Müşfiqabad,Qəsəbə,57,,,baki/qaradag/musviqabad
+119,Nardaran,Qəsəbə,13,,,baki/sabuncu/nardaran
+178,Neapol dairəsi,Nişangah,,,,baki/neapol-dairesi
+187,Neftçi bazası,Nişangah,,,,baki/neftci-bazasi
+53,Neftçilər,Metro,,,,baki/neftciler
+1,Nəriman Nərimanov,Metro,,,,baki/neriman-nerimanov
+26,Nəriman Nərimanov parkı,Nişangah,,,,baki/neriman-nerimanov-parki
+10,Nərimanov,Rayon,10,40.4089166,49.86399959999994,baki/nerimanov
+32,Nərimanov heykəli,Nişangah,,,,baki/nerimanov-heykeli
+190,Nəsimi,Rayon,190,40.39232579999999,49.82880550000004,baki/nesimi
+60,Nəsimi,Metro,,,,baki/nesimi-metrosu
+189,Nəsimi bazarı,Nişangah,,,,baki/nesimi-bazari
+11,Nizami,Rayon,11,40.4087847,49.92876260000003,baki/nizami
+35,Nizami,Metro,,,,baki/nizami-metrosu
+175,Nizami kinoteatrı,Nişangah,,,,baki/nizami-kinoteatri
+113,Novxanı,Qəsəbə,197,,,baki/abseron/novxani
+233,NZS,Qəsəbə,16,,,baki/xetai/nzs
+411,Park Yasamal 2,Nişangah,,,,baki/park-yasamal-2
+133,Park Zorge,Nişangah,,,,baki/park-zorge
+145,Pedaqoji Universiteti,Nişangah,,,,baki/pedaqoji-universiteti
+249,Pirallahı,Rayon,249,40.474968,50.331135,baki/abseron/pirallahi
+241,Pirəkəşkül,Qəsəbə,197,,,baki/abseron/pirekeskul
+121,Pirşağı,Qəsəbə,13,,,baki/sabuncu/pirsagi
+269,Port Baku,Nişangah,,,,baki/port-baku
+148,Prezident parkı,Nişangah,,,,baki/prezident-parki
+22,Puta,Qəsəbə,57,,,baki/qaradag/puta
+76,Ramana,Qəsəbə,13,,,baki/sabuncu/ramana
+191,Respublika stadionu,Nişangah,,,,baki/respublika-stadionu
+160,Rəssamlıq Akademiyası,Nişangah,,,,baki/ressamliq-akademiyasi
+372,Riyad Ticarət Mərkəzi,Nişangah,,,,baki/riyad-ticaret-merkezi
+407,Royal Residence,Nişangah,,,,baki/royal-residence
+177,Rusiya səfirliyi,Nişangah,,,,baki/rusiya-sefirliyi
+86,Sabunçu,Qəsəbə,13,,,baki/sabuncu/sabuncu-qesebesi
+13,Sabunçu,Rayon,13,40.451,49.945,baki/sabuncu
+21,Sahil,Qəsəbə,57,,,baki/qaradag/sahil-qesebesi
+38,Sahil,Metro,,,,baki/sahil
+154,Sahil bağı,Nişangah,,,,baki/sahil-bagi
+111,Saray,Qəsəbə,197,,,baki/abseron/saray
+234,Savalan,Qəsəbə,13,,,baki/sabuncu/savalan
+380,Sea Breeze,Qəsəbə,13,,,baki/sabuncu/sea-breeze
+382,Sea Breeze Event Hall,Nişangah,,,,baki/sea-breeze-event-hall
+134,Sevil Qazıyeva parkı,Nişangah,,,,baki/sevil-qaziyeva-parki
+12,Səbail,Rayon,12,40.3358719,49.82232010000007,baki/sebail
+367,"Sədərək ""Elit""",Nişangah,,,,baki/sederek-elit
+366,Sədərək xalça bazarı,Nişangah,,,,baki/sederek-xalca-bazari
+368,Sədərək şirniyyat bazarı,Nişangah,,,,baki/sederek-sirniyyat-bazari
+369,Sədərək tekstil bazarı,Nişangah,,,,baki/sederek-tekstil-bazari
+370,Sədərək təsərrüfat bazarı,Nişangah,,,,baki/sederek-teserrufat-bazari
+371,Sədərək Ticarət Mərkəzi,Nişangah,,,,baki/sederek-ticaret-merkezi
+28,Səməd Vurğun parkı,Nişangah,,,,baki/semed-vurgun-parki
+23,Səngəçal,Qəsəbə,57,,,baki/qaradag/sengecal
+183,Sirk,Nişangah,,,,baki/sirk
+169,Sovetski,Nişangah,,,,baki/sovetski
+181,Space TV,Nişangah,,,,baki/space-tv
+64,Sulutəpə,Qəsəbə,58,,,baki/bineqedi/sulutepe
+14,Suraxanı,Rayon,14,40.374,50.021,baki/suraxani
+87,Suraxanı,Qəsəbə,14,,,baki/suraxani/suraxani-qesebesi
+108,Şağan,Qəsəbə,15,,,baki/xezer/sagan
+36,Şah İsmayıl Xətai,Metro,,,,baki/sah-ismayil-xetai
+185,Şəfa stadionu,Nişangah,,,,baki/sefa-stadionu
+184,Şəhidlər xiyabanı,Nişangah,,,,baki/sehidler-xiyabani
+147,Şəlalə parkı,Nişangah,,,,baki/selale-parki
+80,Şərq,Qəsəbə,14,,,baki/suraxani/serq
+264,Şərq bazarı,Nişangah,,,,baki/sherg
+260,Şıxov,Qəsəbə,12,,,baki/sebail/shixov
+107,Şimal DRES,Qəsəbə,15,,,baki/xezer/simal-dres
+71,Şubanı,Qəsəbə,57,,,baki/qaradag/subani
+110,Şüvəlan,Qəsəbə,15,,,baki/xezer/suvelan
+140,Texniki Universiteti,Nişangah,,,,baki/texniki-universiteti
+192,Təhsil Nazirliyi,Nişangah,,,,baki/tehsil-nazirliyi
+142,Tibb Universiteti,Nişangah,,,,baki/tibb-universiteti
+94,Türkan,Qəsəbə,15,,,baki/xezer/turken
+179,Ukrayna dairəsi,Nişangah,,,,baki/ukrayna-dairesi
+3,Ulduz,Metro,,,,baki/ulduz
+103,Yasamal,Qəsəbə,56,,,baki/yasamal/yasamal-qesebesi
+56,Yasamal,Rayon,56,40.379962,49.808995,baki/yasamal
+188,Yasamal bazarı,Nişangah,,,,baki/yasamal-bazari
+242,Yeni Balaxanı,Qəsəbə,13,,,baki/sabuncu/yeni-balaxani
+114,Yeni Corat,Qəsəbə,197,,,baki/abseron/yeni-corat
+92,Yeni Günəşli,Qəsəbə,14,,,baki/suraxani/yeni-gunesli
+77,Yeni Ramana,Qəsəbə,13,,,baki/sabuncu/yeni-ramana
+88,Yeni Suraxanı,Qəsəbə,14,,,baki/suraxani/yeni-suraxani
+102,Yeni Yasamal,Qəsəbə,56,,,baki/yasamal/yeni-yasamal
+135,Zabitlər parkı,Nişangah,,,,baki/zabitler-parki
+78,Zabrat,Qəsəbə,13,,,baki/sabuncu/zabrat
+158,Zərifə Əliyeva adına park,Nişangah,,,,baki/zerife-eliyeva-adina-park
+89,Zığ,Qəsəbə,14,,,baki/suraxani/zig
+96,Zirə,Qəsəbə,15,,,baki/xezer/zire
+136,Zoopark,Nişangah,,,,baki/zoopark
+106,Zuğulba,Qəsəbə,197,,,baki/abseron/zagulba

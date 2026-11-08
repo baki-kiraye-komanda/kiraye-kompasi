@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+annotation PBI_QueryOrder = ["Elanlar","Rayon","Maaş","Snapshot","Region maaşı","ExportFolder"]
+
+ref table Elanlar
+ref table Rayon
+ref table Maaş
+ref table Snapshot
+ref table Büdcə
+ref table Nəfər
+ref table Ölçülər
+ref table 'Region maaşı'
+ref table Vizual
+
+ref cultureInfo en-US
+

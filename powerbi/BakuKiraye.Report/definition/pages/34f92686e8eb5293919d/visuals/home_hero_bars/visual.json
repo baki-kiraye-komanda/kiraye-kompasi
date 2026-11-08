@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "home_hero_bars",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 1,
+    "width": 1,
+    "tabOrder": 9999
+  },
+  "visual": {
+    "visualType": "shape",
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

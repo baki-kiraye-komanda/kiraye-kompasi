@@ -1,0 +1,39 @@
+/// Dövlət Statistika Komitəsi: iqtisadi fəaliyyət növləri üzrə orta aylıq nominal əməkhaqqı (ÖLKƏ üzrə)
+table Maaş
+	lineageTag: 05a107d2-afa6-489d-be39-d8cadc5486cd
+
+	column İl
+		dataType: int64
+		lineageTag: 45dc8382-6b6f-4b32-955b-bc027f09aedb
+		summarizeBy: none
+		sourceColumn: İl
+
+	column Sahə
+		dataType: string
+		lineageTag: b814476c-9198-4d72-8d39-53337d2c1b49
+		sourceColumn: Sahə
+
+	column 'Orta maaş (AZN)'
+		dataType: double
+		formatString: #,0
+		lineageTag: 2884609f-ed63-4852-8606-88fea39d1174
+		summarizeBy: none
+		sourceColumn: Orta maaş (AZN)
+
+	column Mənbə
+		dataType: string
+		lineageTag: de682fd9-2fd1-45a0-bf4a-552c22a93416
+		dataCategory: WebUrl
+		sourceColumn: Mənbə
+
+	partition Maaş = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportFolder & "salary.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"year", Int64.Type}, {"avg_salary_azn", type number}}, "en-US"),
+				    Renamed = Table.RenameColumns(Typed, {{"year", "İl"}, {"sector_name", "Sahə"}, {"avg_salary_azn", "Orta maaş (AZN)"}, {"source_url", "Mənbə"}})
+				in
+				    Renamed
+

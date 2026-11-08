@@ -1,0 +1,707 @@
+/// Animasiyalı SVG vizual qatı (dax_svg.py ilə yaradılır, əl ilə dəyişməyin)
+table Vizual
+	lineageTag: 5b0c6a52-7c3e-4a59-9a3d-0d7d2b1c9e01
+
+	/// Ana səhifə: bəgüşən sətir (əsas faktlar + rayon medianları)
+	measure 'VZ Ticker' =
+			VAR _sal = [Bakı orta maaşı]
+			VAR _m2 = CALCULATE([Median kirayə], Elanlar[Otaq] = "2", Rayon[Ərazi] = "Bakı şəhəri", REMOVEFILTERS(Rayon[Rayon]))
+			VAR _mas = CALCULATE([Median kirayə], Elanlar[Otaq] = "2", Rayon[Ərazi] <> "Bakı şəhəri")
+			VAR _city = CALCULATE([Median kirayə], Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _ag = CALCULATE([Median kirayə], Elanlar[Elanı verən] = "Vasitəçi", Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _ow = CALCULATE([Median kirayə], Elanlar[Elanı verən] = "Mülkiyyətçi", Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _nw = CALCULATE([Median kirayə], Elanlar[Tikili növü] = "Yeni tikili", Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _od = CALCULATE([Median kirayə], Elanlar[Tikili növü] = "Köhnə tikili", Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _d = FILTER(ADDCOLUMNS(VALUES(Rayon[Rayon]), "@m", [Median kirayə], "@n", [Elan sayı], "@q", [Median 1 m²]), [@n] >= 30)
+			VAR _items = UNION(
+			    ROW("o", 1, "k", "2 OTAQLI · BAKI", "v", SUBSTITUTE(FORMAT(_m2, "#,0", "en-US"), ",", " ") & " AZN", "c", "#FF3FD1", "e", "= orta maaşın " & FORMAT(DIVIDE(_m2, _sal), "0%") & "-i"),
+			    ROW("o", 2, "k", "NORMAYA SIĞMAQ ÜÇÜN MAAŞ", "v", SUBSTITUTE(FORMAT(_m2 / 0.3, "#,0", "en-US"), ",", " ") & " AZN", "c", "#FFC23F", "e", FORMAT(DIVIDE(_m2 / 0.3, _sal), "0.0") & " × Bakı ortası"),
+			    ROW("o", 3, "k", "MASAZIR · 2 OTAQ", "v", SUBSTITUTE(FORMAT(_mas, "#,0", "en-US"), ",", " ") & " AZN", "c", "#2DF5C4", "e", "= maaşın " & FORMAT(DIVIDE(_mas, _sal), "0%") & "-i · normaya yaxın"),
+			    ROW("o", 4, "k", "VASİTƏÇİ / MÜLKİYYƏTÇİ", "v", SUBSTITUTE(FORMAT(_ag, "#,0", "en-US"), ",", " ") & " / " & SUBSTITUTE(FORMAT(_ow, "#,0", "en-US"), ",", " ") & " AZN", "c", "#FF5A7A", "e", "vasitəçi +" & FORMAT(DIVIDE(_ag, _ow) - 1, "0%")),
+			    ROW("o", 5, "k", "YENİ / KÖHNƏ TİKİLİ", "v", SUBSTITUTE(FORMAT(_nw, "#,0", "en-US"), ",", " ") & " / " & SUBSTITUTE(FORMAT(_od, "#,0", "en-US"), ",", " ") & " AZN", "c", "#8B5CFF", "e", "köhnə tikili −" & FORMAT(1 - DIVIDE(_od, _nw), "0%")),
+			    SELECTCOLUMNS(_d, "o", 10 + RANKX(_d, [@m] + [@q] / 1000, , DESC), "k", UPPER(SUBSTITUTE(Rayon[Rayon], "i", "İ")), "v", SUBSTITUTE(FORMAT([@m], "#,0", "en-US"), ",", " ") & " AZN",
+			        "c", IF([@m] > _city, "#FF5A7A", "#2DF5C4"),
+			        "e", IF([@m] > _city, "▲ +", "▼ −") & FORMAT(ABS(DIVIDE([@m], _city) - 1), "0%") & " şəhər medianından")
+			)
+			VAR _plain = CONCATENATEX(_items, [k] & "  " & [v] & "  " & [e] & "            ✦            ", "")
+			VAR _L = ROUND(LEN(_plain) * 8.3, 0)
+			VAR _dur = FORMAT(_L / 75, "0.0", "en-US")
+			VAR _body = CONCATENATEX(_items,
+			    "<tspan fill='#9AA6D6' font-weight='600' font-size='13' letter-spacing='1.2'>" & [k] & "  </tspan><tspan fill='#F2F5FF' font-weight='700'>" & [v] & "</tspan><tspan fill='" & [c] & "' font-weight='600'>  " & [e] & "</tspan><tspan fill='#8B5CFF'>            ✦            </tspan>",
+			    "", [o], ASC)
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='1752' height='46' viewBox='0 0 1752 46'><defs><linearGradient id='fg' x1='0' x2='1'><stop offset='0' stop-color='black'/><stop offset='0.04' stop-color='white'/><stop offset='0.96' stop-color='white'/><stop offset='1' stop-color='black'/></linearGradient><mask id='tm'><rect x='236' y='0' width='1516' height='46' fill='url(#fg)'/></mask><linearGradient id='tb' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='#FF3FD1' stop-opacity='0.5'/><stop offset='1' stop-color='#22E5FF' stop-opacity='0.35'/></linearGradient><filter id='tg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='1' y='1' width='1750' height='44' rx='23.0' fill='#0D1440' fill-opacity='0.8' stroke='url(#tb)' stroke-width='1.4'/><rect x='8' y='8' width='214' height='30' rx='15.0' fill='#FF3FD1' fill-opacity='0.15' stroke='#FF3FD1' stroke-opacity='0.6'/><circle cx='28' cy='23.0' r='5' fill='#FF3FD1' filter='url(#tg)'><animate attributeName='opacity' values='1;0.2;1' dur='1.4s' repeatCount='indefinite'/></circle><text x='42' y='28.0' font-size='13' font-weight='800' letter-spacing='1.8' fill='#FF3FD1'>CANLI BAZAR</text><g mask='url(#tm)'><g><animateTransform attributeName='transform' type='translate' from='236 0' to='"
+							& FORMAT(236 - _L, "0", "en-US")
+							& "' dur='"
+							& _dur
+							& "s' repeatCount='indefinite'/><text x='0' y='29.0' font-size='16' xml:space='preserve' textLength='"
+							& _L
+							& "' lengthAdjust='spacing'>"
+							& _body
+							& "</text><text x='"
+							& _L
+							& "' y='29.0' font-size='16' xml:space='preserve' textLength='"
+							& _L
+							& "' lengthAdjust='spacing'>"
+							& _body
+							& "</text></g></g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 15674577-17a6-5d93-a570-78c818b8a025
+		dataCategory: ImageUrl
+
+	/// Ana səhifə: əsas problem — kirayə yükü halqası və müqayisə
+	measure 'VZ Hero' =
+			VAR _sal = [Bakı orta maaşı]
+			VAR _cty = [Ölkə orta maaşı]
+			VAR _m2 = CALCULATE([Median kirayə], Elanlar[Otaq] = "2", Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _mas = CALCULATE([Median kirayə], Elanlar[Otaq] = "2", Rayon[Ərazi] <> "Bakı şəhəri")
+			VAR _p = DIVIDE(_m2, _sal)
+			VAR _pm = DIVIDE(_mas, _sal)
+			VAR _pc = DIVIDE(_m2, _cty)
+			VAR _need = _m2 / 0.3
+			VAR _arc = 942.5 * MIN(_p, 1)
+			VAR _a = -PI() / 2 + 2 * PI() * _pm
+			VAR _mx = 200 + 150 * COS(_a)
+			VAR _my = 200 + 150 * SIN(_a)
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='978' height='448' viewBox='0 0 978 448'><defs><linearGradient id='rg' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FF3FD1'/><stop offset='0.55' stop-color='#8B5CFF'/><stop offset='1' stop-color='#22E5FF'/></linearGradient><filter id='gl' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='6' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter><filter id='hg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<circle cx='200' cy='220' r='150' fill='none' stroke='#FFFFFF' stroke-opacity='0.07' stroke-width='30'/><g transform='translate(0,20)'><line x1='200.0' y1='27.5' x2='200.0' y2='11.0' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='218.0' y1='28.4' x2='219.0' y2='19.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='235.9' y1='31.3' x2='237.7' y2='22.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='253.3' y1='35.9' x2='256.1' y2='27.4' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='270.2' y1='42.4' x2='273.8' y2='34.2' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='286.2' y1='50.6' x2='294.5' y2='36.3' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='301.4' y1='60.4' x2='306.7' y2='53.2' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='315.4' y1='71.8' x2='321.4' y2='65.1' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='328.2' y1='84.6' x2='334.9' y2='78.6' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='339.6' y1='98.6' x2='346.8' y2='93.3' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='349.4' y1='113.8' x2='363.7' y2='105.5' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='357.6' y1='129.8' x2='365.8' y2='126.2' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='364.1' y1='146.7' x2='372.6' y2='143.9' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='368.7' y1='164.1' x2='377.5' y2='162.3' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='371.6' y1='182.0' x2='380.5' y2='181.0' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='372.5' y1='200.0' x2='389.0' y2='200.0' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='371.6' y1='218.0' x2='380.5' y2='219.0' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='368.7' y1='235.9' x2='377.5' y2='237.7' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='364.1' y1='253.3' x2='372.6' y2='256.1' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='357.6' y1='270.2' x2='365.8' y2='273.8' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='349.4' y1='286.2' x2='363.7' y2='294.5' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='339.6' y1='301.4' x2='346.8' y2='306.7' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='328.2' y1='315.4' x2='334.9' y2='321.4' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='315.4' y1='328.2' x2='321.4' y2='334.9' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='301.4' y1='339.6' x2='306.7' y2='346.8' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='286.2' y1='349.4' x2='294.5' y2='363.7' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='270.2' y1='357.6' x2='273.8' y2='365.8' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='253.3' y1='364.1' x2='256.1' y2='372.6' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='235.9' y1='368.7' x2='237.7' y2='377.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='218.0' y1='371.6' x2='219.0' y2='380.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='200.0' y1='372.5' x2='200.0' y2='389.0' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='182.0' y1='371.6' x2='181.0' y2='380.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='164.1' y1='368.7' x2='162.3' y2='377.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='146.7' y1='364.1' x2='143.9' y2='372.6' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='129.8' y1='357.6' x2='126.2' y2='365.8' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='113.8' y1='349.4' x2='105.5' y2='363.7' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='98.6' y1='339.6' x2='93.3' y2='346.8' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='84.6' y1='328.2' x2='78.6' y2='334.9' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='71.8' y1='315.4' x2='65.1' y2='321.4' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='60.4' y1='301.4' x2='53.2' y2='306.7' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='50.6' y1='286.3' x2='36.3' y2='294.5' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='42.4' y1='270.2' x2='34.2' y2='273.8' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='35.9' y1='253.3' x2='27.4' y2='256.1' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='31.3' y1='235.9' x2='22.5' y2='237.7' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='28.4' y1='218.0' x2='19.5' y2='219.0' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='27.5' y1='200.0' x2='11.0' y2='200.0' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='28.4' y1='182.0' x2='19.5' y2='181.0' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='31.3' y1='164.1' x2='22.5' y2='162.3' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='35.9' y1='146.7' x2='27.4' y2='143.9' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='42.4' y1='129.8' x2='34.2' y2='126.2' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='50.6' y1='113.7' x2='36.3' y2='105.5' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='60.4' y1='98.6' x2='53.2' y2='93.3' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='71.8' y1='84.6' x2='65.1' y2='78.6' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='84.6' y1='71.8' x2='78.6' y2='65.1' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='98.6' y1='60.4' x2='93.3' y2='53.2' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='113.8' y1='50.6' x2='105.5' y2='36.3' stroke='#9AA6D6' stroke-opacity='0.5' stroke-width='1.2'/><line x1='129.8' y1='42.4' x2='126.2' y2='34.2' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='146.7' y1='35.9' x2='143.9' y2='27.4' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='164.1' y1='31.3' x2='162.3' y2='22.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/><line x1='182.0' y1='28.4' x2='181.0' y2='19.5' stroke='#9AA6D6' stroke-opacity='0.2' stroke-width='1.2'/></g><circle cx='200' cy='220' r='150' fill='none' stroke='url(#rg)' stroke-width='30' stroke-linecap='round' stroke-dasharray='942.5' stroke-dashoffset='942.5' transform='rotate(-90 200 220)' filter='url(#gl)'><animate attributeName='stroke-dashoffset' from='942.5' to='"
+							& FORMAT(942.5 - _arc, "0.0", "en-US")
+							& "' dur='1.6s' begin='0.2s' fill='freeze' calcMode='spline' keyTimes='0;1' keySplines='0.2 0.8 0.2 1'/></circle><line x1='317.0' y1='258.0' x2='368.3' y2='274.7' stroke='#2DF5C4' stroke-width='4' stroke-linecap='round' filter='url(#hg)'/><text x='381.5' y='282.0' font-size='13' font-weight='700' fill='#2DF5C4' text-anchor='start'>norma 30%</text><circle cy='0' r='11' fill='#2DF5C4' filter='url(#gl)' cx='"
+							& FORMAT(_mx, "0.0", "en-US")
+							& "' transform='translate(0,"
+							& FORMAT(_my + 20, "0.0", "en-US")
+							& ")'><animate attributeName='r' values='8;14;8' dur='1.8s' repeatCount='indefinite'/></circle>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='200' y='240' font-size='88' font-weight='800' fill='#F2F5FF' text-anchor='middle' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_p * 100 * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "%" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.1333, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.1333s'") & "/></text>", "", [Value], ASC)
+							& "<text x='200' y='274' font-size='18' font-weight='500' fill='#9AA6D6' text-anchor='middle'>orta maaşın</text>"
+							& "<text x='450' y='50' font-size='19' font-weight='500' fill='#9AA6D6' text-anchor='start'>2 otaqlı mənzilin median kirayəsi (Bakı şəhəri)</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='450' y='124' font-size='76' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m2 * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & " AZN" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='450' y='166' font-size='17' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & "Bakıda orta aylıq maaş " & SUBSTITUTE(FORMAT(_sal, "#,0", "en-US"), ",", " ") & " AZN · kirayədən sonra qalır " & SUBSTITUTE(FORMAT(_sal - _m2, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.0s' dur='0.4s' fill='freeze'/>" & "<text x='450' y='212' font-size='13' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.5'>KİRAYƏ YÜKÜ (kirayə ÷ maaş)</text>" & "</g>"
+							& "<text x='450' y='249' font-size='16' font-weight='600' fill='#F2F5FF' text-anchor='start'>Bakı şəhəri</text>"
+							& "<rect x='620' y='236' width='300' height='16' rx='8' fill='#FFFFFF' fill-opacity='0.07'/>"
+							& "<rect x='620' y='236' width='0' height='16' rx='8.0' fill='#FF3FD1' filter='url(#hg)'><animate attributeName='width' to='" & FORMAT(300 * MIN(_p, 1), "0.0", "en-US") & "' dur='1.0s' begin='1.0s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.5s' dur='0.4s' fill='freeze'/>" & "<text x='970' y='250' font-size='18' font-weight='800' fill='#FF3FD1' text-anchor='end'>" & FORMAT(_p, "0%") & "</text>" & "</g>"
+							& "<text x='450' y='295' font-size='16' font-weight='600' fill='#F2F5FF' text-anchor='start'>Masazır (Abşeron)</text>"
+							& "<rect x='620' y='282' width='300' height='16' rx='8' fill='#FFFFFF' fill-opacity='0.07'/>"
+							& "<rect x='620' y='282' width='0' height='16' rx='8.0' fill='#2DF5C4' filter='url(#hg)'><animate attributeName='width' to='" & FORMAT(300 * MIN(_pm, 1), "0.0", "en-US") & "' dur='1.0s' begin='1.2s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.7s' dur='0.4s' fill='freeze'/>" & "<text x='970' y='296' font-size='18' font-weight='800' fill='#2DF5C4' text-anchor='end'>" & FORMAT(_pm, "0%") & "</text>" & "</g>"
+							& "<text x='450' y='341' font-size='16' font-weight='600' fill='#F2F5FF' text-anchor='start'>Ölkə ortası ilə</text>"
+							& "<rect x='620' y='328' width='300' height='16' rx='8' fill='#FFFFFF' fill-opacity='0.07'/>"
+							& "<rect x='620' y='328' width='0' height='16' rx='8.0' fill='#8B5CFF' filter='url(#hg)'><animate attributeName='width' to='" & FORMAT(300 * MIN(_pc, 1), "0.0", "en-US") & "' dur='1.0s' begin='1.4s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.9s' dur='0.4s' fill='freeze'/>" & "<text x='970' y='342' font-size='18' font-weight='800' fill='#8B5CFF' text-anchor='end'>" & FORMAT(_pc, "0%") & "</text>" & "</g>"
+							& "<line x1='710.0' y1='226' x2='710.0' y2='362' stroke='#2DF5C4' stroke-width='2' stroke-dasharray='4 4'/>"
+							& "<rect x='450' y='388' width='520' height='54' rx='14' fill='#FFC23F' fill-opacity='0.10' stroke='#FFC23F' stroke-opacity='0.5'/>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.8s' dur='0.4s' fill='freeze'/>" & "<text x='468' y='412' font-size='16' font-weight='700' fill='#FFC23F' text-anchor='start'>" & "30% normasına sığmaq üçün lazım olan maaş: " & SUBSTITUTE(FORMAT(_need, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='2.0s' dur='0.4s' fill='freeze'/>" & "<text x='468' y='433' font-size='14' font-weight='400' fill='#F2F5FF' text-anchor='start'>" & "Bakıda orta maaşdan " & FORMAT(DIVIDE(_need, _sal), "0.0") & " dəfə çox" & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: ad75731a-f4f0-5796-8d74-c237042123db
+		dataCategory: ImageUrl
+
+	/// Ana səhifə KPI: unikal elan sayı + tikili növü payı
+	measure 'VZ KPI Elan' =
+			VAR _n = CALCULATE([Elan sayı], REMOVEFILTERS())
+			VAR _new = DIVIDE(CALCULATE([Elan sayı], REMOVEFILTERS(), Elanlar[Tikili növü] = "Yeni tikili"), _n)
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='718' height='160' viewBox='0 0 718 160'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='24' y='0' width='120' height='3' rx='1.5' fill='#22E5FF' filter='url(#kg)'/>"
+							& "<text x='24' y='36' class='l'>TƏHLİL OLUNAN UNİKAL ELAN</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='24' y='94' font-size='48' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_n * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='126' font-size='15' font-weight='600' fill='#22E5FF' text-anchor='start'>" & "bina.az · təkrarlar çıxarılıb" & "</text>" & "</g>"
+							& "<rect x='390' y='62' width='300' height='12' rx='6' fill='#FFFFFF' fill-opacity='0.06'/>"
+							& "<rect x='390' y='62' width='0' height='12' rx='6.0' fill='#22E5FF' ><animate attributeName='width' to='" & FORMAT(300 * _new - 3, "0.0", "en-US") & "' dur='0.8s' begin='0.3s' fill='freeze'/></rect>"
+							& "<rect y='62' width='0' height='12' rx='6' fill='#FF3FD1' x='"
+							& FORMAT(390 + 300 * _new, "0", "en-US")
+							& "'><animate attributeName='width' to='"
+							& FORMAT(300 * (1 - _new), "0", "en-US")
+							& "' dur='0.8s' begin='0.6s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='390' y='100' font-size='13' font-weight='600' fill='#22E5FF' text-anchor='start'>" & "Yeni tikili " & FORMAT(_new, "0%") & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.1s' dur='0.4s' fill='freeze'/>" & "<text x='690' y='100' font-size='13' font-weight='600' fill='#FF3FD1' text-anchor='end'>" & "Köhnə " & FORMAT(1 - _new, "0%") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 46af6fcb-668f-503d-95ae-99b249cd661d
+		dataCategory: ImageUrl
+
+	/// Ana səhifə KPI: median kirayə + qiymət paylanması (histogram)
+	measure 'VZ KPI Median' =
+			VAR _m = CALCULATE([Median kirayə], REMOVEFILTERS())
+			VAR _p25 = CALCULATE([P25 kirayə], REMOVEFILTERS())
+			VAR _p75 = CALCULATE([P75 kirayə], REMOVEFILTERS())
+			VAR _b = ADDCOLUMNS(GENERATESERIES(0, 2900, 100), "@c",
+			    VAR _lo = [Value] RETURN CALCULATE(COUNTROWS(Elanlar), REMOVEFILTERS(), Elanlar[Kirayə (AZN/ay)] >= _lo, Elanlar[Kirayə (AZN/ay)] < IF(_lo = 2900, 1000000, _lo + 100)))
+			VAR _mx = MAXX(_b, [@c])
+			VAR _bars = CONCATENATEX(_b,
+			    VAR _hh = 96 * DIVIDE([@c], _mx) VAR _x = 390 + [Value] / 100 * 10.3 VAR _on = _m >= [Value] && _m < [Value] + 100
+			    RETURN "<rect x='" & FORMAT(_x, "0.0", "en-US") & "' y='124' width='8.3' height='0' rx='1.5' fill='" & IF(_on, "url(#h2)", "url(#h1)") & "'>"
+			        & "<animate attributeName='height' to='" & FORMAT(_hh, "0.0", "en-US") & "' dur='0.7s' begin='" & FORMAT(0.1 + [Value] / 100 * 0.025, "0.00", "en-US") & "s' fill='freeze'/>"
+			        & "<animate attributeName='y' to='" & FORMAT(124 - _hh, "0.0", "en-US") & "' dur='0.7s' begin='" & FORMAT(0.1 + [Value] / 100 * 0.025, "0.00", "en-US") & "s' fill='freeze'/></rect>",
+			    "", [Value], ASC)
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='718' height='160' viewBox='0 0 718 160'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter><linearGradient id='h1' x1='0' y1='1' x2='0' y2='0'><stop offset='0' stop-color='#8B5CFF' stop-opacity='0.15'/><stop offset='1' stop-color='#8B5CFF' stop-opacity='1'/></linearGradient><linearGradient id='h2' x1='0' y1='1' x2='0' y2='0'><stop offset='0' stop-color='#FF3FD1' stop-opacity='0.3'/><stop offset='1' stop-color='#FF3FD1' stop-opacity='1'/></linearGradient></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='24' y='0' width='120' height='3' rx='1.5' fill='#8B5CFF' filter='url(#kg)'/>"
+							& "<text x='24' y='36' class='l'>MEDİAN KİRAYƏ, AZN</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='24' y='94' font-size='48' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='126' font-size='15' font-weight='600' fill='#8B5CFF' text-anchor='start'>" & "orta 50%: " & SUBSTITUTE(FORMAT(_p25, "#,0", "en-US"), ",", " ") & " – " & SUBSTITUTE(FORMAT(_p75, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& _bars
+							& "<text x='390' y='146' font-size='11' font-weight='400' fill='#5B6699' text-anchor='start'>0</text>"
+							& "<text x='690' y='146' font-size='11' font-weight='400' fill='#5B6699' text-anchor='end'>3 000+ AZN</text>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 484c300d-ba42-58b3-97c3-102a0fd809df
+		dataCategory: ImageUrl
+
+	/// Ana səhifə KPI: Bakıda orta maaş vs ölkə
+	measure 'VZ KPI Maaş' =
+			VAR _s = [Bakı orta maaşı]
+			VAR _c = [Ölkə orta maaşı]
+			VAR _y = [Maaş ili]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='718' height='160' viewBox='0 0 718 160'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='24' y='0' width='120' height='3' rx='1.5' fill='#FFC23F' filter='url(#kg)'/>"
+							& "<text x='24' y='36' class='l'>BAKIDA ORTA AYLIQ MAAŞ, AZN</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='24' y='94' font-size='48' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_s * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='126' font-size='15' font-weight='600' fill='#FFC23F' text-anchor='start'>" & "DSK, " & _y & " · nominal, vergidən əvvəl" & "</text>" & "</g>"
+							& "<text x='390' y='59' font-size='14' font-weight='600' fill='#9AA6D6' text-anchor='start'>Bakı</text>"
+							& "<rect x='450' y='48' width='170' height='14' rx='7' fill='#FFFFFF' fill-opacity='0.06'/>"
+							& "<rect x='450' y='48' width='0' height='14' rx='7.0' fill='#FFC23F' ><animate attributeName='width' to='" & FORMAT(170 * DIVIDE(_s, _s), "0.0", "en-US") & "' dur='0.8s' begin='0.3s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='690' y='61' font-size='15' font-weight='700' fill='#F2F5FF' text-anchor='end'>" & SUBSTITUTE(FORMAT(_s, "#,0", "en-US"), ",", " ") & "</text>" & "</g>"
+							& "<text x='390' y='99' font-size='14' font-weight='600' fill='#9AA6D6' text-anchor='start'>Ölkə</text>"
+							& "<rect x='450' y='88' width='170' height='14' rx='7' fill='#FFFFFF' fill-opacity='0.06'/>"
+							& "<rect x='450' y='88' width='0' height='14' rx='7.0' fill='#5B6699' ><animate attributeName='width' to='" & FORMAT(170 * DIVIDE(_c, _s), "0.0", "en-US") & "' dur='0.8s' begin='0.5s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.1s' dur='0.4s' fill='freeze'/>" & "<text x='690' y='101' font-size='15' font-weight='700' fill='#F2F5FF' text-anchor='end'>" & SUBSTITUTE(FORMAT(_c, "#,0", "en-US"), ",", " ") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 59270c6d-ada3-54fb-8b09-dfd3546dd703
+		dataCategory: ImageUrl
+
+	/// Ana səhifə: 4 plitə — hər səhifənin əsas rəqəmi
+	measure 'VZ Plitələr' =
+			VAR _d = FILTER(ADDCOLUMNS(VALUES(Rayon[Rayon]), "@m", [Median kirayə], "@n", [Elan sayı], "@q", [Median 1 m²]), [@n] >= 30)
+			VAR _top = TOPN(1, _d, [@m], DESC, [@q], DESC)
+			VAR _topN = MAXX(_top, Rayon[Rayon])
+			VAR _topM = MAXX(_top, [@m])
+			VAR _fit = CALCULATE(DIVIDE(COUNTROWS(FILTER(Elanlar, Elanlar[Kirayə (AZN/ay)] <= 700)), COUNTROWS(Elanlar)), Elanlar[Otaq] = "2", Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _yr = CALCULATE(MAX('Maaş'[İl]), ALL('Maaş'))
+			VAR _sec = FILTER(ADDCOLUMNS(FILTER(ALL('Maaş'[Sahə]), 'Maaş'[Sahə] <> "İqtisadiyyat üzrə - cəmi"), "@s",
+			    CALCULATE(MAX('Maaş'[Orta maaş (AZN)]), 'Maaş'[İl] = _yr)), NOT ISBLANK([@s]))
+			VAR _need1 = CALCULATE([Median kirayə], Elanlar[Otaq] = "1", Rayon[Ərazi] = "Bakı şəhəri") / 0.3
+			VAR _ok = COUNTROWS(FILTER(_sec, [@s] >= _need1))
+			VAR _ns = COUNTROWS(_sec)
+			VAR _raw = [Xam elan sayı]
+			VAR _an = [Analiz elan sayı]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='1752' height='318' viewBox='0 0 1752 318'><defs></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<text x='104' y='74' font-size='14' font-weight='800' fill='#22E5FF' text-anchor='start' letter-spacing='1.6'>BAZAR XƏRİTƏSİ</text>"
+							& "<text x='104' y='98' font-size='15' font-weight='400' fill='#9AA6D6' text-anchor='start'>Harada nə qədərdir?</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.4s' dur='0.4s' fill='freeze'/>" & "<text x='28' y='170' font-size='17' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & "Ən baha: " & _topN & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.6s' dur='0.4s' fill='freeze'/>" & "<text x='28' y='228' font-size='40' font-weight='800' fill='#22E5FF' text-anchor='start'>" & SUBSTITUTE(FORMAT(_topM, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<text x='28' y='286' font-size='16' font-weight='700' fill='#22E5FF'>Bax  →<animate attributeName='opacity' values='1;0.35;1' dur='2.4s' begin='0.0s' repeatCount='indefinite'/></text>"
+							& "<text x='548' y='74' font-size='14' font-weight='800' fill='#FFC23F' text-anchor='start' letter-spacing='1.6'>BÜDCƏM NƏYƏ ÇATIR?</text>"
+							& "<text x='548' y='98' font-size='15' font-weight='400' fill='#9AA6D6' text-anchor='start'>Məbləğinizə uyğun rayonlar</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.55s' dur='0.4s' fill='freeze'/>" & "<text x='472' y='170' font-size='17' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & "700 AZN ilə 2 otaqlı elanların" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.75s' dur='0.4s' fill='freeze'/>" & "<text x='472' y='228' font-size='40' font-weight='800' fill='#FFC23F' text-anchor='start'>" & FORMAT(_fit, "0%") & "-i" & "</text>" & "</g>"
+							& "<text x='472' y='286' font-size='16' font-weight='700' fill='#FFC23F'>Bax  →<animate attributeName='opacity' values='1;0.35;1' dur='2.4s' begin='0.4s' repeatCount='indefinite'/></text>"
+							& "<text x='992' y='74' font-size='14' font-weight='800' fill='#FF5A7A' text-anchor='start' letter-spacing='1.6'>MAAŞ VƏ KİRAYƏ YÜKÜ</text>"
+							& "<text x='992' y='98' font-size='15' font-weight='400' fill='#9AA6D6' text-anchor='start'>Kimin maaşı kirayəyə çatır?</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.7s' dur='0.4s' fill='freeze'/>" & "<text x='916' y='170' font-size='17' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & "1 otaqlını 30% ilə ödəyən sahə" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.8999999999999999s' dur='0.4s' fill='freeze'/>" & "<text x='916' y='228' font-size='40' font-weight='800' fill='#FF5A7A' text-anchor='start'>" & _ok & " / " & _ns & "</text>" & "</g>"
+							& "<text x='916' y='286' font-size='16' font-weight='700' fill='#FF5A7A'>Bax  →<animate attributeName='opacity' values='1;0.35;1' dur='2.4s' begin='0.8s' repeatCount='indefinite'/></text>"
+							& "<text x='1436' y='74' font-size='14' font-weight='800' fill='#8B5CFF' text-anchor='start' letter-spacing='1.6'>METODOLOGİYA</text>"
+							& "<text x='1436' y='98' font-size='15' font-weight='400' fill='#9AA6D6' text-anchor='start'>Rəqəmlərə niyə inanmaq olar?</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.85s' dur='0.4s' fill='freeze'/>" & "<text x='1360' y='170' font-size='17' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & SUBSTITUTE(FORMAT(_raw, "#,0", "en-US"), ",", " ") & " xam elandan" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.0499999999999998s' dur='0.4s' fill='freeze'/>" & "<text x='1360' y='228' font-size='40' font-weight='800' fill='#8B5CFF' text-anchor='start'>" & SUBSTITUTE(FORMAT(_an, "#,0", "en-US"), ",", " ") & " unikal" & "</text>" & "</g>"
+							& "<text x='1360' y='286' font-size='16' font-weight='700' fill='#8B5CFF'>Bax  →<animate attributeName='opacity' values='1;0.35;1' dur='2.4s' begin='1.2000000000000002s' repeatCount='indefinite'/></text>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: c3c82648-18b3-5829-936a-1d5724f66e54
+		dataCategory: ImageUrl
+
+	/// Bazar KPI: elan sayı (filtrə görə)
+	measure 'VZ MK Elan' =
+			VAR _n = [Elan sayı]
+			VAR _all = CALCULATE([Elan sayı], REMOVEFILTERS())
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='331' height='136' viewBox='0 0 331 136'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='22' y='0' width='100' height='3' rx='1.5' fill='#22E5FF' filter='url(#kg)'/>"
+							& "<text x='22' y='34' class='l'>ELAN SAYI</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='22' y='86' font-size='42' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_n * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='22' y='116' font-size='14' font-weight='600' fill='#22E5FF' text-anchor='start'>" & FORMAT(DIVIDE(_n, _all), "0%") & " bütün elanlardan" & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: f43dc1b1-4ebb-5a12-8d60-4e3c6237d4f5
+		dataCategory: ImageUrl
+
+	/// Bazar KPI: median kirayə
+	measure 'VZ MK Median' =
+			VAR _m = [Median kirayə]
+			VAR _p25 = [P25 kirayə]
+			VAR _p75 = [P75 kirayə]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='331' height='136' viewBox='0 0 331 136'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='22' y='0' width='100' height='3' rx='1.5' fill='#8B5CFF' filter='url(#kg)'/>"
+							& "<text x='22' y='34' class='l'>MEDİAN KİRAYƏ, AZN</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='22' y='86' font-size='42' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='22' y='116' font-size='14' font-weight='600' fill='#8B5CFF' text-anchor='start'>" & "orta 50%: " & SUBSTITUTE(FORMAT(_p25, "#,0", "en-US"), ",", " ") & "–" & SUBSTITUTE(FORMAT(_p75, "#,0", "en-US"), ",", " ") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 880093ab-dddf-5d19-ab76-c8027d9e4bac
+		dataCategory: ImageUrl
+
+	/// Bazar KPI: 1 m² medianı
+	measure 'VZ MK M2' =
+			VAR _v = [Median 1 m²]
+			VAR _a = [Median sahə]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='331' height='136' viewBox='0 0 331 136'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='22' y='0' width='100' height='3' rx='1.5' fill='#FF3FD1' filter='url(#kg)'/>"
+							& "<text x='22' y='34' class='l'>MEDİAN 1 M², AZN / AY</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='22' y='86' font-size='42' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_v * (1 - POWER(1 - [Value] / 12, 3)), "0.0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='22' y='116' font-size='14' font-weight='600' fill='#FF3FD1' text-anchor='start'>" & "median sahə " & FORMAT(_a, "0") & " m²" & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 1a615944-3e91-5315-9ee1-f063e43a949d
+		dataCategory: ImageUrl
+
+	/// Bazar KPI: yeni vs köhnə tikili medianı
+	measure 'VZ MK Tikili' =
+			VAR _nw = CALCULATE([Median kirayə], Elanlar[Tikili növü] = "Yeni tikili")
+			VAR _od = CALCULATE([Median kirayə], Elanlar[Tikili növü] = "Köhnə tikili")
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='331' height='136' viewBox='0 0 331 136'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='22' y='0' width='100' height='3' rx='1.5' fill='#FFC23F' filter='url(#kg)'/>"
+							& "<text x='22' y='34' class='l'>YENİ / KÖHNƏ TİKİLİ</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='22' y='86' font-size='42' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_nw * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='22' y='116' font-size='14' font-weight='600' fill='#FFC23F' text-anchor='start'>" & IF(ISBLANK(_od), "", "köhnə tikili " & SUBSTITUTE(FORMAT(_od, "#,0", "en-US"), ",", " ") & " AZN (−" & FORMAT(1 - DIVIDE(_od, _nw), "0%") & ")") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: cd51df0a-32ac-5977-a796-0d923a2b6d98
+		dataCategory: ImageUrl
+
+	/// Bazar KPI: vasitəçi payı və qiymət fərqi
+	measure 'VZ MK Vasitəçi' =
+			VAR _p = [Vasitəçi payı]
+			VAR _ag = CALCULATE([Median kirayə], Elanlar[Elanı verən] = "Vasitəçi")
+			VAR _ow = CALCULATE([Median kirayə], Elanlar[Elanı verən] = "Mülkiyyətçi")
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='331' height='136' viewBox='0 0 331 136'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='22' y='0' width='100' height='3' rx='1.5' fill='#2DF5C4' filter='url(#kg)'/>"
+							& "<text x='22' y='34' class='l'>VASİTƏÇİ PAYI</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='22' y='86' font-size='42' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_p * 100 * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "%" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='22' y='116' font-size='14' font-weight='600' fill='#2DF5C4' text-anchor='start'>" & IF(ISBLANK(_ow), "", "vasitəçi +" & FORMAT(DIVIDE(_ag, _ow) - 1, "0%") & " baha") & "</text>" & "</g>"
+							& "<circle cx='284' cy='72' r='30' fill='none' stroke='#FFFFFF' stroke-opacity='0.08' stroke-width='9'/><circle cx='284' cy='72' r='30' fill='none' stroke='#2DF5C4' stroke-width='9' stroke-linecap='round' stroke-dasharray='188.5' stroke-dashoffset='188.5' transform='rotate(-90 284 72)' filter='url(#kg)'><animate attributeName='stroke-dashoffset' to='"
+							& FORMAT(188.5 * (1 - _p), "0.0", "en-US")
+							& "' dur='1.2s' begin='0.2s' fill='freeze'/></circle>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: bbcb65ab-7f61-50cc-9a78-0de31a1acba9
+		dataCategory: ImageUrl
+
+	/// Bazar: rayonlar üzrə P25–P75 aralığı və median (ən az 30 elan)
+	measure 'VZ Rayon aralığı' =
+			VAR _city = [Median kirayə]
+			VAR _d = FILTER(ADDCOLUMNS(VALUES(Rayon[Rayon]), "@n", [Elan sayı], "@m", [Median kirayə], "@p25", [P25 kirayə], "@p75", [P75 kirayə], "@q", [Median 1 m²]), [@n] >= 30)
+			VAR _k = COUNTROWS(_d)
+			VAR _rh = DIVIDE(340, MAX(_k, 1))
+			VAR _r = ADDCOLUMNS(_d, "@i", RANKX(_d, [@m] + [@q] / 1000, , DESC))
+			VAR _sx = 1
+			VAR _rows = CONCATENATEX(_r,
+			    VAR _y = 20 + ([@i] - 1) * _rh + _rh / 2
+			    VAR _a = 140 + MIN([@p25], 2400) / 2400 * 630
+			    VAR _b = 140 + MIN([@p75], 2400) / 2400 * 630
+			    VAR _c = 140 + MIN([@m], 2400) / 2400 * 630
+			    VAR _col = SWITCH(TRUE(), [@m] >= 1100, "#FF5A7A", [@m] >= 900, "#FFC23F", [@m] >= 600, "#3D8BFF", "#2DF5C4")
+			    VAR _bg = FORMAT(0.1 + ([@i] - 1) * 0.06, "0.00", "en-US")
+			    RETURN "<text x='126' y='" & FORMAT(_y + 5, "0.0", "en-US") & "' font-size='14' font-weight='600' fill='#F2F5FF' text-anchor='end'>" & Rayon[Rayon] & "</text>"
+			        & "<rect x='" & FORMAT(_a, "0.0", "en-US") & "' y='" & FORMAT(_y - 6, "0.0", "en-US") & "' width='0' height='12' rx='6' fill='url(#rb)'><animate attributeName='width' to='" & FORMAT(MAX(_b - _a, 4), "0.0", "en-US") & "' dur='0.8s' begin='" & _bg & "s' fill='freeze'/></rect>"
+			        & "<g opacity='0'><animate attributeName='opacity' to='1' dur='0.3s' begin='" & FORMAT(0.7 + ([@i] - 1) * 0.06, "0.00", "en-US") & "s' fill='freeze'/>"
+			        & "<circle cx='" & FORMAT(_c, "0.0", "en-US") & "' cy='" & FORMAT(_y, "0.0", "en-US") & "' r='7' fill='" & _col & "' stroke='#04061A' stroke-width='2' filter='url(#dg)'/>"
+			        & "<text x='" & FORMAT(_b + 12, "0.0", "en-US") & "' y='" & FORMAT(_y + 5, "0.0", "en-US") & "' font-size='13' font-weight='700' fill='" & _col & "'>" & SUBSTITUTE(FORMAT([@m], "#,0", "en-US"), ",", " ") & "</text></g>",
+			    "", [@i], ASC)
+			VAR _cx = 140 + MIN(_city, 2400) / 2400 * 630
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='836' height='412' viewBox='0 0 836 412'><defs><linearGradient id='rb' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='#8B5CFF' stop-opacity='0.5'/><stop offset='1' stop-color='#FF3FD1' stop-opacity='0.9'/></linearGradient><filter id='dg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='4' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<line x1='140.0' y1='10' x2='140.0' y2='370' stroke='#FFFFFF' stroke-opacity='0.06'/><text x='140.0' y='392' font-size='12' class='d' text-anchor='middle'>0</text><line x1='245.0' y1='10' x2='245.0' y2='370' stroke='#FFFFFF' stroke-opacity='0.06'/><text x='245.0' y='392' font-size='12' class='d' text-anchor='middle'>400</text><line x1='350.0' y1='10' x2='350.0' y2='370' stroke='#FFFFFF' stroke-opacity='0.06'/><text x='350.0' y='392' font-size='12' class='d' text-anchor='middle'>800</text><line x1='455.0' y1='10' x2='455.0' y2='370' stroke='#FFFFFF' stroke-opacity='0.06'/><text x='455.0' y='392' font-size='12' class='d' text-anchor='middle'>1 200</text><line x1='560.0' y1='10' x2='560.0' y2='370' stroke='#FFFFFF' stroke-opacity='0.06'/><text x='560.0' y='392' font-size='12' class='d' text-anchor='middle'>1 600</text><line x1='665.0' y1='10' x2='665.0' y2='370' stroke='#FFFFFF' stroke-opacity='0.06'/><text x='665.0' y='392' font-size='12' class='d' text-anchor='middle'>2 000</text><line x1='770.0' y1='10' x2='770.0' y2='370' stroke='#FFFFFF' stroke-opacity='0.06'/><text x='770.0' y='392' font-size='12' class='d' text-anchor='middle'>2 400</text>"
+							& _rows
+							& "<line y1='6' y2='370' stroke='#22E5FF' stroke-dasharray='4 4' stroke-opacity='0.8' x1='"
+							& FORMAT(_cx, "0.0", "en-US")
+							& "' x2='"
+							& FORMAT(_cx, "0.0", "en-US")
+							& "'/>"
+							& "<text x='" & FORMAT(_cx + 6, "0", "en-US") & "' y='14' font-size='12' font-weight='600' fill='#22E5FF' text-anchor='start'>" & "seçimin medianı " & SUBSTITUTE(FORMAT(_city, "#,0", "en-US"), ",", " ") & "</text>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 113dd256-7192-5926-8b70-8196b958dbd6
+		dataCategory: ImageUrl
+
+	/// Bazar: qiyməti nə müəyyən edir — otaq, tikili növü, elanı verən
+	measure 'VZ Amillər' =
+			VAR _r = ADDCOLUMNS(FILTER(VALUES(Elanlar[Otaq]), CALCULATE([Elan sayı]) >= 30), "@m", [Median kirayə], "@a", [Median sahə])
+			VAR _rmx = MAXX(_r, [@m])
+			VAR _ladder = CONCATENATEX(_r,
+			    VAR _i = SWITCH(Elanlar[Otaq], "1", 0, "2", 1, "3", 2, "4", 3, 4)
+			    VAR _x = 40 + _i * 96
+			    VAR _hh = 74 * DIVIDE([@m], _rmx)
+			    RETURN "<rect x='" & _x & "' y='110' width='56' height='0' rx='6' fill='url(#lg)'><animate attributeName='height' to='" & FORMAT(_hh, "0.0", "en-US") & "' dur='0.8s' begin='" & FORMAT(0.1 + _i * 0.12, "0.00", "en-US") & "s' fill='freeze'/><animate attributeName='y' to='" & FORMAT(110 - _hh, "0.0", "en-US") & "' dur='0.8s' begin='" & FORMAT(0.1 + _i * 0.12, "0.00", "en-US") & "s' fill='freeze'/></rect>"
+			        & "<g opacity='0'><animate attributeName='opacity' to='1' dur='0.3s' begin='" & FORMAT(0.8 + _i * 0.12, "0.00", "en-US") & "s' fill='freeze'/><text x='" & (_x + 28) & "' y='" & FORMAT(104 - _hh, "0.0", "en-US") & "' font-size='13' font-weight='700' fill='#F2F5FF' text-anchor='middle'>" & SUBSTITUTE(FORMAT([@m], "#,0", "en-US"), ",", " ") & "</text></g>"
+			        & "<text x='" & (_x + 28) & "' y='128' font-size='12' class='m' text-anchor='middle'>" & Elanlar[Otaq] & " otaq · " & FORMAT([@a], "0") & " m²</text>",
+			    "", Elanlar[Otaq], ASC)
+			VAR _nw = CALCULATE([Median kirayə], Elanlar[Tikili növü] = "Yeni tikili")
+			VAR _od = CALCULATE([Median kirayə], Elanlar[Tikili növü] = "Köhnə tikili")
+			VAR _nwm = CALCULATE([Median 1 m²], Elanlar[Tikili növü] = "Yeni tikili")
+			VAR _odm = CALCULATE([Median 1 m²], Elanlar[Tikili növü] = "Köhnə tikili")
+			VAR _nwa = CALCULATE([Median sahə], Elanlar[Tikili növü] = "Yeni tikili")
+			VAR _oda = CALCULATE([Median sahə], Elanlar[Tikili növü] = "Köhnə tikili")
+			VAR _ag = CALCULATE([Median kirayə], Elanlar[Elanı verən] = "Vasitəçi")
+			VAR _ow = CALCULATE([Median kirayə], Elanlar[Elanı verən] = "Mülkiyyətçi")
+			VAR _mx2 = MAX(MAX(_nw, _od), MAX(_ag, _ow))
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='1720' height='134' viewBox='0 0 1720 134'><defs><linearGradient id='lg' x1='0' y1='1' x2='0' y2='0'><stop offset='0' stop-color='#FF3FD1' stop-opacity='0.35'/><stop offset='1' stop-color='#22E5FF' stop-opacity='1'/></linearGradient><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<text x='40' y='18' class='l'>1. OTAQ SAYI — ƏSAS AMİL</text>"
+							& _ladder
+							& "<text x='600' y='18' class='l'>2. TİKİLİ NÖVÜ</text>"
+							& "<text x='1170' y='18' class='l'>3. ELANI VERƏN</text>"
+							& "<text x='600' y='50' font-size='14' font-weight='600' fill='#F2F5FF' text-anchor='start'>Yeni tikili</text>"
+							& "<rect x='710' y='39' width='250' height='14' rx='7' fill='#FFFFFF' fill-opacity='0.06'/>"
+							& "<rect x='710' y='39' width='0' height='14' rx='7.0' fill='#8B5CFF' ><animate attributeName='width' to='" & FORMAT(250 * DIVIDE(_nw, _mx2), "0.0", "en-US") & "' dur='0.8s' begin='0.3s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='1080' y='52' font-size='15' font-weight='700' fill='#F2F5FF' text-anchor='end'>" & SUBSTITUTE(FORMAT(_nw, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<text x='600' y='84' font-size='14' font-weight='600' fill='#F2F5FF' text-anchor='start'>Köhnə tikili</text>"
+							& "<rect x='710' y='73' width='250' height='14' rx='7' fill='#FFFFFF' fill-opacity='0.06'/>"
+							& "<rect x='710' y='73' width='0' height='14' rx='7.0' fill='#FFC23F' ><animate attributeName='width' to='" & FORMAT(250 * DIVIDE(_od, _mx2), "0.0", "en-US") & "' dur='0.8s' begin='0.5s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.1s' dur='0.4s' fill='freeze'/>" & "<text x='1080' y='86' font-size='15' font-weight='700' fill='#F2F5FF' text-anchor='end'>" & SUBSTITUTE(FORMAT(_od, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.2s' dur='0.4s' fill='freeze'/>" & "<text x='600' y='122' font-size='13' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & "1 m²: " & FORMAT(_nwm, "0.0") & " vs " & FORMAT(_odm, "0.0") & " AZN · sahə " & FORMAT(_nwa, "0") & " vs " & FORMAT(_oda, "0") & " m² → fərq əsasən ölçüdədir" & "</text>" & "</g>"
+							& "<text x='1170' y='50' font-size='14' font-weight='600' fill='#F2F5FF' text-anchor='start'>Vasitəçi</text>"
+							& "<rect x='1280' y='39' width='250' height='14' rx='7' fill='#FFFFFF' fill-opacity='0.06'/>"
+							& "<rect x='1280' y='39' width='0' height='14' rx='7.0' fill='#FF5A7A' ><animate attributeName='width' to='" & FORMAT(250 * DIVIDE(_ag, _mx2), "0.0", "en-US") & "' dur='0.8s' begin='0.3s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='1650' y='52' font-size='15' font-weight='700' fill='#F2F5FF' text-anchor='end'>" & SUBSTITUTE(FORMAT(_ag, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<text x='1170' y='84' font-size='14' font-weight='600' fill='#F2F5FF' text-anchor='start'>Mülkiyyətçi</text>"
+							& "<rect x='1280' y='73' width='250' height='14' rx='7' fill='#FFFFFF' fill-opacity='0.06'/>"
+							& "<rect x='1280' y='73' width='0' height='14' rx='7.0' fill='#2DF5C4' ><animate attributeName='width' to='" & FORMAT(250 * DIVIDE(_ow, _mx2), "0.0", "en-US") & "' dur='0.8s' begin='0.5s' fill='freeze'/></rect>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.1s' dur='0.4s' fill='freeze'/>" & "<text x='1650' y='86' font-size='15' font-weight='700' fill='#F2F5FF' text-anchor='end'>" & SUBSTITUTE(FORMAT(_ow, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.2s' dur='0.4s' fill='freeze'/>" & "<text x='1170' y='122' font-size='13' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & IF(ISBLANK(_ow), "", "Mülkiyyətçi elanı " & FORMAT(1 - DIVIDE(_ow, _ag), "0%") & " ucuzdur → birbaşa sahibdən axtarın") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 49224dd5-7ded-5728-8be6-970159a9bf50
+		dataCategory: ImageUrl
+
+	/// Büdcəm: uyğun elan payı halqası və nəticə
+	measure 'VZ Büdcə' =
+			VAR _p = [Büdcəyə uyğun pay]
+			VAR _n = [Büdcəyə uyğun elan]
+			VAR _b = [Seçilmiş büdcə]
+			VAR _ppl = [Seçilmiş nəfər]
+			VAR _pm = [Adambaşına median]
+			VAR _gap = [Büdcə fərqi]
+			VAR _best = [Ən əlçatan rayon]
+			VAR _sal = [Bakı orta maaşı]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='1276' height='230' viewBox='0 0 1276 230'><defs><linearGradient id='bg1' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#FFC23F'/><stop offset='1' stop-color='#FF3FD1'/></linearGradient><filter id='gl' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='5' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<circle cx='110' cy='115' r='82' fill='none' stroke='#FFFFFF' stroke-opacity='0.07' stroke-width='22'/><circle cx='110' cy='115' r='82' fill='none' stroke='url(#bg1)' stroke-width='22' stroke-linecap='round' stroke-dasharray='515.2' stroke-dashoffset='515.2' transform='rotate(-90 110 115)' filter='url(#gl)'><animate attributeName='stroke-dashoffset' to='"
+							& FORMAT(515.2 * (1 - MIN(_p, 1)), "0.0", "en-US")
+							& "' dur='1.4s' begin='0.2s' fill='freeze' calcMode='spline' keyTimes='0;1' keySplines='0.2 0.8 0.2 1'/></circle>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='110' y='128' font-size='44' font-weight='800' fill='#F2F5FF' text-anchor='middle' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_p * 100 * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "%" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.1167, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.1167s'") & "/></text>", "", [Value], ASC)
+							& "<text x='110' y='152' font-size='14' font-weight='500' fill='#9AA6D6' text-anchor='middle'>elanlar</text>"
+							& "<text x='250' y='62' font-size='22' font-weight='500' fill='#9AA6D6' text-anchor='start'>" & "Ayda " & SUBSTITUTE(FORMAT(_b, "#,0", "en-US"), ",", " ") & " AZN" & IF(_ppl = 2, " · 2 nəfər (mənzil ≤ " & SUBSTITUTE(FORMAT(_b * 2, "#,0", "en-US"), ",", " ") & " AZN)", "") & " ilə" & "</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='250' y='128' font-size='60' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_n * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & " uyğun mənzil" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='250' y='170' font-size='17' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & "Adambaşına median kirayə " & SUBSTITUTE(FORMAT(_pm, "#,0", "en-US"), ",", " ") & " AZN · büdcə fərqi " & IF(_gap >= 0, "+", "−") & SUBSTITUTE(FORMAT(ABS(_gap), "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.1s' dur='0.4s' fill='freeze'/>" & "<text x='250' y='202' font-size='15' font-weight='600' fill='#FFC23F' text-anchor='start'>" & "Büdcə Bakıda orta maaşın " & FORMAT(DIVIDE(_b, _sal), "0%") & "-i" & IF(DIVIDE(_b, _sal) > 0.3, " — 30% normasından çox", " — normaya uyğun") & "</text>" & "</g>"
+							& "<rect x='980' y='40' width='276' height='150' rx='18' fill='#2DF5C4' fill-opacity='0.08' stroke='#2DF5C4' stroke-opacity='0.5'/>"
+							& "<text x='1004' y='76' font-size='13' font-weight='800' fill='#2DF5C4' text-anchor='start' letter-spacing='1.6'>ƏN ƏLÇATAN RAYON</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.8s' dur='0.4s' fill='freeze'/>" & "<text x='1004' y='128' font-size='34' font-weight='800' fill='#F2F5FF' text-anchor='start'>" & _best & "</text>" & "</g>"
+							& "<text x='1004' y='166' font-size='13' font-weight='400' fill='#9AA6D6' text-anchor='start'>ən az 30 elan olan rayonlar</text>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 08ebdf4e-a8a9-5acf-bd15-c02171d2ecd6
+		dataCategory: ImageUrl
+
+	/// Büdcəm: qənaət yolları — median kirayəni addım-addım necə azaltmaq olar
+	measure 'VZ Qənaət' =
+			VAR _room = SELECTEDVALUE(Elanlar[Otaq], "2")
+			VAR _b = [Seçilmiş büdcə]
+			VAR _base = CALCULATE([Median kirayə], REMOVEFILTERS(Elanlar), REMOVEFILTERS(Rayon), Elanlar[Otaq] = _room, Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _dist = TOPN(4, FILTER(ADDCOLUMNS(CALCULATETABLE(VALUES(Rayon[Rayon]), Rayon[Ərazi] = "Bakı şəhəri"), "@m",
+			        CALCULATE([Median kirayə], REMOVEFILTERS(Elanlar[Tikili növü]), Elanlar[Otaq] = _room), "@n",
+			        CALCULATE([Elan sayı], REMOVEFILTERS(Elanlar[Tikili növü]), Elanlar[Otaq] = _room)), [@n] >= 30), [@m], ASC)
+			VAR _cheap = TREATAS(SELECTCOLUMNS(_dist, "r", Rayon[Rayon]), Rayon[Rayon])
+			VAR _s1 = CALCULATE([Median kirayə], REMOVEFILTERS(Elanlar), REMOVEFILTERS(Rayon), Elanlar[Otaq] = _room, _cheap)
+			VAR _s2 = CALCULATE([Median kirayə], REMOVEFILTERS(Elanlar), REMOVEFILTERS(Rayon), Elanlar[Otaq] = _room, _cheap, Elanlar[Tikili növü] = "Köhnə tikili")
+			VAR _s3 = CALCULATE([Median kirayə], REMOVEFILTERS(Elanlar), REMOVEFILTERS(Rayon), Elanlar[Otaq] = _room, _cheap, Elanlar[Tikili növü] = "Köhnə tikili", Elanlar[Elanı verən] = "Mülkiyyətçi")
+			VAR _s4 = _s3 / 2
+			VAR _names = CONCATENATEX(_dist, Rayon[Rayon], ", ", [@m], ASC)
+			VAR _mx = _base * 1.25
+			VAR _steps = {
+			    (1, "Başlanğıc: " & _room & " otaqlı, Bakı", _base, _base, "#FF3FD1"),
+			    (2, "Ucuz rayonlara baxın", _base, _s1, "#22E5FF"),
+			    (3, "+ köhnə tikili", _s1, _s2, "#8B5CFF"),
+			    (4, "+ mülkiyyətçi elanı (vasitəçisiz)", _s2, _s3, "#3D8BFF"),
+			    (5, "2 nəfər bölüşsün", _s3, _s4, "#2DF5C4")
+			}
+			VAR _rows = CONCATENATEX(_steps,
+			    VAR _y = 30 + ([Value1] - 1) * 86
+			    VAR _from = [Value3]
+			    VAR _to = [Value4]
+			    VAR _x1 = 20 + 560 * DIVIDE(_to, _mx)
+			    VAR _x2 = 20 + 560 * DIVIDE(_from, _mx)
+			    VAR _bg = FORMAT(0.2 + ([Value1] - 1) * 0.35, "0.00", "en-US")
+			    RETURN "<text x='20' y='" & _y & "' font-size='15' font-weight='600' fill='#F2F5FF'>" & [Value2] & "</text>"
+			        & IF([Value1] > 1, "<rect x='" & FORMAT(_x1, "0.0", "en-US") & "' y='" & (_y + 12) & "' width='" & FORMAT(_x2 - _x1, "0.0", "en-US") & "' height='26' rx='6' fill='#FFFFFF' fill-opacity='0.05' stroke='" & [Value5] & "' stroke-opacity='0.35' stroke-dasharray='3 3'/>", "")
+			        & "<rect x='20' y='" & (_y + 12) & "' width='0' height='26' rx='6' fill='" & [Value5] & "' fill-opacity='0.85' filter='url(#sg)'><animate attributeName='width' to='" & FORMAT(_x1 - 20, "0.0", "en-US") & "' dur='0.7s' begin='" & _bg & "s' fill='freeze'/></rect>"
+			        & "<g opacity='0'><animate attributeName='opacity' to='1' dur='0.3s' begin='" & FORMAT(0.6 + ([Value1] - 1) * 0.35, "0.00", "en-US") & "s' fill='freeze'/>"
+			        & "<text x='" & FORMAT(_x1 + 10, "0.0", "en-US") & "' y='" & (_y + 31) & "' font-size='16' font-weight='800' fill='#F2F5FF'>" & SUBSTITUTE(FORMAT(_to, "#,0", "en-US"), ",", " ") & " AZN"
+			        & IF([Value1] > 1, "<tspan font-size='13' font-weight='600' fill='" & [Value5] & "'>  −" & SUBSTITUTE(FORMAT(_from - _to, "#,0", "en-US"), ",", " ") & "</tspan>", "") & "</text></g>",
+			    "", [Value1], ASC)
+			VAR _bx = 20 + 560 * DIVIDE(_b, _mx)
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='612' height='560' viewBox='0 0 612 560'><defs><filter id='sg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& _rows
+							& "<line y1='12' y2='460' stroke='#FFC23F' stroke-width='2' stroke-dasharray='5 4' x1='"
+							& FORMAT(_bx, "0.0", "en-US")
+							& "' x2='"
+							& FORMAT(_bx, "0.0", "en-US")
+							& "'/>"
+							& "<text x='" & FORMAT(MIN(_bx, 470), "0", "en-US") & "' y='478' font-size='13' font-weight='700' fill='#FFC23F' text-anchor='start'>" & "sizin büdcə: " & SUBSTITUTE(FORMAT(_b, "#,0", "en-US"), ",", " ") & " AZN" & "</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='2.0s' dur='0.4s' fill='freeze'/>" & "<text x='20' y='510' font-size='13' font-weight='400' fill='#9AA6D6' text-anchor='start'>" & "Ucuz rayonlar: " & _names & "</text>" & "</g>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='2.2s' dur='0.4s' fill='freeze'/>" & "<text x='20' y='536' font-size='15' font-weight='700' fill='#2DF5C4' text-anchor='start'>" & "Nəticə: " & SUBSTITUTE(FORMAT(_s4, "#,0", "en-US"), ",", " ") & " AZN adambaşına = Bakıda orta maaşın " & FORMAT(DIVIDE(_s4, [Bakı orta maaşı]), "0%") & "-i" & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 9a05feeb-0a91-541f-b69f-b515374acdd6
+		dataCategory: ImageUrl
+
+	/// Maaş: seçilmiş sahənin (və ya Bakının) orta maaşı
+	measure 'VZ SL Maaş' =
+			VAR _s = [Orta maaş]
+			VAR _sec = IF(ISFILTERED('Maaş'[Sahə]), SELECTEDVALUE('Maaş'[Sahə], "seçilmiş sahələr") & " (ölkə üzrə)", "Bakı şəhəri üzrə orta")
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='568' height='150' viewBox='0 0 568 150'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='24' y='0' width='120' height='3' rx='1.5' fill='#8B5CFF' filter='url(#kg)'/>"
+							& "<text x='24' y='36' class='l'>ORTA AYLIQ MAAŞ, AZN</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='24' y='94' font-size='48' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_s * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='126' font-size='15' font-weight='600' fill='#8B5CFF' text-anchor='start'>" & _sec & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 3ee253b1-2424-50f5-b026-3e78a3b79a67
+		dataCategory: ImageUrl
+
+	/// Maaş: kirayə yükü halqası (30% norma işarəsi ilə)
+	measure 'VZ SL Yük' =
+			VAR _y = [Kirayə yükü]
+			VAR _pm = [Adambaşına median]
+			VAR _col = SWITCH(TRUE(), ISBLANK(_y), "#5B6699", _y <= 0.3, "#2DF5C4", _y <= 0.5, "#FFC23F", "#FF5A7A")
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='568' height='150' viewBox='0 0 568 150'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='24' y='0' width='120' height='3' rx='1.5' fill='#FF5A7A' filter='url(#kg)'/>"
+							& "<text x='24' y='36' class='l'>KİRAYƏ YÜKÜ</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='24' y='94' font-size='48' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_y * 100 * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "%" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='126' font-size='15' font-weight='600' fill='#FF5A7A' text-anchor='start'>" & "median kirayə " & SUBSTITUTE(FORMAT(_pm, "#,0", "en-US"), ",", " ") & " AZN ÷ maaş" & "</text>" & "</g>"
+							& "<circle cx='480' cy='76' r='46' fill='none' stroke='#FFFFFF' stroke-opacity='0.08' stroke-width='12'/><circle cx='480' cy='76' r='46' fill='none' stroke-width='12' stroke-linecap='round' stroke-dasharray='289.0' stroke-dashoffset='289.0' transform='rotate(-90 480 76)' filter='url(#kg)' stroke='"
+							& _col
+							& "'><animate attributeName='stroke-dashoffset' to='"
+							& FORMAT(289.0 * (1 - MIN(_y, 1)), "0.0", "en-US")
+							& "' dur='1.2s' begin='0.2s' fill='freeze'/></circle>"
+							& "<line x1='514.2' y1='87.1' x2='533.3' y2='93.3' stroke='#2DF5C4' stroke-width='3'/>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: c6c07e50-e3c0-51e3-9f6f-d3287d27e802
+		dataCategory: ImageUrl
+
+	/// Maaş: kirayə 30%-dən çox olmasın deyə lazım olan maaş
+	measure 'VZ SL Lazım' =
+			VAR _pm = [Adambaşına median]
+			VAR _need = _pm / 0.3
+			VAR _s = [Orta maaş]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='568' height='150' viewBox='0 0 568 150'><defs><filter id='kg' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='24' y='0' width='120' height='3' rx='1.5' fill='#FFC23F' filter='url(#kg)'/>"
+							& "<text x='24' y='36' class='l'>30% ÜÇÜN LAZIM OLAN MAAŞ</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='24' y='94' font-size='48' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_need * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.9s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='126' font-size='15' font-weight='600' fill='#FFC23F' text-anchor='start'>" & IF(_s >= _need, "maaş kifayət edir ✓", "maaşdan " & FORMAT(DIVIDE(_need, _s), "0.0") & " dəfə çox") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: d9750c2a-86d7-5151-ae6e-9d55627858cf
+		dataCategory: ImageUrl
+
+	/// Maaş: hansı otaq sayını neçə sahənin orta maaşı 30% normasında ödəyir
+	measure 'VZ Əlçatanlıq' =
+			VAR _ppl = [Seçilmiş nəfər]
+			VAR _yr = CALCULATE(MAX('Maaş'[İl]), ALL('Maaş'))
+			VAR _sec = FILTER(ADDCOLUMNS(FILTER(ALL('Maaş'[Sahə]), 'Maaş'[Sahə] <> "İqtisadiyyat üzrə - cəmi"), "@s",
+			    CALCULATE(MAX('Maaş'[Orta maaş (AZN)]), REMOVEFILTERS('Maaş'), 'Maaş'[Sahə] = EARLIER('Maaş'[Sahə]), 'Maaş'[İl] = _yr)), NOT ISBLANK([@s]))
+			VAR _ns = COUNTROWS(_sec)
+			VAR _r = { ("1", 0), ("2", 1), ("3", 2), ("4", 3) }
+			VAR _rows = CONCATENATEX(_r,
+			    VAR _room = [Value1]
+			    VAR _m = CALCULATE([Median kirayə], REMOVEFILTERS(Elanlar), Elanlar[Otaq] = _room, Rayon[Ərazi] = "Bakı şəhəri") / _ppl
+			    VAR _need = _m / 0.3
+			    VAR _ok = COUNTROWS(FILTER(_sec, [@s] >= _need))
+			    VAR _y = 40 + [Value2] * 84
+			    VAR _dots = CONCATENATEX(GENERATESERIES(1, _ns, 1),
+			        "<circle cx='" & (14 + [Value] * 22) & "' cy='" & (_y + 44) & "' r='7' fill='" & IF([Value] <= _ok, "#2DF5C4", "#FFFFFF") & "' fill-opacity='" & IF([Value] <= _ok, "1", "0.10") & "' opacity='0'><set attributeName='opacity' to='1' begin='" & FORMAT(0.2 + [Value] * 0.03 + [Value2] * 0.25, "0.00", "en-US") & "s' fill='freeze'/></circle>", "", [Value], ASC)
+			    RETURN "<text x='20' y='" & _y & "' font-size='16' font-weight='700' fill='#F2F5FF'>" & [Value1] & " otaq</text>"
+			        & "<text x='496' y='" & _y & "' font-size='15' font-weight='700' fill='#FFC23F' text-anchor='end'>" & SUBSTITUTE(FORMAT(_need, "#,0", "en-US"), ",", " ") & " AZN lazımdır</text>"
+			        & _dots
+			        & "<text x='496' y='" & (_y + 49) & "' font-size='14' font-weight='800' fill='" & IF(_ok > 0, "#2DF5C4", "#FF5A7A") & "' text-anchor='end'>" & _ok & " / " & _ns & "</text>",
+			    "", [Value2], ASC)
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='516' height='400' viewBox='0 0 516 400'><defs></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<text x='20' y='14' font-size='13' font-weight='400' fill='#9AA6D6' text-anchor='start'>Dairə = 1 sahə · yaşıl: orta maaşı kifayət edir</text>"
+							& _rows
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.5s' dur='0.4s' fill='freeze'/>" & "<text x='20' y='392' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>" & IF(_ppl = 2, "2 nəfər bölüşəndə hesablanıb", "Kirayəni 2 nəfər bölsə? Yuxarıda «2» seçin") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 4c38771b-cbc0-57e9-9b5e-4462923542fb
+		dataCategory: ImageUrl
+
+	/// Metod: məlumat hunisi — xamdan unikal elanlara
+	measure 'VZ Huni' =
+			VAR _raw = [Xam elan sayı]
+			VAR _cl = [Təmiz elan sayı]
+			VAR _out = [Qeyri-adi qiymət sayı]
+			VAR _dup = [Təkrar elan sayı]
+			VAR _an = [Analiz elan sayı]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='828' height='520' viewBox='0 0 828 520'><defs><filter id='fg2' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='3' result='b'/><feMerge><feMergeNode in='b'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<text x='20' y='30' font-size='13' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.5'>SAYTDAN TOPLANAN</text>"
+							& "<rect x='20' y='44' width='600' height='42' rx='10' fill='#FFFFFF' fill-opacity='0.05'/>"
+							& "<rect x='20' y='44' width='0' height='42' rx='10' fill='#22E5FF' filter='url(#fg2)' fill-opacity='0.85'><animate attributeName='width' to='" & FORMAT(600 * DIVIDE(_raw, _raw), "0.0", "en-US") & "' dur='0.8s' begin='0.2s' fill='freeze'/></rect>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='800' y='76' font-size='30' font-weight='800' fill='#F2F5FF' text-anchor='end' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_raw * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.2 + ([Value] - 1) * 0.0583, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0583s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.6s' dur='0.4s' fill='freeze'/>" & "<text x='20' y='112' font-size='14' font-weight='600' fill='#22E5FF' text-anchor='start'>" & "bina.az · 13 rayon × 2 tikili növü" & "</text>" & "</g>"
+							& "<text x='20' y='150' font-size='13' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.5'>TƏMİZLƏMƏDƏN SONRA</text>"
+							& "<rect x='20' y='164' width='600' height='42' rx='10' fill='#FFFFFF' fill-opacity='0.05'/>"
+							& "<rect x='20' y='164' width='0' height='42' rx='10' fill='#3D8BFF' filter='url(#fg2)' fill-opacity='0.85'><animate attributeName='width' to='" & FORMAT(600 * DIVIDE(_cl, _raw), "0.0", "en-US") & "' dur='0.8s' begin='0.55s' fill='freeze'/></rect>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='800' y='196' font-size='30' font-weight='800' fill='#F2F5FF' text-anchor='end' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_cl * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.55 + ([Value] - 1) * 0.0583, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0583s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.95s' dur='0.4s' fill='freeze'/>" & "<text x='20' y='232' font-size='14' font-weight='600' fill='#3D8BFF' text-anchor='start'>" & "R1–R7: səhv qiymət, sahə, mərtəbə" & "</text>" & "</g>"
+							& "<text x='20' y='270' font-size='13' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.5'>QEYRİ-ADİ QİYMƏT VƏ OTAQ KİRAYƏSİ ÇIXANDA</text>"
+							& "<rect x='20' y='284' width='600' height='42' rx='10' fill='#FFFFFF' fill-opacity='0.05'/>"
+							& "<rect x='20' y='284' width='0' height='42' rx='10' fill='#8B5CFF' filter='url(#fg2)' fill-opacity='0.85'><animate attributeName='width' to='" & FORMAT(600 * DIVIDE(_cl - _out, _raw), "0.0", "en-US") & "' dur='0.8s' begin='0.8999999999999999s' fill='freeze'/></rect>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='800' y='316' font-size='30' font-weight='800' fill='#F2F5FF' text-anchor='end' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_cl - _out * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.8999999999999999 + ([Value] - 1) * 0.0583, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0583s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.2999999999999998s' dur='0.4s' fill='freeze'/>" & "<text x='20' y='352' font-size='14' font-weight='600' fill='#8B5CFF' text-anchor='start'>" & "−" & SUBSTITUTE(FORMAT(_out, "#,0", "en-US"), ",", " ") & " (R8: 1 m² qiyməti 1–99% xaricində · R10: otaq kirayəsi)" & "</text>" & "</g>"
+							& "<text x='20' y='390' font-size='13' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.5'>TƏKRAR ELANLAR ÇIXANDA</text>"
+							& "<rect x='20' y='404' width='600' height='42' rx='10' fill='#FFFFFF' fill-opacity='0.05'/>"
+							& "<rect x='20' y='404' width='0' height='42' rx='10' fill='#FF3FD1' filter='url(#fg2)' fill-opacity='0.85'><animate attributeName='width' to='" & FORMAT(600 * DIVIDE(_an, _raw), "0.0", "en-US") & "' dur='0.8s' begin='1.2499999999999998s' fill='freeze'/></rect>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='800' y='436' font-size='30' font-weight='800' fill='#F2F5FF' text-anchor='end' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_an * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(1.2499999999999998 + ([Value] - 1) * 0.0583, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0583s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.65s' dur='0.4s' fill='freeze'/>" & "<text x='20' y='472' font-size='14' font-weight='600' fill='#FF3FD1' text-anchor='start'>" & "−" & SUBSTITUTE(FORMAT(_cl - _out - _an, "#,0", "en-US"), ",", " ") & " (R9: eyni mənzil, fərqli elan · cəmi " & SUBSTITUTE(FORMAT(_dup, "#,0", "en-US"), ",", " ") & ", bir qismi artıq çıxmışdı)" & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: ad9c6af8-12ce-568a-bbcb-d026bb980d2a
+		dataCategory: ImageUrl
+
+	/// Metod: xarici yoxlama — Mərkəzi Bank və JAM-News ilə müqayisə
+	measure 'VZ Yoxlama' =
+			VAR _m = CALCULATE([Median kirayə], REMOVEFILTERS(), Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _m2 = CALCULATE([Median 1 m²], REMOVEFILTERS(), Rayon[Ərazi] = "Bakı şəhəri")
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='836' height='216' viewBox='0 0 836 216'><defs></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<text x='20' y='22' font-size='15' font-weight='600' fill='#9AA6D6' text-anchor='start'>Mərkəzi Bank · median kirayə (14.04.2026)</text>"
+							& "<text x='20' y='64' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>onlar</text>"
+							& "<text x='80' y='66' font-size='26' font-weight='800' fill='#F2F5FF' text-anchor='start'>1 002 AZN</text>"
+							& "<text x='340' y='64' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>biz</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='380' y='66' font-size='26' font-weight='800' fill='#22E5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & " AZN" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.0s' dur='0.4s' fill='freeze'/>" & "<text x='816' y='64' font-size='18' font-weight='800' fill='#2DF5C4' text-anchor='end'>" & "fərq " & FORMAT(ABS(DIVIDE(_m, 1002) - 1), "0%") & " ✓" & "</text>" & "</g>"
+							& "<text x='20' y='118' font-size='15' font-weight='600' fill='#9AA6D6' text-anchor='start'>JAM-News · 1 m² / ay (30.08.2026)</text>"
+							& "<text x='20' y='160' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>onlar</text>"
+							& "<text x='80' y='162' font-size='26' font-weight='800' fill='#F2F5FF' text-anchor='start'>11 AZN</text>"
+							& "<text x='340' y='160' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>biz</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='380' y='162' font-size='26' font-weight='800' fill='#22E5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m2 * (1 - POWER(1 - [Value] / 12, 3)), "0.0", "en-US"), ",", " ") & " AZN" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.3s' dur='0.4s' fill='freeze'/>" & "<text x='816' y='160' font-size='18' font-weight='800' fill='#2DF5C4' text-anchor='end'>" & "fərq " & FORMAT(ABS(DIVIDE(_m2, 11) - 1), "0%") & " ✓" & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: e740015c-9f4b-5965-b5db-d0066de9ff19
+		dataCategory: ImageUrl
+
+	/// Tooltip səhifəsi: rayonun mini kartı
+	measure 'VZ Tooltip' =
+			VAR _r = [Seçilmiş rayon]
+			VAR _m = [Median kirayə]
+			VAR _n = [Elan sayı]
+			VAR _p25 = [P25 kirayə]
+			VAR _p75 = [P75 kirayə]
+			VAR _m2 = [Median 1 m²]
+			VAR _ag = [Vasitəçi payı]
+			VAR _fit = [Büdcəyə uyğun pay]
+			VAR _sal = [Bakı orta maaşı]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='480' height='320' viewBox='0 0 480 320'><defs></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='1' y='1' width='478' height='318' rx='20' fill='#0D1440' stroke='#22E5FF' stroke-opacity='0.6'/><rect x='24' y='0' width='90' height='3' fill='#FF3FD1'/>"
+							& "<text x='24' y='46' font-size='26' font-weight='800' fill='#22E5FF' text-anchor='start'>" & _r & "</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='24' y='108' font-size='44' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & " AZN" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0500, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0500s'") & "/></text>", "", [Value], ASC)
+							& "<text x='24' y='130' font-size='13' font-weight='400' fill='#9AA6D6' text-anchor='start'>median kirayə</text>"
+							& "<text x='456' y='108' font-size='32' font-weight='800' fill='#FF3FD1' text-anchor='end'>" & FORMAT(DIVIDE(_m, _sal), "0%") & "</text>"
+							& "<text x='456' y='130' font-size='13' font-weight='400' fill='#9AA6D6' text-anchor='end'>Bakı maaşının</text>"
+							& "<text x='24' y='174' font-size='11' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.4'>ELAN</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.3s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='202' font-size='20' font-weight='700' fill='#F2F5FF' text-anchor='start'>" & SUBSTITUTE(FORMAT(_n, "#,0", "en-US"), ",", " ") & "</text>" & "</g>"
+							& "<text x='174' y='174' font-size='11' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.4'>ORTA 50%</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.38s' dur='0.4s' fill='freeze'/>" & "<text x='174' y='202' font-size='20' font-weight='700' fill='#F2F5FF' text-anchor='start'>" & SUBSTITUTE(FORMAT(_p25, "#,0", "en-US"), ",", " ") & "–" & SUBSTITUTE(FORMAT(_p75, "#,0", "en-US"), ",", " ") & "</text>" & "</g>"
+							& "<text x='324' y='174' font-size='11' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.4'>1 M²</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.45999999999999996s' dur='0.4s' fill='freeze'/>" & "<text x='324' y='202' font-size='20' font-weight='700' fill='#F2F5FF' text-anchor='start'>" & FORMAT(_m2, "0.0") & " AZN" & "</text>" & "</g>"
+							& "<text x='24' y='244' font-size='11' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.4'>VASİTƏÇİ</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.54s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='272' font-size='20' font-weight='700' fill='#F2F5FF' text-anchor='start'>" & FORMAT(_ag, "0%") & "</text>" & "</g>"
+							& "<text x='174' y='244' font-size='11' font-weight='700' fill='#9AA6D6' text-anchor='start' letter-spacing='1.4'>BÜDCƏYƏ UYĞUN</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.62s' dur='0.4s' fill='freeze'/>" & "<text x='174' y='272' font-size='20' font-weight='700' fill='#FFC23F' text-anchor='start'>" & FORMAT(_fit, "0%") & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: b6e0bc5f-9b0e-52f3-af26-6fa06f1d7a12
+		dataCategory: ImageUrl
+
+	/// Elanlar (drill-through): rayonun başlığı və əsas rəqəmləri
+	measure 'VZ Elanlar başlıq' =
+			VAR _r = [Seçilmiş rayon]
+			VAR _n = [Elan sayı]
+			VAR _m = [Median kirayə]
+			VAR _p25 = [P25 kirayə]
+			VAR _p75 = [P75 kirayə]
+			VAR _m2 = [Median 1 m²]
+			VAR _sal = [Bakı orta maaşı]
+			VAR _svg =
+				"<svg xmlns='http://www.w3.org/2000/svg' width='1752' height='140' viewBox='0 0 1752 140'><defs></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
+							& "<rect x='24' y='0' width='120' height='3' fill='#22E5FF'/>"
+							& "<text x='24' y='34' class='l'>RAYON</text>"
+							& "<text x='24' y='92' font-size='44' font-weight='800' fill='#22E5FF' text-anchor='start'>" & _r & "</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.8s' dur='0.4s' fill='freeze'/>" & "<text x='24' y='124' font-size='15' font-weight='600' fill='#FF3FD1' text-anchor='start'>" & "median kirayə Bakı maaşının " & FORMAT(DIVIDE(_m, _sal), "0%") & "-i" & "</text>" & "</g>"
+							& "<text x='480' y='34' class='l'>ELAN SAYI</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='480' y='92' font-size='44' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_n * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & "" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<text x='780' y='34' class='l'>MEDİAN KİRAYƏ</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='780' y='92' font-size='44' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & " AZN" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.15 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<text x='1080' y='34' class='l'>MEDİAN 1 M²</text>"
+							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='1080' y='92' font-size='44' font-weight='800' fill='#F2F5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m2 * (1 - POWER(1 - [Value] / 12, 3)), "0.0", "en-US"), ",", " ") & " AZN" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.3 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
+							& "<text x='1380' y='34' class='l'>ORTA 50% (P25–P75)</text>"
+							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='0.5s' dur='0.4s' fill='freeze'/>" & "<text x='1380' y='92' font-size='34' font-weight='800' fill='#F2F5FF' text-anchor='start'>" & SUBSTITUTE(FORMAT(_p25, "#,0", "en-US"), ",", " ") & " – " & SUBSTITUTE(FORMAT(_p75, "#,0", "en-US"), ",", " ") & " AZN" & "</text>" & "</g>"
+							& "</svg>"
+			RETURN "data:image/svg+xml;utf8," & SUBSTITUTE(SUBSTITUTE(_svg, "%", "%25"), "#", "%23")
+		displayFolder: SVG
+		lineageTag: 74769c95-b142-5395-b899-5cecd9c5a09e
+		dataCategory: ImageUrl
+
+	column _
+		isHidden
+		lineageTag: 5b0c6a52-7c3e-4a59-9a3d-0d7d2b1c9e02
+		isNameInferred
+		sourceColumn: [_]
+
+	partition Vizual = calculated
+		mode: import
+		source = ROW("_", BLANK())
+

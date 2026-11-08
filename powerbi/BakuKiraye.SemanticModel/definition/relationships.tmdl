@@ -1,0 +1,4 @@
+relationship Elanlar_Rayon
+	fromColumn: Elanlar.district_id
+	toColumn: Rayon.district_id
+
