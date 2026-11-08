@@ -35,12 +35,20 @@ def show(html: str) -> None:
 show(ui.CSS)
 
 
-@st.cache_resource(show_spinner=False)
-def load_data():
+@st.cache_resource(show_spinner=False, max_entries=2)
+def load_data(version: str):
+    """Məlumat bir dəfə yüklənir; həftəlik yeniləmədə snapshot.csv dəyişir → keş avtomatik yenilənir."""
     return core.load()
 
 
-data = load_data()
+def data_version() -> str:
+    try:
+        return (core.DATA / "snapshot.csv").read_text(encoding="utf-8")
+    except OSError:
+        return ""
+
+
+data = load_data(data_version())
 facts = core.market_facts(data)
 SECTOR_NONE = "— Özüm yazacam —"
 FEEDBACK_FORM = "https://forms.gle/gBcHsGWFEkGnqoBA8"  # Google Form: tools/google_form.gs ilə yaradılıb
