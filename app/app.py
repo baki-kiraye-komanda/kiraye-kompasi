@@ -43,6 +43,7 @@ def load_data():
 data = load_data()
 facts = core.market_facts(data)
 SECTOR_NONE = "— Özüm yazacam —"
+FEEDBACK_FORM = "https://forms.gle/gBcHsGWFEkGnqoBA8"  # Google Form: tools/google_form.gs ilə yaradılıb
 SECTORS = {f"{r.sector_name} · {ui.az(r.avg_salary_azn)} AZN": float(r.avg_salary_azn) for r in data.sectors.itertuples()}
 
 # ------------------------------------------------------------------ yuxarı hissə
@@ -221,4 +222,5 @@ with st.container(key="ai"):
 show(ui.section("bazar", "5 · Bazar", "Bazar bir baxışda",
                    "Bakıda kirayə qiymətini nə müəyyən edir və kimin maaşı kirayəyə çatır — bütün elanlar üzrə."))
 show(ui.insight_cards(facts, core.sector_afford(data, "1", 1)))
+show(ui.feedback(FEEDBACK_FORM))
 show(ui.footer(facts, data.captured_at, data.rows_raw))

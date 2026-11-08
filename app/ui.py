@@ -487,6 +487,18 @@ def ai_header() -> str:
 </div>"""
 
 
+def feedback(url: str) -> str:
+    """Rəy sorğusu (Google Form) — saytın sonunda çağırış bloku."""
+    return f"""
+<div class="kk card" style="margin-top:56px;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+background:linear-gradient(120deg,#FFF4E3,#FDEBDD 55%,#E6F4F2)">
+<div><div class="eyebrow" style="color:{C['sea']}">Rəy</div>
+<div class="disp" style="font-size:1.5rem;margin-top:4px">Sayt sizə kömək etdi?</div>
+<div class="muted" style="margin-top:4px">7 qısa sual · 1 dəqiqə · anonim — e-poçt toplanmır</div></div>
+<a class="cta" href="{esc(url)}" target="_blank" rel="noopener" style="text-decoration:none"><span class="pill" style="background:var(--seag);color:#fff;border:0;padding:13px 24px;font-size:.98rem;box-shadow:0 10px 24px -10px rgba(15,124,140,.8)">Rəy bildir ↗</span></a>
+</div>"""
+
+
 def footer(f: dict, captured: str, raw: int) -> str:
     return f"""
 <div class="kk" style="margin-top:70px;padding:26px 4px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px;font-size:.85rem">
