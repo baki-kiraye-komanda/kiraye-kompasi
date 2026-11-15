@@ -13,6 +13,7 @@ try:
     import google.genai as gg
     log(f"google-genai versiya: {getattr(gg, '__version__', '?')}")
     log(f"açar tapıldı: {ai.available()} · modellər: {ai._models()}")
+    # 1) Hər modelə qısa sual: hansı model cavab verir və neçə saniyəyə
     client = genai.Client(api_key=ai._key(), http_options=types.HttpOptions(timeout=40_000))
     for m in ai._models():
         t = time.time()
@@ -22,6 +23,7 @@ try:
             log(f"OK   {m}: {time.time() - t:.1f}s · {repr((r.text or '')[:60])}")
         except Exception as e:
             log(f"XETA {m}: {time.time() - t:.1f}s · {type(e).__name__}: {str(e)[:220]}")
+    # 2) Saytın istifadə etdiyi axınlı (stream) cavab işləyirmi
     t = time.time()
     try:
         n = 0
@@ -32,5 +34,6 @@ try:
         log(f"stream XETA: {time.time() - t:.1f}s · {type(e).__name__}: {str(e)[:220]}")
 except Exception:
     log(traceback.format_exc()[-1500:])
+# Nəticə fayla yazılır (açarın özü heç yerdə çap olunmur)
 (ROOT / "logs").mkdir(exist_ok=True)
 (ROOT / "logs" / "ai_test.log").write_text("\n".join(out), encoding="utf-8")

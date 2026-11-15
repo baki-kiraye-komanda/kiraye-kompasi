@@ -167,7 +167,9 @@ def savings_path(l: pd.DataFrame, p: Params) -> tuple[list[tuple[str, float]], l
     steps = [(f"{rooms} otaqlı, Bakı şəhəri (median)", float(base["price_azn"].median()))]
     # Addım 1: ən ucuz 4 rayon (hər birində ən azı MIN_N elan)
     by = base.groupby("district_name")["price_azn"].agg(["size", "median"])
-    cheap = by[by["size"] >= MIN_N].sort_values("median").head(4).index.tolist()
+    by = by[by["size"] >= MIN_N].sort_values("median")
+    # 4-cü yerlə eyni medianı olan rayonlar da daxil edilir (Power BI-dakı TOPN kimi) — nəticə sıralamadan asılı olmasın
+    cheap = by[by["median"] <= by["median"].iloc[:4].max()].index.tolist()
     s1 = base[base["district_name"].isin(cheap)]
     steps.append(("Ucuz rayonlara baxın", float(s1["price_azn"].median())))
     # Addım 2: həmin rayonlarda yalnız köhnə tikili (kifayət qədər elan varsa)
