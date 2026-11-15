@@ -41,3 +41,8 @@ Bir dəfə `setup_autoupdate.bat` işlədin (Git lazımdır: https://git-scm.com
 Hər dəfə `run_pipeline.bat`: bina.az → təmizləmə → Oracle → CSV → **GitHub** → sayt 1–2 dəqiqəyə özü yenilənir.
 Toplama yarımçıqdırsa (elanların 95%-dən azı), köhnə tam məlumat qalır. Nəticə: `logs\pipeline.log`.
 Power BI faylı lokaldır: açanda **Refresh** basmaq kifayətdir.
+
+## Sayt «yuxuya» getməsin
+Streamlit-in pulsuz planında bir neçə gün ziyarət olunmayan sayt yuxuya gedir.
+GitHub Actions (`.github/workflows/keep_awake.yml`) hər 4 saatdan bir saytı brauzerdə açır və lazım olsa oyadır.
+Əl ilə yoxlamaq: GitHub → **Actions → Keep site awake → Run workflow**.
