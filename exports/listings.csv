@@ -598,7 +598,6 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6140329,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,3,3,110.0,14,16,1300.0,11.82,Y,N,Y,https://bina.az/items/6140329
 6140658,10,Nərimanov,Y,Nərimanov,Rayon,Yeni tikili,2,2,100.0,4,16,1200.0,12.0,Y,N,Y,https://bina.az/items/6140658
 6140957,16,Xətai,Y,Xətai,Rayon,Yeni tikili,3,3,141.0,5,6,1800.0,12.77,Y,N,N,https://bina.az/items/6140957
-6142348,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,110.0,4,7,3200.0,29.09,Y,N,Y,https://bina.az/items/6142348
 6143278,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,2,2,63.0,9,20,1650.0,26.19,Y,N,N,https://bina.az/items/6143278
 6145041,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,100.0,4,6,2200.0,22.0,Y,N,Y,https://bina.az/items/6145041
 6145148,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,2,2,90.0,8,16,1400.0,15.56,Y,N,N,https://bina.az/items/6145148
@@ -3118,7 +3117,6 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6549469,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,2,2,72.0,18,21,1590.0,22.08,Y,N,Y,https://bina.az/items/6549469
 6549470,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,3,3,75.0,6,19,900.0,12.0,Y,N,Y,https://bina.az/items/6549470
 6549493,190,Nəsimi,Y,28 May,Metro,Yeni tikili,3,3,120.0,6,15,1700.0,14.17,Y,N,Y,https://bina.az/items/6549493
-6549497,16,Xətai,Y,Xətai,Rayon,Yeni tikili,3,3,120.0,3,4,3500.0,29.17,Y,N,Y,https://bina.az/items/6549497
 6549502,190,Nəsimi,Y,Sahil,Metro,Yeni tikili,3,3,150.0,4,9,1600.0,10.67,Y,N,Y,https://bina.az/items/6549502
 6549506,56,Yasamal,Y,Yasamal,Rayon,Yeni tikili,2,2,70.0,11,16,550.0,7.86,Y,N,Y,https://bina.az/items/6549506
 6549524,56,Yasamal,Y,Nizami,Metro,Yeni tikili,3,3,120.0,16,17,1700.0,14.17,Y,N,Y,https://bina.az/items/6549524
@@ -4872,6 +4870,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6561546,11,Nizami,Y,Neftçilər,Metro,Yeni tikili,2,2,70.0,14,15,600.0,8.57,Y,N,N,https://bina.az/items/6561546
 6561556,12,Səbail,Y,Sahil,Metro,Köhnə tikili,2,2,70.0,3,5,1200.0,17.14,Y,N,Y,https://bina.az/items/6561556
 6561559,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,3,3,85.0,11,17,900.0,10.59,Y,N,Y,https://bina.az/items/6561559
+6561561,12,Səbail,Y,28 May,Metro,Yeni tikili,4,4,200.0,1,33,6500.0,32.5,Y,N,Y,https://bina.az/items/6561561
 6561563,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,4,4,210.0,15,18,2300.0,10.95,Y,N,N,https://bina.az/items/6561563
 6561568,58,Binəqədi,Y,Dərnəgül,Metro,Yeni tikili,2,2,51.0,10,15,1000.0,19.61,Y,N,Y,https://bina.az/items/6561568
 6561572,190,Nəsimi,Y,Memar Əcəmi,Metro,Yeni tikili,4,4,170.0,7,19,900.0,5.29,Y,N,Y,https://bina.az/items/6561572
@@ -4933,6 +4932,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6561962,10,Nərimanov,Y,Nərimanov,Rayon,Yeni tikili,2,2,106.0,10,17,950.0,8.96,Y,N,Y,https://bina.az/items/6561962
 6561969,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,90.0,6,16,1199.0,13.32,Y,N,Y,https://bina.az/items/6561969
 6561978,58,Binəqədi,Y,Binəqədi,Rayon,Yeni tikili,3,3,165.0,2,9,900.0,5.45,Y,N,N,https://bina.az/items/6561978
+6561980,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,2,2,70.0,13,17,275.0,3.93,Y,N,N,https://bina.az/items/6561980
 6561983,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,4,4,185.0,8,15,1500.0,8.11,Y,N,Y,https://bina.az/items/6561983
 6561994,190,Nəsimi,Y,28 May,Metro,Yeni tikili,3,3,165.0,5,17,1300.0,7.88,Y,N,Y,https://bina.az/items/6561994
 6561997,56,Yasamal,Y,Nizami,Metro,Yeni tikili,2,2,60.0,4,15,900.0,15.0,Y,N,Y,https://bina.az/items/6561997
@@ -5323,7 +5323,6 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6564541,16,Xətai,Y,Xətai,Rayon,Köhnə tikili,2,2,50.0,5,5,500.0,10.0,Y,N,Y,https://bina.az/items/6564541
 6564550,56,Yasamal,Y,Yeni Yasamal,Qəsəbə,Yeni tikili,2,2,76.0,3,19,750.0,9.87,Y,N,Y,https://bina.az/items/6564550
 6564558,12,Səbail,Y,Bayıl,Qəsəbə,Köhnə tikili,2,2,45.0,3,3,600.0,13.33,Y,N,Y,https://bina.az/items/6564558
-6564572,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,103.0,4,7,3000.0,29.13,Y,N,Y,https://bina.az/items/6564572
 6564575,10,Nərimanov,Y,Bakmil,Metro,Yeni tikili,3,3,130.0,11,18,1298.0,9.98,Y,N,Y,https://bina.az/items/6564575
 6564576,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,140.0,5,7,3800.0,27.14,Y,N,Y,https://bina.az/items/6564576
 6564577,190,Nəsimi,Y,28 May,Metro,Yeni tikili,8,5+,400.0,13,17,3400.0,8.5,Y,N,N,https://bina.az/items/6564577
@@ -5994,6 +5993,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6568720,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,2,2,75.0,9,18,1400.0,18.67,Y,N,Y,https://bina.az/items/6568720
 6568721,190,Nəsimi,Y,Memar Əcəmi,Metro,Yeni tikili,3,3,75.0,13,18,800.0,10.67,Y,N,N,https://bina.az/items/6568721
 6568738,13,Sabunçu,Y,Sabunçu,Rayon,Yeni tikili,2,2,65.0,5,19,599.0,9.22,Y,N,N,https://bina.az/items/6568738
+6568740,197,Abşeron,N,Masazır,Qəsəbə,Yeni tikili,1,1,50.0,6,6,280.0,5.6,Y,N,N,https://bina.az/items/6568740
 6568754,11,Nizami,Y,Qara Qarayev,Metro,Köhnə tikili,2,2,45.0,5,5,550.0,12.22,Y,N,Y,https://bina.az/items/6568754
 6568758,190,Nəsimi,Y,Memar Əcəmi,Metro,Yeni tikili,2,2,40.0,1,5,599.0,14.98,Y,N,Y,https://bina.az/items/6568758
 6568766,190,Nəsimi,Y,8 Noyabr,Metro,Yeni tikili,2,2,80.0,5,18,750.0,9.38,Y,N,N,https://bina.az/items/6568766
@@ -7514,6 +7514,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6578387,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,2,2,65.0,11,16,800.0,12.31,Y,N,Y,https://bina.az/items/6578387
 6578392,12,Səbail,Y,İçəri Şəhər,Metro,Köhnə tikili,2,2,60.0,5,6,1300.0,21.67,Y,N,Y,https://bina.az/items/6578392
 6578397,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,3,3,60.0,5,9,550.0,9.17,Y,N,N,https://bina.az/items/6578397
+6578401,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,105.0,9,19,400.0,3.81,Y,N,N,https://bina.az/items/6578401
 6578405,190,Nəsimi,Y,Nizami,Metro,Yeni tikili,2,2,90.0,5,18,1399.0,15.54,Y,N,Y,https://bina.az/items/6578405
 6578409,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,3,3,78.0,6,16,1000.0,12.82,Y,N,Y,https://bina.az/items/6578409
 6578416,12,Səbail,Y,Səbail,Rayon,Yeni tikili,2,2,70.0,8,12,1150.0,16.43,Y,N,Y,https://bina.az/items/6578416
@@ -10643,6 +10644,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6598610,16,Xətai,Y,Həzi Aslanov,Qəsəbə,Yeni tikili,2,2,74.0,11,19,800.0,10.81,Y,N,Y,https://bina.az/items/6598610
 6598613,197,Abşeron,N,Masazır,Qəsəbə,Köhnə tikili,3,3,76.0,1,2,400.0,5.26,Y,N,N,https://bina.az/items/6598613
 6598626,190,Nəsimi,Y,Gənclik,Metro,Yeni tikili,3,3,160.0,5,15,1200.0,7.5,Y,N,Y,https://bina.az/items/6598626
+6598628,190,Nəsimi,Y,28 May,Metro,Yeni tikili,1,1,22.0,2,16,700.0,31.82,Y,N,Y,https://bina.az/items/6598628
 6598643,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,3,3,160.0,14,18,1400.0,8.75,Y,N,Y,https://bina.az/items/6598643
 6598652,10,Nərimanov,Y,Dərnəgül,Metro,Yeni tikili,2,2,60.0,8,16,850.0,14.17,Y,N,Y,https://bina.az/items/6598652
 6598654,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,3,3,103.0,9,11,1300.0,12.62,Y,N,Y,https://bina.az/items/6598654
@@ -13501,7 +13503,6 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6616275,56,Yasamal,Y,Nizami,Metro,Yeni tikili,3,3,125.0,3,16,1400.0,11.2,Y,N,Y,https://bina.az/items/6616275
 6616282,12,Səbail,Y,Badamdar,Qəsəbə,Yeni tikili,2,2,48.0,3,3,500.0,10.42,Y,N,Y,https://bina.az/items/6616282
 6616289,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,130.0,4,20,1000.0,7.69,Y,N,Y,https://bina.az/items/6616289
-6616290,12,Səbail,Y,İçəri Şəhər,Metro,Yeni tikili,3,3,120.0,10,11,3500.0,29.17,Y,N,N,https://bina.az/items/6616290
 6616292,190,Nəsimi,Y,Nizami,Metro,Yeni tikili,2,2,80.0,6,18,850.0,10.62,Y,N,Y,https://bina.az/items/6616292
 6616301,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,2,2,55.0,3,5,550.0,10.0,Y,N,Y,https://bina.az/items/6616301
 6616305,13,Sabunçu,Y,Bakıxanov,Qəsəbə,Yeni tikili,2,2,99.0,11,12,699.0,7.06,Y,N,N,https://bina.az/items/6616305
@@ -14254,7 +14255,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6620679,13,Sabunçu,Y,Bakıxanov,Qəsəbə,Köhnə tikili,4,4,100.0,4,9,600.0,6.0,Y,N,N,https://bina.az/items/6620679
 6620688,58,Binəqədi,Y,Dərnəgül,Metro,Yeni tikili,2,2,85.0,4,16,900.0,10.59,Y,N,Y,https://bina.az/items/6620688
 6620689,10,Nərimanov,Y,Koroğlu,Metro,Yeni tikili,3,3,110.0,8,16,1100.0,10.0,Y,N,Y,https://bina.az/items/6620689
-6620696,12,Səbail,Y,Məkan 415,Naməlum,Köhnə tikili,3,3,90.0,6,9,1250.0,13.89,Y,N,Y,https://bina.az/items/6620696
+6620696,12,Səbail,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,3,3,90.0,6,9,1250.0,13.89,Y,N,Y,https://bina.az/items/6620696
 6620711,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,2,2,65.0,11,16,748.0,11.51,Y,N,Y,https://bina.az/items/6620711
 6620713,10,Nərimanov,Y,Nərimanov,Rayon,Yeni tikili,2,2,105.0,16,17,950.0,9.05,Y,N,Y,https://bina.az/items/6620713
 6620714,56,Yasamal,Y,Yasamal,Rayon,Yeni tikili,3,3,160.0,21,23,770.0,4.81,Y,N,Y,https://bina.az/items/6620714
@@ -14264,7 +14265,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6620737,16,Xətai,Y,Xalqlar Dostluğu,Metro,Yeni tikili,2,2,65.0,10,15,750.0,11.54,Y,N,Y,https://bina.az/items/6620737
 6620743,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,3,3,80.0,16,18,1200.0,15.0,Y,N,Y,https://bina.az/items/6620743
 6620745,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,2,2,70.0,10,20,1600.0,22.86,Y,N,Y,https://bina.az/items/6620745
-6620751,190,Nəsimi,Y,Məkan 415,Naməlum,Köhnə tikili,3,3,95.0,6,9,1250.0,13.16,Y,N,Y,https://bina.az/items/6620751
+6620751,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,3,3,95.0,6,9,1250.0,13.16,Y,N,Y,https://bina.az/items/6620751
 6620753,11,Nizami,Y,Qara Qarayev,Metro,Yeni tikili,2,2,50.0,6,16,750.0,15.0,Y,N,Y,https://bina.az/items/6620753
 6620754,56,Yasamal,Y,İnşaatçılar,Metro,Köhnə tikili,2,2,55.0,4,5,600.0,10.91,Y,N,Y,https://bina.az/items/6620754
 6620757,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,3,3,90.0,10,17,750.0,8.33,Y,N,Y,https://bina.az/items/6620757
@@ -14304,7 +14305,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6620965,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,100.0,5,7,1800.0,18.0,Y,N,Y,https://bina.az/items/6620965
 6620971,11,Nizami,Y,8-ci kilometr,Qəsəbə,Yeni tikili,2,2,96.0,15,18,750.0,7.81,Y,N,Y,https://bina.az/items/6620971
 6621006,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,3,3,125.0,6,18,1000.0,8.0,Y,N,Y,https://bina.az/items/6621006
-6621007,190,Nəsimi,Y,Məkan 415,Naməlum,Köhnə tikili,2,2,80.0,7,12,848.0,10.6,Y,N,Y,https://bina.az/items/6621007
+6621007,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,2,2,80.0,7,12,848.0,10.6,Y,N,Y,https://bina.az/items/6621007
 6621016,190,Nəsimi,Y,28 May,Metro,Yeni tikili,5,5+,250.0,14,14,2200.0,8.8,Y,N,Y,https://bina.az/items/6621016
 6621023,190,Nəsimi,Y,28 May,Metro,Yeni tikili,2,2,80.0,10,18,800.0,10.0,Y,N,Y,https://bina.az/items/6621023
 6621036,58,Binəqədi,Y,Dərnəgül,Metro,Yeni tikili,3,3,95.0,2,16,1100.0,11.58,Y,N,Y,https://bina.az/items/6621036
@@ -14413,7 +14414,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6621552,190,Nəsimi,Y,8 Noyabr,Metro,Yeni tikili,2,2,80.0,10,20,1000.0,12.5,Y,N,Y,https://bina.az/items/6621552
 6621554,190,Nəsimi,Y,8 Noyabr,Metro,Yeni tikili,2,2,70.0,9,16,1000.0,14.29,Y,N,Y,https://bina.az/items/6621554
 6621555,56,Yasamal,Y,Nizami,Metro,Yeni tikili,2,2,65.0,9,13,1100.0,16.92,Y,N,Y,https://bina.az/items/6621555
-6621561,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,4,4,235.0,20,22,2000.0,8.51,Y,N,N,https://bina.az/items/6621561
+6621561,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,4,4,235.0,20,22,2000.0,8.51,Y,N,N,https://bina.az/items/6621561
 6621575,56,Yasamal,Y,Yeni Yasamal,Qəsəbə,Köhnə tikili,2,2,65.0,8,9,650.0,10.0,Y,N,Y,https://bina.az/items/6621575
 6621576,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,2,2,70.0,6,8,1200.0,17.14,Y,N,Y,https://bina.az/items/6621576
 6621585,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,2,2,80.0,4,16,800.0,10.0,Y,N,Y,https://bina.az/items/6621585
@@ -14437,7 +14438,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6621776,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Köhnə tikili,1,1,30.0,4,4,400.0,13.33,Y,N,Y,https://bina.az/items/6621776
 6621788,13,Sabunçu,Y,Bakıxanov,Qəsəbə,Köhnə tikili,3,3,85.0,4,9,650.0,7.65,Y,N,Y,https://bina.az/items/6621788
 6621791,13,Sabunçu,Y,Bakıxanov,Qəsəbə,Köhnə tikili,2,2,60.0,7,9,450.0,7.5,Y,N,N,https://bina.az/items/6621791
-6621793,190,Nəsimi,Y,Məkan 415,Naməlum,Köhnə tikili,2,2,50.0,4,4,600.0,12.0,Y,N,N,https://bina.az/items/6621793
+6621793,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,2,2,50.0,4,4,600.0,12.0,Y,N,N,https://bina.az/items/6621793
 6621800,16,Xətai,Y,Xətai,Rayon,Yeni tikili,2,2,65.0,3,18,600.0,9.23,Y,N,N,https://bina.az/items/6621800
 6621811,16,Xətai,Y,Xalqlar Dostluğu,Metro,Köhnə tikili,4,4,100.0,7,9,800.0,8.0,Y,N,N,https://bina.az/items/6621811
 6621817,15,Xəzər,Y,Binə,Qəsəbə,Köhnə tikili,3,3,70.0,3,5,500.0,7.14,Y,N,N,https://bina.az/items/6621817
@@ -14474,7 +14475,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6621994,56,Yasamal,Y,Nizami,Metro,Yeni tikili,2,2,75.0,6,18,850.0,11.33,Y,N,Y,https://bina.az/items/6621994
 6621997,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,3,3,106.0,8,16,999.0,9.42,Y,N,Y,https://bina.az/items/6621997
 6621999,13,Sabunçu,Y,Bakıxanov,Qəsəbə,Yeni tikili,2,2,85.0,5,19,550.0,6.47,Y,N,N,https://bina.az/items/6621999
-6622006,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,132.0,1,2,1300.0,9.85,Y,N,N,https://bina.az/items/6622006
+6622006,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,132.0,1,2,1300.0,9.85,Y,N,N,https://bina.az/items/6622006
 6622007,190,Nəsimi,Y,Nizami,Metro,Yeni tikili,3,3,115.0,3,17,1000.0,8.7,Y,N,Y,https://bina.az/items/6622007
 6622015,10,Nərimanov,Y,Gənclik,Metro,Köhnə tikili,1,1,40.0,6,9,700.0,17.5,Y,N,Y,https://bina.az/items/6622015
 6622020,12,Səbail,Y,Sahil,Metro,Köhnə tikili,4,4,110.0,3,4,1320.0,12.0,Y,N,Y,https://bina.az/items/6622020
@@ -14515,7 +14516,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6622176,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,115.0,5,19,1200.0,10.43,Y,N,N,https://bina.az/items/6622176
 6622177,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,160.0,10,20,3500.0,21.88,Y,N,N,https://bina.az/items/6622177
 6622178,10,Nərimanov,Y,Nərimanov,Rayon,Yeni tikili,2,2,65.0,2,9,850.0,13.08,Y,N,N,https://bina.az/items/6622178
-6622184,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,2,2,90.0,2,16,1600.0,17.78,Y,N,Y,https://bina.az/items/6622184
+6622184,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,2,2,90.0,2,16,1600.0,17.78,Y,N,Y,https://bina.az/items/6622184
 6622196,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,2,2,96.0,8,33,2500.0,26.04,Y,N,N,https://bina.az/items/6622196
 6622198,10,Nərimanov,Y,Nərimanov,Rayon,Köhnə tikili,2,2,105.0,4,5,1000.0,9.52,Y,N,Y,https://bina.az/items/6622198
 6622205,11,Nizami,Y,Xalqlar Dostluğu,Metro,Yeni tikili,2,2,60.0,14,17,700.0,11.67,Y,N,Y,https://bina.az/items/6622205
@@ -14533,7 +14534,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6622270,190,Nəsimi,Y,28 May,Metro,Yeni tikili,3,3,150.0,7,17,1300.0,8.67,Y,N,Y,https://bina.az/items/6622270
 6622273,197,Abşeron,N,Abşeron,Rayon,Yeni tikili,3,3,82.0,4,5,580.0,7.07,Y,N,N,https://bina.az/items/6622273
 6622274,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,2,2,63.0,4,7,1600.0,25.4,Y,N,Y,https://bina.az/items/6622274
-6622286,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,140.0,12,18,1400.0,10.0,Y,N,Y,https://bina.az/items/6622286
+6622286,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,140.0,12,18,1400.0,10.0,Y,N,Y,https://bina.az/items/6622286
 6622290,190,Nəsimi,Y,8 Noyabr,Metro,Yeni tikili,3,3,150.0,8,14,1200.0,8.0,Y,N,Y,https://bina.az/items/6622290
 6622292,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,124.0,9,18,950.0,7.66,Y,N,N,https://bina.az/items/6622292
 6622303,11,Nizami,Y,Xalqlar Dostluğu,Metro,Köhnə tikili,3,3,90.0,4,5,650.0,7.22,Y,N,Y,https://bina.az/items/6622303
@@ -14598,9 +14599,9 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6622656,14,Suraxanı,Y,Hövsan,Qəsəbə,Yeni tikili,3,3,72.0,3,7,550.0,7.64,Y,N,N,https://bina.az/items/6622656
 6622658,58,Binəqədi,Y,Azadlıq Prospekti,Metro,Köhnə tikili,2,2,60.0,4,9,600.0,10.0,Y,N,Y,https://bina.az/items/6622658
 6622668,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,2,2,60.0,16,20,700.0,11.67,Y,N,Y,https://bina.az/items/6622668
-6622669,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,145.0,3,16,1200.0,8.28,Y,N,Y,https://bina.az/items/6622669
+6622669,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,145.0,3,16,1200.0,8.28,Y,N,Y,https://bina.az/items/6622669
 6622672,56,Yasamal,Y,Nizami,Metro,Yeni tikili,3,3,140.0,10,20,1000.0,7.14,Y,N,Y,https://bina.az/items/6622672
-6622677,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,135.0,15,20,1400.0,10.37,Y,N,Y,https://bina.az/items/6622677
+6622677,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,135.0,15,20,1400.0,10.37,Y,N,Y,https://bina.az/items/6622677
 6622681,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,2,2,85.0,2,15,1600.0,18.82,Y,N,Y,https://bina.az/items/6622681
 6622684,10,Nərimanov,Y,Gənclik,Metro,Köhnə tikili,2,2,50.0,1,5,799.0,15.98,Y,N,Y,https://bina.az/items/6622684
 6622710,56,Yasamal,Y,Nizami,Metro,Yeni tikili,4,4,150.0,8,19,1250.0,8.33,Y,N,Y,https://bina.az/items/6622710
@@ -14610,12 +14611,12 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6622751,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,3,3,100.0,3,17,1000.0,10.0,Y,N,Y,https://bina.az/items/6622751
 6622755,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,4,4,130.0,20,24,1300.0,10.0,Y,N,Y,https://bina.az/items/6622755
 6622765,58,Binəqədi,Y,Nəsimi,Metro,Yeni tikili,2,2,52.0,4,17,650.0,12.5,Y,N,Y,https://bina.az/items/6622765
-6622767,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,160.0,15,20,1500.0,9.38,Y,N,Y,https://bina.az/items/6622767
+6622767,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,160.0,15,20,1500.0,9.38,Y,N,Y,https://bina.az/items/6622767
 6622772,14,Suraxanı,Y,Hövsan,Qəsəbə,Köhnə tikili,2,2,45.0,3,5,580.0,12.89,Y,N,N,https://bina.az/items/6622772
 6622777,190,Nəsimi,Y,8 Noyabr,Metro,Yeni tikili,3,3,141.0,8,14,1200.0,8.51,Y,N,Y,https://bina.az/items/6622777
 6622782,58,Binəqədi,Y,Xocəsən,Metro,Yeni tikili,3,3,70.0,13,14,1000.0,14.29,Y,N,Y,https://bina.az/items/6622782
 6622793,10,Nərimanov,Y,28 May,Metro,Yeni tikili,2,2,65.0,5,15,1200.0,18.46,Y,N,Y,https://bina.az/items/6622793
-6622795,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,100.0,3,17,1000.0,10.0,Y,N,Y,https://bina.az/items/6622795
+6622795,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,100.0,3,17,1000.0,10.0,Y,N,Y,https://bina.az/items/6622795
 6622796,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,65.0,5,15,1300.0,20.0,Y,N,Y,https://bina.az/items/6622796
 6622798,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,2,2,85.0,9,18,1100.0,12.94,Y,N,Y,https://bina.az/items/6622798
 6622812,58,Binəqədi,Y,Memar Əcəmi,Metro,Yeni tikili,2,2,55.0,3,18,650.0,11.82,Y,N,Y,https://bina.az/items/6622812
@@ -14625,7 +14626,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6622838,13,Sabunçu,Y,Bakıxanov,Qəsəbə,Yeni tikili,3,3,90.0,7,9,699.0,7.77,Y,N,Y,https://bina.az/items/6622838
 6622847,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,2,2,65.0,18,18,598.0,9.2,Y,N,Y,https://bina.az/items/6622847
 6622848,15,Xəzər,Y,Buzovna,Qəsəbə,Köhnə tikili,4,4,120.0,2,2,550.0,4.58,Y,N,N,https://bina.az/items/6622848
-6622853,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,101.0,7,16,1800.0,17.82,Y,N,Y,https://bina.az/items/6622853
+6622853,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,101.0,7,16,1800.0,17.82,Y,N,Y,https://bina.az/items/6622853
 6622861,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,2,2,70.0,10,20,700.0,10.0,Y,N,Y,https://bina.az/items/6622861
 6622863,58,Binəqədi,Y,8-ci mikrorayon,Qəsəbə,Köhnə tikili,2,2,65.0,4,9,599.0,9.22,Y,N,Y,https://bina.az/items/6622863
 6622864,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,2,2,59.5,8,8,1600.0,26.89,Y,N,Y,https://bina.az/items/6622864
@@ -14683,7 +14684,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6623232,11,Nizami,Y,Xalqlar Dostluğu,Metro,Köhnə tikili,3,3,85.0,4,5,650.0,7.65,Y,N,Y,https://bina.az/items/6623232
 6623239,16,Xətai,Y,Xalqlar Dostluğu,Metro,Yeni tikili,3,3,70.0,15,18,600.0,8.57,Y,N,Y,https://bina.az/items/6623239
 6623243,190,Nəsimi,Y,Nizami,Metro,Köhnə tikili,2,2,45.0,1,1,350.0,7.78,Y,N,N,https://bina.az/items/6623243
-6623262,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,162.0,15,18,2800.0,17.28,Y,N,Y,https://bina.az/items/6623262
+6623262,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,162.0,15,18,2800.0,17.28,Y,N,Y,https://bina.az/items/6623262
 6623270,190,Nəsimi,Y,8 Noyabr,Metro,Köhnə tikili,3,3,75.0,3,5,700.0,9.33,Y,N,N,https://bina.az/items/6623270
 6623272,190,Nəsimi,Y,8 Noyabr,Metro,Yeni tikili,2,2,65.0,24,27,950.0,14.62,Y,N,Y,https://bina.az/items/6623272
 6623297,10,Nərimanov,Y,Nərimanov,Rayon,Yeni tikili,2,2,110.0,4,5,999.0,9.08,Y,N,Y,https://bina.az/items/6623297
@@ -14697,7 +14698,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6623342,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,102.0,20,24,1200.0,11.76,Y,N,Y,https://bina.az/items/6623342
 6623353,190,Nəsimi,Y,İçəri Şəhər,Metro,Yeni tikili,3,3,115.0,8,14,3000.0,26.09,Y,N,N,https://bina.az/items/6623353
 6623355,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Köhnə tikili,2,2,105.0,2,5,1000.0,9.52,Y,N,Y,https://bina.az/items/6623355
-6623356,12,Səbail,Y,Məkan 415,Naməlum,Köhnə tikili,4,4,120.0,9,10,1200.0,10.0,Y,N,Y,https://bina.az/items/6623356
+6623356,12,Səbail,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,4,4,120.0,9,10,1200.0,10.0,Y,N,Y,https://bina.az/items/6623356
 6623358,56,Yasamal,Y,Elmlər Akademiyası,Metro,Köhnə tikili,1,1,32.0,4,5,500.0,15.62,Y,N,Y,https://bina.az/items/6623358
 6623361,190,Nəsimi,Y,28 May,Metro,Köhnə tikili,2,2,80.0,3,5,900.0,11.25,Y,N,Y,https://bina.az/items/6623361
 6623372,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,2,2,54.0,8,16,700.0,12.96,Y,N,Y,https://bina.az/items/6623372
@@ -14718,11 +14719,10 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6623432,58,Binəqədi,Y,Azadlıq Prospekti,Metro,Köhnə tikili,2,2,60.0,7,9,650.0,10.83,Y,N,Y,https://bina.az/items/6623432
 6623441,190,Nəsimi,Y,20 Yanvar,Metro,Yeni tikili,3,3,100.0,20,23,750.0,7.5,Y,N,Y,https://bina.az/items/6623441
 6623442,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,1,1,34.0,4,5,500.0,14.71,Y,N,Y,https://bina.az/items/6623442
-6623443,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,120.0,4,6,3500.0,29.17,Y,N,Y,https://bina.az/items/6623443
 6623444,11,Nizami,Y,Xalqlar Dostluğu,Metro,Köhnə tikili,3,3,80.0,5,9,800.0,10.0,Y,N,Y,https://bina.az/items/6623444
 6623449,16,Xətai,Y,Xətai,Rayon,Yeni tikili,3,3,124.0,4,7,2500.0,20.16,Y,N,Y,https://bina.az/items/6623449
 6623453,190,Nəsimi,Y,Nizami,Metro,Köhnə tikili,1,1,17.0,1,1,300.0,17.65,Y,N,N,https://bina.az/items/6623453
-6623455,12,Səbail,Y,Məkan 415,Naməlum,Köhnə tikili,2,2,60.0,1,3,900.0,15.0,Y,N,Y,https://bina.az/items/6623455
+6623455,12,Səbail,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,2,2,60.0,1,3,900.0,15.0,Y,N,Y,https://bina.az/items/6623455
 6623459,11,Nizami,Y,Xalqlar Dostluğu,Metro,Köhnə tikili,4,4,100.0,7,9,800.0,8.0,Y,N,Y,https://bina.az/items/6623459
 6623470,12,Səbail,Y,İçəri Şəhər,Metro,Köhnə tikili,2,2,65.0,2,5,800.0,12.31,Y,N,Y,https://bina.az/items/6623470
 6623471,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,110.0,10,15,1500.0,13.64,Y,N,N,https://bina.az/items/6623471
@@ -14780,20 +14780,20 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6623758,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,120.0,10,15,1000.0,8.33,Y,N,N,https://bina.az/items/6623758
 6623773,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,105.0,20,24,1200.0,11.43,Y,N,Y,https://bina.az/items/6623773
 6623774,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,110.0,11,16,2500.0,22.73,Y,N,Y,https://bina.az/items/6623774
-6623778,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,125.0,8,18,1400.0,11.2,Y,N,Y,https://bina.az/items/6623778
+6623778,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,125.0,8,18,1400.0,11.2,Y,N,Y,https://bina.az/items/6623778
 6623780,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,130.0,8,16,2200.0,16.92,Y,N,Y,https://bina.az/items/6623780
 6623783,56,Yasamal,Y,İnşaatçılar,Metro,Köhnə tikili,2,2,50.0,4,5,650.0,13.0,Y,N,Y,https://bina.az/items/6623783
 6623796,12,Səbail,Y,Badamdar,Qəsəbə,Yeni tikili,2,2,100.0,17,17,799.0,7.99,Y,N,Y,https://bina.az/items/6623796
 6623806,10,Nərimanov,Y,28 May,Metro,Yeni tikili,2,2,100.0,7,16,850.0,8.5,Y,N,Y,https://bina.az/items/6623806
 6623807,11,Nizami,Y,Neftçilər,Metro,Yeni tikili,1,1,64.0,4,20,600.0,9.38,Y,N,Y,https://bina.az/items/6623807
 6623812,190,Nəsimi,Y,Memar Əcəmi,Metro,Yeni tikili,4,4,155.0,9,13,1200.0,7.74,Y,N,Y,https://bina.az/items/6623812
-6623813,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,4,4,180.0,3,14,1200.0,6.67,Y,N,Y,https://bina.az/items/6623813
+6623813,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,4,4,180.0,3,14,1200.0,6.67,Y,N,Y,https://bina.az/items/6623813
 6623816,56,Yasamal,Y,Elmlər Akademiyası,Metro,Köhnə tikili,1,1,45.0,5,5,500.0,11.11,Y,N,Y,https://bina.az/items/6623816
 6623818,56,Yasamal,Y,Yeni Yasamal,Qəsəbə,Yeni tikili,2,2,100.0,13,16,800.0,8.0,Y,N,Y,https://bina.az/items/6623818
 6623825,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,2,2,65.0,6,17,700.0,10.77,Y,N,Y,https://bina.az/items/6623825
 6623834,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,2,2,70.0,6,17,700.0,10.0,Y,N,Y,https://bina.az/items/6623834
 6623846,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,70.0,1,5,800.0,11.43,Y,N,Y,https://bina.az/items/6623846
-6623848,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,130.0,15,20,1499.0,11.53,Y,N,Y,https://bina.az/items/6623848
+6623848,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,130.0,15,20,1499.0,11.53,Y,N,Y,https://bina.az/items/6623848
 6623850,56,Yasamal,Y,Nizami,Metro,Yeni tikili,4,4,215.0,17,23,5000.0,23.26,Y,N,N,https://bina.az/items/6623850
 6623857,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,64.0,13,17,850.0,13.28,Y,N,N,https://bina.az/items/6623857
 6623858,10,Nərimanov,Y,Nərimanov,Rayon,Köhnə tikili,2,2,60.0,1,4,600.0,10.0,Y,N,Y,https://bina.az/items/6623858
@@ -14802,7 +14802,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6623865,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,70.0,6,17,800.0,11.43,Y,N,Y,https://bina.az/items/6623865
 6623874,58,Binəqədi,Y,Azadlıq Prospekti,Metro,Köhnə tikili,2,2,65.0,7,9,700.0,10.77,Y,N,Y,https://bina.az/items/6623874
 6623880,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,5,5+,240.0,15,17,1799.0,7.5,Y,N,Y,https://bina.az/items/6623880
-6623888,12,Səbail,Y,Məkan 415,Naməlum,Yeni tikili,3,3,90.0,6,9,1300.0,14.44,Y,N,Y,https://bina.az/items/6623888
+6623888,12,Səbail,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,90.0,6,9,1300.0,14.44,Y,N,Y,https://bina.az/items/6623888
 6623890,10,Nərimanov,Y,Nərimanov,Rayon,Köhnə tikili,2,2,65.0,2,9,850.0,13.08,Y,N,Y,https://bina.az/items/6623890
 6623898,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,2,2,50.0,5,5,500.0,10.0,Y,N,N,https://bina.az/items/6623898
 6623900,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,75.0,1,5,799.0,10.65,Y,N,Y,https://bina.az/items/6623900
@@ -14820,7 +14820,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6623987,16,Xətai,Y,Həzi Aslanov,Metro,Köhnə tikili,2,2,64.0,6,9,500.0,7.81,Y,N,Y,https://bina.az/items/6623987
 6623994,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,55.0,7,18,900.0,16.36,Y,N,Y,https://bina.az/items/6623994
 6623996,58,Binəqədi,Y,Azadlıq Prospekti,Metro,Yeni tikili,2,2,65.0,11,12,800.0,12.31,Y,N,Y,https://bina.az/items/6623996
-6624005,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,65.0,20,20,850.0,13.08,Y,N,Y,https://bina.az/items/6624005
+6624005,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,65.0,20,20,850.0,13.08,Y,N,Y,https://bina.az/items/6624005
 6624024,11,Nizami,Y,Xalqlar Dostluğu,Metro,Köhnə tikili,2,2,40.0,5,5,499.0,12.48,Y,N,N,https://bina.az/items/6624024
 6624028,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,2,2,70.0,17,18,700.0,10.0,Y,N,Y,https://bina.az/items/6624028
 6624030,190,Nəsimi,Y,28 May,Metro,Yeni tikili,3,3,155.0,10,18,1500.0,9.68,Y,N,Y,https://bina.az/items/6624030
@@ -14828,7 +14828,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6624035,56,Yasamal,Y,İnşaatçılar,Metro,Köhnə tikili,2,2,55.0,4,5,700.0,12.73,N,N,N,https://bina.az/items/6624035
 6624041,56,Yasamal,Y,İnşaatçılar,Metro,Köhnə tikili,3,3,65.0,2,5,700.0,10.77,Y,N,Y,https://bina.az/items/6624041
 6624042,190,Nəsimi,Y,28 May,Metro,Yeni tikili,3,3,140.0,15,22,1500.0,10.71,Y,N,Y,https://bina.az/items/6624042
-6624056,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,2,2,75.0,9,16,800.0,10.67,Y,N,Y,https://bina.az/items/6624056
+6624056,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,2,2,75.0,9,16,800.0,10.67,Y,N,Y,https://bina.az/items/6624056
 6624058,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,2,2,70.0,2,7,1800.0,25.71,Y,N,Y,https://bina.az/items/6624058
 6624061,11,Nizami,Y,Neftçilər,Metro,Köhnə tikili,2,2,56.0,3,5,750.0,13.39,Y,N,Y,https://bina.az/items/6624061
 6624069,58,Binəqədi,Y,Dərnəgül,Metro,Yeni tikili,2,2,70.0,5,17,900.0,12.86,Y,N,Y,https://bina.az/items/6624069
@@ -14908,7 +14908,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6624698,190,Nəsimi,Y,8 Noyabr,Metro,Yeni tikili,3,3,110.0,8,11,1300.0,11.82,Y,N,N,https://bina.az/items/6624698
 6624719,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,3,3,70.0,6,14,800.0,11.43,Y,N,Y,https://bina.az/items/6624719
 6624724,58,Binəqədi,Y,Memar Əcəmi,Metro,Köhnə tikili,2,2,43.0,2,5,600.0,13.95,Y,N,Y,https://bina.az/items/6624724
-6624736,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,140.0,15,20,1500.0,10.71,Y,N,Y,https://bina.az/items/6624736
+6624736,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,140.0,15,20,1500.0,10.71,Y,N,Y,https://bina.az/items/6624736
 6624739,12,Səbail,Y,Bayıl,Qəsəbə,Yeni tikili,2,2,80.0,14,16,750.0,9.38,Y,N,Y,https://bina.az/items/6624739
 6624742,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Köhnə tikili,2,2,75.0,1,5,800.0,10.67,Y,N,Y,https://bina.az/items/6624742
 6624748,190,Nəsimi,Y,Nizami,Metro,Yeni tikili,3,3,115.0,13,18,1200.0,10.43,Y,N,Y,https://bina.az/items/6624748
@@ -14937,9 +14937,9 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6624828,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,2,2,50.0,3,16,550.0,11.0,Y,N,Y,https://bina.az/items/6624828
 6624830,16,Xətai,Y,Xətai,Rayon,Köhnə tikili,2,2,55.0,3,5,599.0,10.89,Y,N,N,https://bina.az/items/6624830
 6624833,12,Səbail,Y,Sahil,Metro,Köhnə tikili,2,2,60.0,3,3,1000.0,16.67,Y,N,Y,https://bina.az/items/6624833
-6624839,10,Nərimanov,Y,Məkan 415,Naməlum,Yeni tikili,3,3,130.0,15,20,1500.0,11.54,Y,N,Y,https://bina.az/items/6624839
+6624839,10,Nərimanov,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,130.0,15,20,1500.0,11.54,Y,N,Y,https://bina.az/items/6624839
 6624841,56,Yasamal,Y,Nizami,Metro,Yeni tikili,4,4,150.0,6,19,1400.0,9.33,Y,N,Y,https://bina.az/items/6624841
-6624842,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,135.0,15,22,1400.0,10.37,Y,N,Y,https://bina.az/items/6624842
+6624842,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,135.0,15,22,1400.0,10.37,Y,N,Y,https://bina.az/items/6624842
 6624843,56,Yasamal,Y,8 Noyabr,Metro,Yeni tikili,2,2,60.0,4,17,800.0,13.33,Y,N,N,https://bina.az/items/6624843
 6624844,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,1,1,45.0,17,18,850.0,18.89,Y,N,Y,https://bina.az/items/6624844
 6624845,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,110.0,18,22,1200.0,10.91,Y,N,Y,https://bina.az/items/6624845
@@ -14967,7 +14967,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6624928,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,2,2,32.0,1,5,450.0,14.06,Y,N,N,https://bina.az/items/6624928
 6624930,12,Səbail,Y,Badamdar,Qəsəbə,Yeni tikili,3,3,130.0,6,17,1000.0,7.69,Y,N,Y,https://bina.az/items/6624930
 6624935,56,Yasamal,Y,Elmlər Akademiyası,Metro,Köhnə tikili,3,3,62.0,15,16,1000.0,16.13,Y,N,Y,https://bina.az/items/6624935
-6624936,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,1,1,30.0,2,10,800.0,26.67,Y,N,Y,https://bina.az/items/6624936
+6624936,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,1,1,30.0,2,10,800.0,26.67,Y,N,Y,https://bina.az/items/6624936
 6624940,190,Nəsimi,Y,Nəsimi,Rayon,Köhnə tikili,4,4,110.0,3,9,1000.0,9.09,Y,N,Y,https://bina.az/items/6624940
 6624942,56,Yasamal,Y,Yeni Yasamal,Qəsəbə,Yeni tikili,1,1,55.0,12,16,600.0,10.91,Y,N,Y,https://bina.az/items/6624942
 6624943,56,Yasamal,Y,Yasamal,Qəsəbə,Yeni tikili,3,3,72.0,9,16,750.0,10.42,Y,N,N,https://bina.az/items/6624943
@@ -15046,6 +15046,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625268,12,Səbail,Y,Səbail,Rayon,Köhnə tikili,2,2,80.0,3,3,1500.0,18.75,Y,N,N,https://bina.az/items/6625268
 6625269,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,55.0,2,16,750.0,13.64,Y,N,Y,https://bina.az/items/6625269
 6625272,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,93.0,8,17,1700.0,18.28,Y,N,Y,https://bina.az/items/6625272
+6625273,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,100.0,15,16,350.0,3.5,Y,N,N,https://bina.az/items/6625273
 6625280,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,93.0,8,17,1700.0,18.28,Y,N,Y,https://bina.az/items/6625280
 6625304,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,90.0,3,12,1400.0,15.56,Y,N,Y,https://bina.az/items/6625304
 6625308,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,2,2,120.0,1,18,1400.0,11.67,Y,N,Y,https://bina.az/items/6625308
@@ -15061,7 +15062,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625366,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Köhnə tikili,2,2,36.0,3,4,350.0,9.72,Y,N,N,https://bina.az/items/6625366
 6625371,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,2,2,40.0,3,5,600.0,15.0,Y,N,Y,https://bina.az/items/6625371
 6625375,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,2,2,96.0,15,17,800.0,8.33,Y,N,Y,https://bina.az/items/6625375
-6625379,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,4,4,240.0,20,22,2000.0,8.33,Y,N,Y,https://bina.az/items/6625379
+6625379,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,4,4,240.0,20,22,2000.0,8.33,Y,N,Y,https://bina.az/items/6625379
 6625384,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,130.0,5,20,1050.0,8.08,Y,N,N,https://bina.az/items/6625384
 6625386,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,2,2,112.0,13,16,1200.0,10.71,Y,N,Y,https://bina.az/items/6625386
 6625389,16,Xətai,Y,Əhmədli,Metro,Yeni tikili,2,2,60.0,6,9,550.0,9.17,Y,N,Y,https://bina.az/items/6625389
@@ -15076,7 +15077,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625423,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,90.0,10,15,1300.0,14.44,Y,N,N,https://bina.az/items/6625423
 6625427,190,Nəsimi,Y,Sahil,Metro,Köhnə tikili,3,3,75.0,4,4,1000.0,13.33,Y,N,Y,https://bina.az/items/6625427
 6625434,16,Xətai,Y,Xətai,Rayon,Yeni tikili,2,2,60.0,5,19,800.0,13.33,Y,N,Y,https://bina.az/items/6625434
-6625441,12,Səbail,Y,Məkan 415,Naməlum,Yeni tikili,3,3,170.0,17,20,3500.0,20.59,Y,N,Y,https://bina.az/items/6625441
+6625441,12,Səbail,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,170.0,17,20,3500.0,20.59,Y,N,Y,https://bina.az/items/6625441
 6625443,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,145.0,10,16,1397.0,9.63,Y,N,Y,https://bina.az/items/6625443
 6625444,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,2,2,60.0,5,11,580.0,9.67,Y,N,N,https://bina.az/items/6625444
 6625445,56,Yasamal,Y,İçəri Şəhər,Metro,Köhnə tikili,3,3,60.0,2,9,800.0,13.33,Y,N,Y,https://bina.az/items/6625445
@@ -15117,7 +15118,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625646,56,Yasamal,Y,Elmlər Akademiyası,Metro,Köhnə tikili,2,2,35.0,3,5,600.0,17.14,Y,N,Y,https://bina.az/items/6625646
 6625653,56,Yasamal,Y,Yasamal,Qəsəbə,Yeni tikili,2,2,65.0,3,10,800.0,12.31,Y,N,Y,https://bina.az/items/6625653
 6625657,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,3,3,110.0,17,20,1000.0,9.09,Y,N,N,https://bina.az/items/6625657
-6625660,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,132.0,15,16,1299.0,9.84,Y,N,Y,https://bina.az/items/6625660
+6625660,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,132.0,15,16,1299.0,9.84,Y,N,Y,https://bina.az/items/6625660
 6625663,58,Binəqədi,Y,Binəqədi,Rayon,Yeni tikili,2,2,50.0,1,20,750.0,15.0,Y,N,Y,https://bina.az/items/6625663
 6625666,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,4,4,180.0,13,18,1900.0,10.56,Y,N,N,https://bina.az/items/6625666
 6625668,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,2,2,40.0,2,5,600.0,15.0,Y,N,Y,https://bina.az/items/6625668
@@ -15131,6 +15132,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625698,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,93.0,8,16,980.0,10.54,Y,N,N,https://bina.az/items/6625698
 6625707,197,Abşeron,N,Masazır,Qəsəbə,Yeni tikili,2,2,45.0,5,6,350.0,7.78,Y,N,Y,https://bina.az/items/6625707
 6625708,56,Yasamal,Y,8 Noyabr,Metro,Yeni tikili,3,3,145.0,16,27,1600.0,11.03,Y,N,N,https://bina.az/items/6625708
+6625713,14,Suraxanı,Y,Suraxanı,Qəsəbə,Köhnə tikili,2,2,80.0,1,2,280.0,3.5,Y,N,N,https://bina.az/items/6625713
 6625716,58,Binəqədi,Y,9-cu mikrorayon,Qəsəbə,Yeni tikili,2,2,95.0,14,17,750.0,7.89,Y,N,N,https://bina.az/items/6625716
 6625722,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,4,4,160.0,9,19,850.0,5.31,Y,N,Y,https://bina.az/items/6625722
 6625729,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,3,3,100.0,17,19,1000.0,10.0,Y,N,Y,https://bina.az/items/6625729
@@ -15148,7 +15150,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625790,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,3,3,100.0,10,16,1350.0,13.5,Y,N,N,https://bina.az/items/6625790
 6625795,11,Nizami,Y,Qara Qarayev,Metro,Köhnə tikili,3,3,80.0,3,5,700.0,8.75,Y,N,Y,https://bina.az/items/6625795
 6625799,16,Xətai,Y,Xətai,Rayon,Yeni tikili,2,2,90.0,5,6,1600.0,17.78,Y,N,N,https://bina.az/items/6625799
-6625801,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,4,4,172.0,12,22,1500.0,8.72,Y,N,Y,https://bina.az/items/6625801
+6625801,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,4,4,172.0,12,22,1500.0,8.72,Y,N,Y,https://bina.az/items/6625801
 6625806,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,2,2,50.0,3,5,600.0,12.0,Y,N,Y,https://bina.az/items/6625806
 6625808,58,Binəqədi,Y,Memar Əcəmi,Metro,Yeni tikili,2,2,80.0,15,17,650.0,8.12,Y,N,Y,https://bina.az/items/6625808
 6625813,190,Nəsimi,Y,20 Yanvar,Metro,Köhnə tikili,2,2,55.0,1,5,450.0,8.18,Y,N,N,https://bina.az/items/6625813
@@ -15162,7 +15164,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625866,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,60.0,15,17,1100.0,18.33,Y,N,Y,https://bina.az/items/6625866
 6625874,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,60.0,15,16,1100.0,18.33,Y,N,Y,https://bina.az/items/6625874
 6625875,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,1,1,30.0,1,5,450.0,15.0,Y,N,N,https://bina.az/items/6625875
-6625877,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,150.0,16,20,1500.0,10.0,Y,N,Y,https://bina.az/items/6625877
+6625877,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,150.0,16,20,1500.0,10.0,Y,N,Y,https://bina.az/items/6625877
 6625879,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,2,2,65.0,5,19,800.0,12.31,Y,N,Y,https://bina.az/items/6625879
 6625887,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,3,3,160.0,7,14,1900.0,11.88,Y,N,Y,https://bina.az/items/6625887
 6625888,190,Nəsimi,Y,Memar Əcəmi,Metro,Köhnə tikili,3,3,70.0,4,5,700.0,10.0,Y,N,Y,https://bina.az/items/6625888
@@ -15172,7 +15174,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6625897,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,80.0,15,17,950.0,11.88,Y,N,Y,https://bina.az/items/6625897
 6625899,56,Yasamal,Y,Elmlər Akademiyası,Metro,Köhnə tikili,2,2,40.0,3,5,550.0,13.75,Y,N,Y,https://bina.az/items/6625899
 6625906,11,Nizami,Y,Neftçilər,Metro,Yeni tikili,2,2,80.0,8,14,850.0,10.62,Y,N,N,https://bina.az/items/6625906
-6625911,12,Səbail,Y,Məkan 415,Naməlum,Yeni tikili,3,3,170.0,16,23,3000.0,17.65,Y,N,Y,https://bina.az/items/6625911
+6625911,12,Səbail,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,170.0,16,23,3000.0,17.65,Y,N,Y,https://bina.az/items/6625911
 6625913,190,Nəsimi,Y,28 May,Metro,Köhnə tikili,2,2,50.0,2,5,700.0,14.0,Y,N,N,https://bina.az/items/6625913
 6625921,190,Nəsimi,Y,Memar Əcəmi,Metro,Yeni tikili,2,2,50.0,2,5,550.0,11.0,Y,N,Y,https://bina.az/items/6625921
 6625940,58,Binəqədi,Y,Dərnəgül,Metro,Yeni tikili,2,2,50.0,1,20,750.0,15.0,Y,N,Y,https://bina.az/items/6625940
@@ -15270,14 +15272,14 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6626325,12,Səbail,Y,Səbail,Rayon,Köhnə tikili,1,1,47.0,2,10,700.0,14.89,Y,N,Y,https://bina.az/items/6626325
 6626332,56,Yasamal,Y,İnşaatçılar,Metro,Yeni tikili,3,3,120.0,3,16,1200.0,10.0,Y,N,Y,https://bina.az/items/6626332
 6626337,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,2,2,70.0,12,21,1100.0,15.71,Y,N,Y,https://bina.az/items/6626337
-6626342,190,Nəsimi,Y,Məkan 415,Naməlum,Köhnə tikili,2,2,67.0,3,5,850.0,12.69,Y,N,Y,https://bina.az/items/6626342
+6626342,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,2,2,67.0,3,5,850.0,12.69,Y,N,Y,https://bina.az/items/6626342
 6626345,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,120.0,8,14,1300.0,10.83,Y,N,Y,https://bina.az/items/6626345
 6626346,11,Nizami,Y,Xalqlar Dostluğu,Metro,Yeni tikili,2,2,80.0,7,17,700.0,8.75,Y,N,N,https://bina.az/items/6626346
 6626356,190,Nəsimi,Y,Gənclik,Metro,Yeni tikili,2,2,88.0,9,17,890.0,10.11,Y,N,Y,https://bina.az/items/6626356
 6626361,56,Yasamal,Y,Yasamal,Rayon,Yeni tikili,2,2,70.0,6,17,800.0,11.43,Y,N,Y,https://bina.az/items/6626361
 6626364,10,Nərimanov,Y,Gənclik,Metro,Yeni tikili,2,2,55.0,7,17,700.0,12.73,Y,N,Y,https://bina.az/items/6626364
 6626367,56,Yasamal,Y,Elmlər Akademiyası,Metro,Yeni tikili,2,2,75.0,9,16,700.0,9.33,Y,N,Y,https://bina.az/items/6626367
-6626371,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,2,2,80.0,5,14,800.0,10.0,Y,N,N,https://bina.az/items/6626371
+6626371,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,2,2,80.0,5,14,800.0,10.0,Y,N,N,https://bina.az/items/6626371
 6626381,56,Yasamal,Y,İnşaatçılar,Metro,Köhnə tikili,3,3,70.0,2,5,699.0,9.99,Y,N,Y,https://bina.az/items/6626381
 6626382,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,148.0,12,17,1499.0,10.13,Y,N,Y,https://bina.az/items/6626382
 6626385,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,3,3,135.0,10,18,1300.0,9.63,Y,N,Y,https://bina.az/items/6626385
@@ -15331,7 +15333,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6626665,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,95.0,5,18,850.0,8.95,Y,N,Y,https://bina.az/items/6626665
 6626670,56,Yasamal,Y,Yasamal,Rayon,Yeni tikili,3,3,110.0,13,18,850.0,7.73,Y,N,Y,https://bina.az/items/6626670
 6626672,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,3,3,110.0,10,15,1500.0,13.64,Y,N,N,https://bina.az/items/6626672
-6626677,190,Nəsimi,Y,Məkan 415,Naməlum,Köhnə tikili,2,2,50.0,2,5,1000.0,20.0,Y,N,Y,https://bina.az/items/6626677
+6626677,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,2,2,50.0,2,5,1000.0,20.0,Y,N,Y,https://bina.az/items/6626677
 6626683,10,Nərimanov,Y,Bakmil,Metro,Yeni tikili,3,3,110.0,12,18,1500.0,13.64,Y,N,Y,https://bina.az/items/6626683
 6626689,14,Suraxanı,Y,Yeni Günəşli,Qəsəbə,Yeni tikili,2,2,51.0,5,15,550.0,10.78,Y,N,Y,https://bina.az/items/6626689
 6626703,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,90.0,3,12,1300.0,14.44,Y,N,Y,https://bina.az/items/6626703
@@ -15368,7 +15370,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6626888,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,75.0,10,20,650.0,8.67,Y,N,Y,https://bina.az/items/6626888
 6626893,13,Sabunçu,Y,Bakıxanov,Qəsəbə,Köhnə tikili,1,1,30.0,1,2,350.0,11.67,Y,N,N,https://bina.az/items/6626893
 6626913,190,Nəsimi,Y,Nizami,Metro,Yeni tikili,2,2,80.0,13,22,1100.0,13.75,Y,N,Y,https://bina.az/items/6626913
-6626921,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,2,2,110.0,14,16,1800.0,16.36,Y,N,Y,https://bina.az/items/6626921
+6626921,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,2,2,110.0,14,16,1800.0,16.36,Y,N,Y,https://bina.az/items/6626921
 6626922,56,Yasamal,Y,Nizami,Metro,Yeni tikili,2,2,95.0,11,19,1200.0,12.63,Y,N,Y,https://bina.az/items/6626922
 6626925,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Köhnə tikili,2,2,50.0,5,5,600.0,12.0,Y,N,Y,https://bina.az/items/6626925
 6626928,190,Nəsimi,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,2,2,110.0,14,16,1800.0,16.36,Y,N,Y,https://bina.az/items/6626928
@@ -15380,7 +15382,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6626965,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,3,3,110.0,13,18,900.0,8.18,Y,N,N,https://bina.az/items/6626965
 6626977,56,Yasamal,Y,Yasamal,Rayon,Yeni tikili,2,2,54.0,13,17,599.0,11.09,Y,N,Y,https://bina.az/items/6626977
 6626979,11,Nizami,Y,Qara Qarayev,Metro,Yeni tikili,3,3,90.0,1,15,600.0,6.67,Y,N,Y,https://bina.az/items/6626979
-6626982,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,130.0,12,17,1500.0,11.54,Y,N,Y,https://bina.az/items/6626982
+6626982,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,130.0,12,17,1500.0,11.54,Y,N,Y,https://bina.az/items/6626982
 6626986,56,Yasamal,Y,20 Yanvar,Metro,Yeni tikili,2,2,60.0,15,17,699.0,11.65,Y,N,Y,https://bina.az/items/6626986
 6626989,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,3,3,152.0,3,16,1200.0,7.89,Y,N,N,https://bina.az/items/6626989
 6626994,14,Suraxanı,Y,Yeni Günəşli,Qəsəbə,Yeni tikili,3,3,75.0,10,15,650.0,8.67,Y,N,Y,https://bina.az/items/6626994
@@ -15450,7 +15452,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6627445,10,Nərimanov,Y,Nərimanov,Rayon,Yeni tikili,2,2,90.0,6,21,950.0,10.56,Y,N,Y,https://bina.az/items/6627445
 6627449,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,3,3,100.0,9,17,900.0,9.0,Y,N,N,https://bina.az/items/6627449
 6627451,190,Nəsimi,Y,8 Noyabr,Metro,Köhnə tikili,2,2,75.0,6,9,650.0,8.67,Y,N,Y,https://bina.az/items/6627451
-6627453,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,3,3,130.0,15,20,1500.0,11.54,Y,N,Y,https://bina.az/items/6627453
+6627453,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,3,3,130.0,15,20,1500.0,11.54,Y,N,Y,https://bina.az/items/6627453
 6627460,197,Abşeron,N,Masazır,Qəsəbə,Yeni tikili,1,1,46.0,8,11,350.0,7.61,Y,N,N,https://bina.az/items/6627460
 6627463,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,2,2,100.0,2,4,1399.0,13.99,Y,N,N,https://bina.az/items/6627463
 6627473,56,Yasamal,Y,İnşaatçılar,Metro,Köhnə tikili,1,1,40.0,4,5,550.0,13.75,Y,N,N,https://bina.az/items/6627473
@@ -15480,7 +15482,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6627587,10,Nərimanov,Y,Nərimanov,Rayon,Yeni tikili,3,3,114.0,7,12,1300.0,11.4,Y,N,N,https://bina.az/items/6627587
 6627588,16,Xətai,Y,Şah İsmayıl Xətai,Metro,Yeni tikili,4,4,195.0,7,17,2000.0,10.26,Y,N,Y,https://bina.az/items/6627588
 6627589,14,Suraxanı,Y,Massiv V,Qəsəbə,Köhnə tikili,2,2,50.0,9,9,450.0,9.0,Y,N,Y,https://bina.az/items/6627589
-6627590,12,Səbail,Y,Məkan 415,Naməlum,Köhnə tikili,2,2,45.0,2,5,1150.0,25.56,Y,N,Y,https://bina.az/items/6627590
+6627590,12,Səbail,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,2,2,45.0,2,5,1150.0,25.56,Y,N,Y,https://bina.az/items/6627590
 6627591,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Köhnə tikili,1,1,45.0,1,1,380.0,8.44,Y,N,N,https://bina.az/items/6627591
 6627594,56,Yasamal,Y,Yasamal,Rayon,Yeni tikili,1,1,55.0,12,16,600.0,10.91,Y,N,N,https://bina.az/items/6627594
 6627595,16,Xətai,Y,Həzi Aslanov,Metro,Yeni tikili,3,3,120.0,16,17,850.0,7.08,Y,N,Y,https://bina.az/items/6627595
@@ -15519,7 +15521,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6627698,10,Nərimanov,Y,Nəriman Nərimanov,Metro,Yeni tikili,2,2,60.0,8,16,850.0,14.17,Y,N,Y,https://bina.az/items/6627698
 6627703,197,Abşeron,N,Masazır,Qəsəbə,Yeni tikili,2,2,50.0,10,12,300.0,6.0,Y,N,N,https://bina.az/items/6627703
 6627709,12,Səbail,Y,Badamdar,Qəsəbə,Yeni tikili,2,2,55.0,7,12,500.0,9.09,Y,N,N,https://bina.az/items/6627709
-6627713,12,Səbail,Y,Məkan 415,Naməlum,Köhnə tikili,2,2,44.0,2,4,1050.0,23.86,Y,N,Y,https://bina.az/items/6627713
+6627713,12,Səbail,Y,Cəfər Cabbarlı,Metro,Köhnə tikili,2,2,44.0,2,4,1050.0,23.86,Y,N,Y,https://bina.az/items/6627713
 6627716,190,Nəsimi,Y,Nəsimi,Rayon,Yeni tikili,2,2,80.0,6,21,950.0,11.88,Y,N,N,https://bina.az/items/6627716
 6627719,190,Nəsimi,Y,Nəsimi,Rayon,Köhnə tikili,2,2,60.0,8,16,850.0,14.17,Y,N,Y,https://bina.az/items/6627719
 6627720,16,Xətai,Y,Ağ şəhər,Qəsəbə,Yeni tikili,3,3,160.0,7,16,1100.0,6.88,Y,N,N,https://bina.az/items/6627720
@@ -15622,7 +15624,7 @@ listing_id,district_id,district_name,is_baku_city,location_name,location_type,bu
 6628125,58,Binəqədi,Y,Dərnəgül,Metro,Yeni tikili,2,2,70.0,5,12,900.0,12.86,Y,N,Y,https://bina.az/items/6628125
 6628127,190,Nəsimi,Y,Nəsimi,Rayon,Köhnə tikili,2,2,70.0,2,6,800.0,11.43,Y,N,Y,https://bina.az/items/6628127
 6628129,16,Xətai,Y,Əhmədli,Metro,Yeni tikili,3,3,90.0,8,10,750.0,8.33,Y,N,Y,https://bina.az/items/6628129
-6628137,190,Nəsimi,Y,Məkan 415,Naməlum,Yeni tikili,4,4,200.0,9,15,2500.0,12.5,Y,N,N,https://bina.az/items/6628137
+6628137,190,Nəsimi,Y,Cəfər Cabbarlı,Metro,Yeni tikili,4,4,200.0,9,15,2500.0,12.5,Y,N,N,https://bina.az/items/6628137
 6628140,11,Nizami,Y,Qara Qarayev,Metro,Yeni tikili,3,3,118.0,3,16,1000.0,8.47,Y,N,Y,https://bina.az/items/6628140
 6628152,56,Yasamal,Y,8 Noyabr,Metro,Yeni tikili,2,2,65.0,23,27,950.0,14.62,Y,N,Y,https://bina.az/items/6628152
 6628157,12,Səbail,Y,Bayıl,Qəsəbə,Köhnə tikili,3,3,80.0,3,3,950.0,11.88,Y,N,Y,https://bina.az/items/6628157
