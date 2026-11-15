@@ -174,12 +174,12 @@ def savings_path(l: pd.DataFrame, p: Params) -> tuple[list[tuple[str, float]], l
     steps.append(("Ucuz rayonlara baxın", float(s1["price_azn"].median())))
     # Addım 2: həmin rayonlarda yalnız köhnə tikili (kifayət qədər elan varsa)
     s2 = s1[s1["building_type"] == "Köhnə tikili"]
-    if len(s2) >= MIN_N:
+    if len(s2) >= MIN_N and float(s2["price_azn"].median()) < steps[-1][1]:   # yalnız real qənaət verən addım göstərilir
         steps.append(("+ köhnə tikili", float(s2["price_azn"].median())))
         s1 = s2
     # Addım 3: yalnız sahibinin elanları (kifayət qədər elan varsa)
     s3 = s1[s1["is_agency"] == "N"]
-    if len(s3) >= MIN_N:
+    if len(s3) >= MIN_N and float(s3["price_azn"].median()) < steps[-1][1]:
         steps.append(("+ mülkiyyətçi elanı (vasitəçisiz)", float(s3["price_azn"].median())))
     # Son addım: kirayəni bölüşmək (ən azı 2 nəfər)
     n = max(p.people, 2)
