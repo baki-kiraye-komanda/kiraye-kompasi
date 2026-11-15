@@ -1,0 +1,18 @@
+# Saytı oyaq saxlayır: Streamlit pulsuz planda ziyarət olmayanda sayt yuxuya gedir.
+# Hər 4 saatdan bir saytı brauzerdə açır (lazım olsa oyadır). Əl ilə: Actions → Keep site awake → Run workflow.
+name: Keep site awake
+on:
+  schedule:
+    - cron: "23 */4 * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install playwright==1.48.0 && python -m playwright install --with-deps chromium
+      - run: python tools/keep_awake.py
