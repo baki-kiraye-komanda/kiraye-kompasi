@@ -30,6 +30,7 @@ def az(n: float, dec: int = 0) -> str:
 
 
 def pct(x: float) -> str:
+    """0.613 -> '61%' (pay -> faiz mətni)."""
     if x is None or x != x:
         return "—"
     if 0 < x < 0.005:  # 0.4% «0%» görünməsin — elan var, sadəcə azdır
@@ -43,10 +44,12 @@ def up(s: str) -> str:
 
 
 def esc(s) -> str:
+    """Mətni HTML üçün təhlükəsiz edir (<, > və s. işarələr səhifəni pozmasın)."""
     return html.escape(str(s))
 
 
 def share_color(s: float) -> str:
+    """Büdcəyə uyğun elan payına görə rəng: 50%+ yaşıl, 20–50% kəhrəba, 5–20% mərcan, 5%-dən az qırmızı."""
     if s >= 0.5:
         return C["green"]
     if s >= 0.2:
@@ -57,6 +60,7 @@ def share_color(s: float) -> str:
 
 
 def share_rgb(s: float) -> list[int]:
+    """Eyni rəng, xəritə (pydeck) üçün [R, G, B] formasında."""
     h = share_color(s).lstrip("#")
     return [int(h[i:i + 2], 16) for i in (0, 2, 4)]
 
@@ -187,6 +191,7 @@ def cu(value: int, delay: float = 0.0) -> str:
 
 
 def reveal(text: str, delay: float = 0.0) -> str:
+    """Aşağıdan yuxarı «üzə çıxan» mətn (giriş animasiyası)."""
     return f'<span class="rise" style="display:inline-block;animation-delay:{delay}s">{esc(text)}</span>'
 
 
@@ -242,6 +247,7 @@ COMPASS = """<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle
 
 # --------------------------------------------------------------------------- sections
 def nav(n_listings: int, date: str) -> str:
+    """Yuxarı zolaq: loqo, bölmələrə keçidlər və məlumatın tarixi (neçə elan, hansı gün)."""
     links = "".join(f'<a href="#{a}">{t}</a>' for a, t in
                     [("kalkulyator", "Kalkulyator"), ("rayonlar", "Rayonlar"), ("elanlar", "Elanlar"), ("ai", "AI məsləhətçi"), ("bazar", "Bazar")])
     return f"""
@@ -298,6 +304,8 @@ def skyline() -> str:
 
 
 def hero(f: dict) -> str:
+    """Giriş bloku: başlıq, «əsas problem» halqası (2 otaqlı median kirayə ÷ Bakı maaşı) və 3 əsas rəqəm.
+    Bütün rəqəmlər məlumatdan hesablanır — həftəlik yeniləmədə özləri dəyişir."""
     stats = [
         (az(f["median_2_city"]) + " AZN", "2 otaqlı mənzilin tipik kirayəsi", "Bakı şəhəri, median", C["coral"]),
         (az(f["need_salary_2"]) + " AZN", "normaya sığmaq üçün lazım olan maaş", f"Bakıda orta maaş {az(f['baku_salary'])} AZN", C["sea"]),
@@ -337,6 +345,7 @@ kirayənin maaşının neçə faizini apardığını və necə ucuzlaşdırmaq o
 
 
 def ticker(items: list[tuple[str, str, str]]) -> str:
+    """Sürüşən zolaq: əsas rəqəmlər və rayonların median kirayəsi."""
     one = "".join(f'<span style="display:inline-flex;gap:10px;align-items:center"><span class="eyebrow" style="letter-spacing:.1em">{esc(k)}</span>'
                   f'<b class="disp" style="color:{col};font-size:1.02rem">{esc(v)}</b><span style="color:{C["dim"]}">•</span></span>'
                   for k, v, col in items)
@@ -344,24 +353,28 @@ def ticker(items: list[tuple[str, str, str]]) -> str:
 
 
 def section(anchor: str, eyebrow: str, title: str, text: str = "") -> str:
+    """Bölmə başlığı (nömrə, ad, qısa izah). anchor — yuxarı menyudan keçid üçün."""
     return (f'<div class="kk sec" id="{anchor}"><div class="eyebrow" style="color:{C["sea"]}">{esc(eyebrow)}</div>'
             f'<h2 class="disp">{title}</h2>{f"<p>{esc(text)}</p>" if text else ""}</div>')
 
 
 def mini(k: str, v: str, col: str) -> str:
+    """Kiçik göstərici qutusu: ad və dəyər."""
     return (f'<div style="border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#FCFAF7">'
             f'<div class="dim" style="font-size:.74rem">{esc(k)}</div><div class="disp" style="font-size:1.05rem;color:{col};margin-top:3px">{esc(v)}</div></div>')
 
 
 def few_note(n: int) -> str:
     """Az elan olanda median etibarlı deyil — istifadəçini xəbərdar et."""
-    if n >= 30:
+    if n >= 30:  # core.MIN_N ilə eyni hədd
         return ""
     return (f'<div style="margin-top:8px;font-size:.82rem;color:{C["amber"]};font-weight:600">'
             f'⚠ Bu filtrlərlə cəmi {az(n)} elan var — rəqəmlər az elana əsaslanır, ehtiyatla bax.</div>')
 
 
 def result_card(r, f: dict) -> str:
+    """Kalkulyatorun nəticə kartı: büdcə, hökm (rahat / sıx / çətin), uyğun elan payı (halqa),
+    kirayə yükü zolağı (norma 30% xətti ilə) və 3 kiçik göstərici."""
     p = r.p
     v_txt, v_tone = r.verdict
     tone = TONE[v_tone]
@@ -401,6 +414,7 @@ def result_card(r, f: dict) -> str:
 
 
 def map_header() -> str:
+    """Xəritənin başlığı və rəng izahı (legend)."""
     legend = "".join(f'<span style="display:inline-flex;align-items:center;gap:6px;margin-right:12px"><span class="dot" style="background:{c}"></span>{t}</span>'
                      for t, c in [("50%+", C["green"]), ("20–50%", C["amber"]), ("5–20%", C["coral"]), ("5%-dən az", C["red"])])
     return (f'<div class="kk"><div class="eyebrow">Bakı xəritəsi</div>'
@@ -409,17 +423,19 @@ def map_header() -> str:
 
 
 def district_bars(dist, budget: float) -> str:
+    """Rayonların siyahısı: büdcəyə uyğun elan payı (ən əlçatan rayon yuxarıda)."""
     rows = [hbar(r.district_name, pct(r.share), r.share, share_color(r.share), .1 + i * .07,
                  sub=f"median {az(r.median)} AZN · {az(r.fit)} / {az(r.n)} elan") for i, r in enumerate(dist.head(10).itertuples())]
     return f"""
 <div class="kk card" style="padding:18px 20px;height:100%">
 <div class="eyebrow">Büdcənə ({az(budget)} AZN) uyğun elanların payı</div>
-<div class="dim" style="font-size:.78rem;margin:2px 0 8px">ən azı 20 elanı olan rayonlar · yuxarıda — ən əlçatan</div>
+<div class="dim" style="font-size:.78rem;margin:2px 0 8px">ən azı 30 elanı olan rayonlar · yuxarıda — ən əlçatan</div>
 {''.join(rows)}
 </div>"""
 
 
 def savings(steps: list, budget: float, cheap: list[str]) -> str:
+    """«Necə ucuzlaşdırmaq olar» bloku: hər addım median kirayəni nə qədər azaldır (yaşıl xətt — büdcə)."""
     if not steps:
         return ""
     mx = max(s for _, s in steps) * 1.08
@@ -440,6 +456,7 @@ def savings(steps: list, budget: float, cheap: list[str]) -> str:
 
 
 def insight_cards(f: dict, sect) -> str:
+    """«Bazar bir baxışda»: 4 fakt — otaq sayı, vasitəçi/sahibi, yeni/köhnə tikili, kimin maaşı çatır."""
     rooms = f["rooms"]
     rmax = max(rooms.values())
     rbars = "".join(
@@ -454,6 +471,10 @@ def insight_cards(f: dict, sect) -> str:
                    f'background:{C["green"] if r.burden <= .3 else C["track"]};border:1px solid {C["green"] if r.burden <= .3 else "#E3DACD"};'
                    f'animation:popdot .5s {.2 + i * .05:.2f}s both"></span>' for i, r in enumerate(sect.itertuples()))
     ag, ow, nw, od = f["agency"], f["owner"], f["new"], f["old"]
+    # Oxşar mənzillər üzrə fərq (eyni rayon, otaq sayı, tikili növü) — sadə müqayisədən daha ədalətlidir
+    like = f.get("agency_like")
+    like_txt = (f'<div class="dim" style="font-size:.76rem;margin-top:4px">oxşar mənzillərdə (eyni rayon, otaq, tikili növü): '
+                f'<b style="color:{C["ink"]}">{"+" if like >= 0 else "−"}{pct(abs(like))}</b></div>') if like is not None else ""
     return f"""
 <style>@keyframes hgrow{{to{{height:var(--h)}}}} @keyframes popdot{{from{{transform:scale(0)}}to{{transform:scale(1)}}}}</style>
 <div class="kk grid4" style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px">
@@ -461,11 +482,12 @@ def insight_cards(f: dict, sect) -> str:
 <div style="display:flex;gap:6px">{rbars}</div></div>
 <div class="card"><div class="eyebrow">2 · Vasitəçi vs sahibi</div>
 <div class="disp" style="font-size:2.3rem;margin-top:8px;color:{C['coral']}">+{pct(ag / ow - 1)}</div>
-<div class="muted" style="font-size:.9rem">vasitəçi elanı {az(ag)} AZN, sahibinin elanı {az(ow)} AZN</div>
+<div class="muted" style="font-size:.9rem">vasitəçi elanı {az(ag)} AZN, sahibinin elanı {az(ow)} AZN</div>{like_txt}
 {hbar("Vasitəçi", az(ag), 1, C['coral'], .3, lw=72, vw=60)}{hbar("Sahibi", az(ow), ow / ag, C['green'], .45, lw=72, vw=60)}</div>
 <div class="card"><div class="eyebrow">3 · Yeni vs köhnə tikili</div>
 <div class="disp" style="font-size:2.3rem;margin-top:8px;color:{C['violet']}">−{pct(1 - od / nw)}</div>
 <div class="muted" style="font-size:.9rem">köhnə tikili ucuzdur, amma fərq əsasən sahədən gəlir</div>
+<div class="dim" style="font-size:.76rem;margin-top:4px">1 m² qiyməti demək olar eynidir: yeni <b style="color:{C['ink']}">{az(f['new_m2'], 1)}</b> · köhnə <b style="color:{C['ink']}">{az(f['old_m2'], 1)}</b> AZN</div>
 {hbar("Yeni", az(nw), 1, C['violet'], .3, lw=72, vw=60)}{hbar("Köhnə", az(od), od / nw, C['sky'], .45, lw=72, vw=60)}</div>
 </div>
 <div class="kk card" style="margin-top:16px;display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:center">
@@ -477,7 +499,36 @@ def insight_cards(f: dict, sect) -> str:
 </div>"""
 
 
+def trend_card(points: list[dict]) -> str:
+    """«Zamanla dəyişmə» kartı: hər toplamada 2 otaqlı mənzilin (Bakı şəhəri) median kirayəsi və kirayə yükü.
+    points — core.market_trend() nəticəsi (köhnədən yeniyə). 2-dən az toplama varsa, kart göstərilmir."""
+    if len(points) < 2:
+        return ""
+    mx = max(p["median"] for p in points) * 1.05
+    rows = "".join(
+        hbar(f'{p["date"][8:10]}.{p["date"][5:7]}.{p["date"][:4]}', az(p["median"]) + " AZN", p["median"] / mx,
+             C["coral"] if p["burden"] > .5 else C["amber"], .15 + i * .12,
+             sub=f'{az(p["listings"])} elan · maaşın {pct(p["burden"])}-i', lw=150, vw=96)
+        for i, p in enumerate(points))
+    first, last = points[0], points[-1]
+    diff = last["median"] - first["median"]
+    if diff == 0:
+        msg = "median kirayə <b>dəyişməyib</b>"
+    else:
+        col = C["green"] if diff < 0 else C["coral"]
+        msg = (f'median kirayə <b style="color:{col}">{"−" if diff < 0 else "+"}{az(abs(diff))} AZN</b> '
+               f'({"−" if diff < 0 else "+"}{pct(abs(diff) / first["median"])})')
+    return f"""
+<div class="kk card" style="margin-top:16px;padding:18px 22px">
+<div class="eyebrow">5 · Qiymət zamanla necə dəyişir?</div>
+<div class="dim" style="font-size:.8rem;margin:2px 0 8px">2 otaqlı mənzil, Bakı şəhəri — hər toplamada median kirayə · məlumat hər həftə avtomatik yenilənir</div>
+{rows}
+<div style="font-size:.92rem;margin-top:8px">İlk toplamadan bəri {msg} <span class="dim">· median «dairəvi» qiymətlər (800, 850, 900) arasında sıçrayır, ona görə kiçik dəyişikliyi trend saymaq olmaz</span></div>
+</div>"""
+
+
 def ai_header() -> str:
+    """AI bölməsinin başlığı."""
     return f"""
 <div class="kk" style="display:flex;align-items:center;gap:14px;margin-bottom:6px">
 <div style="width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--seag);box-shadow:0 8px 20px -8px rgba(15,124,140,.8)">
@@ -500,6 +551,7 @@ background:linear-gradient(120deg,#FFF4E3,#FDEBDD 55%,#E6F4F2)">
 
 
 def footer(f: dict, captured: str, raw: int) -> str:
+    """Səhifənin sonu: layihə haqqında, mənbələr (neçə elan, hansı tarix) və qeydlər."""
     return f"""
 <div class="kk" style="margin-top:70px;padding:26px 4px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px;font-size:.85rem">
 <div><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:9px;background:var(--seag);display:grid;place-items:center">{COMPASS.replace('width="24" height="24"', 'width="18" height="18"')}</div>

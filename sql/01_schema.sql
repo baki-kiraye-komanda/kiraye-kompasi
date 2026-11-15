@@ -9,8 +9,16 @@
 -- Niyə SNAPSHOT: hər həftəlik yeniləmə yeni snapshot olur, köhnələr silinmir,
 -- beləliklə qiymətlərin zamanla dəyişməsini görmək mümkündür.
 -- Vaxtlar Bakı vaxtı ilə (UTC+4) saxlanılır.
+--
+-- Qısa lüğət:
+--   PRIMARY KEY — sətri tək müəyyən edən sütun (təkrarlana bilməz)
+--   REFERENCES  — xarici açar: bu dəyər o biri cədvəldə mövcud olmalıdır (məs. olmayan rayon yazıla bilməz)
+--   NOT NULL    — boş qala bilməz;   CHECK — dəyər şərtə uyğun olmalıdır (məs. qiymət > 0)
+-- Bu qaydalar bazanın "mühafizəsidir": Python səhv etsə belə, zibil məlumat bazaya düşmür.
 -- ============================================================
 
+-- Ölçü cədvəli: rayonlar (13 sətir). is_baku_city: Y = Bakı şəhəri, N = Bakı ətrafı (Abşeron).
+-- Koordinatlar xəritədə dairəni yerləşdirmək üçündür.
 CREATE TABLE dim_district (
     district_id     NUMBER(6)          PRIMARY KEY,
     district_name   VARCHAR2(50 CHAR)  NOT NULL,
@@ -19,6 +27,7 @@ CREATE TABLE dim_district (
     longitude       NUMBER(9,6)
 );
 
+-- Ölçü cədvəli: məkanlar — elanda göstərilən yer (metro, qəsəbə, nişangah və s.)
 CREATE TABLE dim_location (
     location_id     NUMBER(6)          PRIMARY KEY,
     location_name   VARCHAR2(100 CHAR) NOT NULL,
@@ -27,22 +36,26 @@ CREATE TABLE dim_location (
     district_id     NUMBER(6)          REFERENCES dim_district (district_id)
 );
 
+-- Ölçü cədvəli: tikili növü (2 sətir: Yeni tikili, Köhnə tikili)
 CREATE TABLE dim_building_type (
     building_type_id NUMBER(2)         PRIMARY KEY,
     building_type    VARCHAR2(30 CHAR) NOT NULL
 );
 
+-- Hər toplamanın "pasportu": nə vaxt toplandı, neçə sətir idi, təmizləmədə neçəsi işarələndi
 CREATE TABLE snapshot (
     snapshot_id     VARCHAR2(13)       PRIMARY KEY,           -- məs. 20261108_0130
     captured_at     TIMESTAMP          NOT NULL,              -- Bakı vaxtı
     source_url      VARCHAR2(200)      NOT NULL,
-    rows_raw        NUMBER(10)         NOT NULL,
-    rows_clean      NUMBER(10)         NOT NULL,
-    rows_outlier    NUMBER(10)         NOT NULL,
-    rows_duplicate  NUMBER(10)         DEFAULT 0 NOT NULL,
+    rows_raw        NUMBER(10)         NOT NULL,              -- saytdan toplanan sətir sayı
+    rows_clean      NUMBER(10)         NOT NULL,              -- səhv sətirlər silindikdən sonra (R1–R7)
+    rows_outlier    NUMBER(10)         NOT NULL,              -- qeyri-adi qiymət / otaq kirayəsi (R8, R10)
+    rows_duplicate  NUMBER(10)         DEFAULT 0 NOT NULL,    -- təkrar elan (R9)
     loaded_at       TIMESTAMP          DEFAULT SYSTIMESTAMP NOT NULL
 );
 
+-- FAKT cədvəli: hər sətir = bir snapshotda bir elan. Adlar yox, kodlar (ID) saxlanılır —
+-- adlar ölçü cədvəllərindən JOIN ilə gətirilir (ulduz sxemi).
 CREATE TABLE fact_listing (
     snapshot_id      VARCHAR2(13)      NOT NULL REFERENCES snapshot (snapshot_id),
     listing_id       NUMBER(12)        NOT NULL,
@@ -60,15 +73,17 @@ CREATE TABLE fact_listing (
     has_bill_of_sale CHAR(1)           NOT NULL CHECK (has_bill_of_sale IN ('Y', 'N')),
     has_mortgage     CHAR(1)           NOT NULL CHECK (has_mortgage IN ('Y', 'N')),
     is_agency        CHAR(1)           NOT NULL CHECK (is_agency IN ('Y', 'N')),
-    is_outlier       CHAR(1)           NOT NULL CHECK (is_outlier IN ('Y', 'N')),
-    is_duplicate     CHAR(1)           DEFAULT 'N' NOT NULL CHECK (is_duplicate IN ('Y', 'N')),
+    is_outlier       CHAR(1)           NOT NULL CHECK (is_outlier IN ('Y', 'N')),               -- Y: statistikaya girmir (R8, R10)
+    is_duplicate     CHAR(1)           DEFAULT 'N' NOT NULL CHECK (is_duplicate IN ('Y', 'N')), -- Y: təkrar elandır (R9)
     updated_at       TIMESTAMP,
     url              VARCHAR2(200)     NOT NULL,
-    CONSTRAINT pk_fact_listing PRIMARY KEY (snapshot_id, listing_id)
+    CONSTRAINT pk_fact_listing PRIMARY KEY (snapshot_id, listing_id)   -- bir elan bir snapshotda yalnız bir dəfə ola bilər
 );
 
+-- İndeks: "son snapshot + rayon + otaq" üzrə axtarışları sürətləndirir (kitabın mündəricatı kimi)
 CREATE INDEX ix_fact_snap_dist_rooms ON fact_listing (snapshot_id, district_id, rooms_group);
 
+-- Kontekst: DSK — iqtisadi fəaliyyət növləri (sahələr) üzrə orta aylıq əməkhaqqı, ölkə üzrə
 CREATE TABLE salary_sector (
     year            NUMBER(4)          NOT NULL,
     sector_name     VARCHAR2(200 CHAR) NOT NULL,
@@ -77,6 +92,7 @@ CREATE TABLE salary_sector (
     CONSTRAINT pk_salary_sector PRIMARY KEY (year, sector_name)
 );
 
+-- Kontekst: DSK — rayon və şəhərlər üzrə orta aylıq əməkhaqqı ("Bakı şəhəri - cəmi" sətri əsas göstəricidir)
 CREATE TABLE salary_region (
     year            NUMBER(4)          NOT NULL,
     region_name     VARCHAR2(200 CHAR) NOT NULL,

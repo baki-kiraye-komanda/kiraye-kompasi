@@ -5,7 +5,8 @@ Nəticə: exports/*.csv  (Power BI və sayt EYNİ fayllardan oxuyur)
   listings.csv       — son snapshotun təmiz elanları (v_listing_current)
   district.csv       — rayonlar (koordinatlarla)
   district_stats.csv — rayon x otaq üzrə median, P25, P75 (v_district_stats)
-  price_trend.csv    — snapshotlar üzrə median dinamikası (v_price_trend)
+  price_trend.csv    — snapshotlar üzrə median dinamikası, rayon səviyyəsində (v_price_trend)
+  market_trend.csv   — snapshotlar üzrə ümumi dinamika: otaq sayı x ərazi (v_market_trend) — saytın «Dinamika» bloku
   salary.csv         — DSK: sahələr üzrə orta aylıq əməkhaqqı (ölkə üzrə)
   salary_region.csv  — DSK: rayon və şəhərlər üzrə orta aylıq əməkhaqqı (Bakı şəhəri daxil)
   snapshot.csv       — məlumatın tarixi və həcmi
@@ -21,9 +22,10 @@ import sys
 from config import ROOT
 from db import connect
 
-EXPORTS = ROOT / "exports"
-APP_DATA = ROOT / "app" / "data"
+EXPORTS = ROOT / "exports"          # Power BI buradan oxuyur
+APP_DATA = ROOT / "app" / "data"    # sayt buradan oxuyur (eyni faylların nüsxəsi)
 
+# Hər CSV faylı üçün bir sorğu. Hesablama burada yox, Oracle view-larındadır — burada yalnız "götür və yaz".
 QUERIES = {
     "listings": """SELECT listing_id, district_id, district_name, is_baku_city, location_name, location_type,
                           building_type, rooms, rooms_group, area_m2, floor, floors, price_azn, price_per_m2,
@@ -33,6 +35,7 @@ QUERIES = {
                    FROM dim_district ORDER BY district_name""",
     "district_stats": "SELECT * FROM v_district_stats ORDER BY district_name, rooms_group",
     "price_trend": "SELECT * FROM v_price_trend ORDER BY captured_at, district_name, rooms_group",
+    "market_trend": "SELECT * FROM v_market_trend ORDER BY captured_at, is_baku_city, rooms_group",
     "salary": """SELECT year, sector_name, avg_salary_azn, source_url
                  FROM salary_sector ORDER BY year, avg_salary_azn DESC""",
     "salary_region": """SELECT year, region_name, avg_salary_azn, source_url
@@ -43,6 +46,7 @@ QUERIES = {
 
 
 def write_csv(path, header, rows) -> None:
+    """Sorğunun nəticəsini CSV-yə yazır: sütun adları kiçik hərflə, NULL -> boş xana, tarix -> mətn."""
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -52,6 +56,7 @@ def write_csv(path, header, rows) -> None:
 
 
 def main() -> int:
+    """Hər sorğunu icra edir və nəticəni iki qovluğa (exports/ və app/data/) yazır."""
     with connect() as conn:
         cur = conn.cursor()
         for name, sql in QUERIES.items():

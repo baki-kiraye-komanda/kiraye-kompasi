@@ -587,8 +587,11 @@ def m_validation():
     w, h = 836, 216
     vars_ = """VAR _m = CALCULATE([Median kirayə], REMOVEFILTERS(), Rayon[Ərazi] = "Bakı şəhəri")
 VAR _m2 = CALCULATE([Median 1 m²], REMOVEFILTERS(), Rayon[Ərazi] = "Bakı şəhəri")"""
-    rows = [("Mərkəzi Bank · median kirayə (14.04.2026)", "1002", "_m", "#,0", " AZN"),
-            ("JAM-News · 1 m² / ay (30.08.2026)", "11", "_m2", "0.0", " AZN")]
+    # Xarici mənbələr (statik rəqəmlər — mənbə yenilənəndə burada dəyişdirilir):
+    #   Mərkəzi Bank, Maliyyə Sabitliyi Hesabatı (Turan, 14.04.2026): ölkə üzrə median aylıq kirayə 1 002 AZN
+    #   JAM-News (31.08.2026): Bakıda elanlarda median kirayə — ayda 1 m² üçün 11 AZN
+    rows = [("Mərkəzi Bank · median aylıq kirayə, ölkə (aprel 2026)", "1002", "_m", "#,0", " AZN"),
+            ("JAM-News · Bakıda 1 m² / ay (avqust 2026)", "11", "_m2", "0.0", " AZN")]
     parts = []
     for i, (nm, ext, ours, fmt, unit) in enumerate(rows):
         y = 22 + i * 96

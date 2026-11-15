@@ -24,8 +24,8 @@ from db import connect
 # DSK faylı köhnə .xls formatındadır (xlrd ilə oxunur); pandas-ın "xlrd köhnəlir" xəbərdarlığı nəticəyə təsir etmir
 warnings.filterwarnings("ignore", message="The xlrd engine")
 
-KEEP_YEARS = 5
-LABEL_COL = 2
+KEEP_YEARS = 5   # son neçə il saxlanılır
+LABEL_COL = 2    # ad (sahə / rayon) cədvəlin 3-cü sütunundadır
 TABLES = [  # (fayl, vərəq, Oracle cədvəli, ad sütunu, mənbə)
     ("salary_raw_az.xls", "4.2", "salary_sector", "sector_name",
      "https://www.stat.gov.az/source/labour/az/004_2-3.xls"),
@@ -35,16 +35,21 @@ TABLES = [  # (fayl, vərəq, Oracle cədvəli, ad sütunu, mənbə)
 
 
 def as_year(v):
+    """Xanadakı dəyər ildirsə (1990–2100), onu qaytarır; yoxsa None. Başlıq sətrini tapmaq üçün."""
     y = pd.to_numeric(v, errors="coerce")  # il xanası 2025 və ya 2024.0 kimi gələ bilər
     return int(y) if pd.notna(y) and 1990 <= y <= 2100 and float(y).is_integer() else None
 
 
 def parse(path, sheet: str) -> pd.DataFrame:
+    """DSK-nın "insan üçün" hazırlanmış Excel vərəqini sadə cədvələ çevirir: il | ad | orta maaş."""
     raw = pd.read_excel(path, sheet_name=sheet, header=None)
+    # Başlıq sətri: içində ən azı 3 il olan ilk sətir (yuxarıdakı ad və qeyd sətirləri ötürülür)
     header_idx = next(i for i in raw.index
                       if sum(as_year(v) is not None for v in raw.loc[i]) >= 3)
+    # Hansı sütun hansı ildir
     years = {c: as_year(v) for c, v in raw.loc[header_idx].items()
              if c != LABEL_COL and as_year(v) is not None}
+    # Başlıqdan aşağı hər sətir: adı olan və rəqəmi olan xanalar götürülür
     rows = []
     for i in range(header_idx + 1, len(raw)):
         name = raw.at[i, LABEL_COL]
@@ -55,6 +60,7 @@ def parse(path, sheet: str) -> pd.DataFrame:
             val = pd.to_numeric(raw.at[i, c], errors="coerce")
             if pd.notna(val) and val > 0:
                 rows.append({"year": year, "name": name, "avg_salary_azn": round(float(val), 2)})
+    # Yalnız son KEEP_YEARS il qalır
     df = pd.DataFrame(rows).drop_duplicates(["year", "name"])
     return df[df["year"] > df["year"].max() - KEEP_YEARS]
 
@@ -69,6 +75,7 @@ def main() -> int:
                 return 1
             df = parse(path, sheet)
             print(f"{table}: {len(df)} sətir, illər {df.year.min()}-{df.year.max()}, {df.name.nunique()} ad")
+            # MERGE: (il, ad) bazada varsa rəqəm yenilənir, yoxdursa əlavə olunur — dublikat yaranmır
             cur.executemany(
                 f"""MERGE INTO {table} t
                     USING (SELECT :1 yr, :2 nm, :3 sal, :4 src FROM dual) s
@@ -79,6 +86,7 @@ def main() -> int:
                 [(int(r.year), r.name, r.avg_salary_azn, url) for r in df.itertuples()],
             )
         conn.commit()
+        # Yoxlama: əsas iki rəqəm ekrana çıxır (Bakı və ölkə üzrə son ilin orta maaşı)
         cur.execute("SELECT region_name, avg_salary_azn FROM salary_region "
                     "WHERE year = (SELECT MAX(year) FROM salary_region) "
                     "AND (region_name LIKE 'Bak%' OR region_name LIKE 'Azərbaycan%') ORDER BY 2 DESC")

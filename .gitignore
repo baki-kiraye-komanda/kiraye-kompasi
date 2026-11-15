@@ -3,6 +3,9 @@
 __pycache__/
 logs/
 data/raw/
+# təmizlənmiş snapshotlar pipeline tərəfindən yenidən yaradılır (repoda yalnız ilk nümunə saxlanılır)
+data/clean/*
+!data/clean/20261107_2344/
 *.pbix.bak
 
 # Streamlit gizli açarlar (Cloud-da Settings -> Secrets)

@@ -24,6 +24,7 @@ def log(msg: str) -> None:
 
 
 def check_packages() -> None:
+    """Lazımi Python paketləri quraşdırılıbmı (versiyası ilə)."""
     for pkg in ["requests", "pandas", "oracledb", "dotenv", "streamlit", "google.genai"]:
         try:
             m = importlib.import_module(pkg)
@@ -33,6 +34,7 @@ def check_packages() -> None:
 
 
 def check_oracle() -> None:
+    """Oracle-a qoşulmaq olurmu, Azərbaycan hərfləri (ə, ş, ğ...) pozulmadan gedib-gəlirmi, hüquqlar çatırmı."""
     import oracledb
 
     dsn, user, pw = os.getenv("ORACLE_DSN"), os.getenv("ORACLE_USER"), os.getenv("ORACLE_PASSWORD")
@@ -53,6 +55,7 @@ def check_oracle() -> None:
 
 
 def check_bina() -> None:
+    """bina.az açılırmı (internet və saytın əlçatanlığı)."""
     import requests
 
     try:
@@ -70,6 +73,7 @@ def check_bina() -> None:
 
 
 def check_gemini() -> None:
+    """Gemini açarı işləyirmi. Model tapılmasa, mövcud modellərin adlarını göstərir. Açar loga yazılmır."""
     key = os.getenv("GEMINI_API_KEY", "")
     model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
     if not key or key.startswith("BURAYA"):
@@ -91,6 +95,7 @@ def check_gemini() -> None:
 
 
 def main() -> None:
+    """Bütün yoxlamaları ardıcıl işlədir və nəticəni logs/check_env.log faylına yazır."""
     log(f"Tarix: {datetime.datetime.now().isoformat(timespec='seconds')}")
     log(f"Python: {sys.version.split()[0]} | {platform.platform()}")
     check_packages()

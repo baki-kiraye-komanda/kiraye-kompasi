@@ -28,12 +28,14 @@ import requests
 
 from config import BUILDING_TYPES, DATA_RAW, DISTRICTS, LOGS, new_snapshot_id
 
-URL = "https://bina.az/graphql"
+# ---- Parametrlər bir yerdə: dəyişmək lazım olsa, yalnız buranı dəyişirik
+URL = "https://bina.az/graphql"   # saytın özünün elanları aldığı xidmət
 PAGE_SIZE = 25          # bina.az bir sorğuda maksimum 25 elan qaytarır
-PAUSE_SEC = 1.0         # sorğular arası fasilə
-MAX_RETRIES = 4
+PAUSE_SEC = 1.0         # sorğular arası fasilə (sayta yük verməmək üçün)
+MAX_RETRIES = 4         # sayt cavab verməsə, neçə dəfə təkrar cəhd edilir
 MIN_COMPLETENESS = 0.95  # saytdakı elanların ən azı 95%-i toplanmalıdır
 
+# Sorğu ilə birlikdə göndərilən başlıqlar (adi brauzerin göndərdiyi kimi)
 HEADERS = {
     "content-type": "application/json",
     # bina.az-ın GraphQL serveri bu başlığı tələb edir (CSRF qorunması)
@@ -42,6 +44,9 @@ HEADERS = {
     "(KHTML, like Gecko) Chrome/130.0 Safari/537.36",
 }
 
+# Sayta "sual": hansı sahələri istəyirik. Yalnız analizə lazım olanlar — telefon, ad, şəkil YOXDUR.
+#   totalCount  — bu filtrdə saytda cəmi neçə elan var (tamlığı yoxlamaq üçün)
+#   pageInfo    — növbəti səhifə varmı və haradan davam etmək lazımdır (cursor)
 QUERY = """
 query Rent($first: Int, $cursor: String, $filter: ItemFilter, $sort: ItemConnectionSort!) {
   itemsConnection(first: $first, after: $cursor, filter: $filter, sort: $sort) {
@@ -58,6 +63,7 @@ query Rent($first: Int, $cursor: String, $filter: ItemFilter, $sort: ItemConnect
 }
 """
 
+# Xam CSV faylının sütunları (to_row funksiyası hər elanı bu formaya salır)
 COLUMNS = [
     "snapshot_id", "captured_at", "listing_id", "district_id", "district_name",
     "building_type_id", "building_type", "rooms", "area_m2", "area_units", "floor", "floors",
@@ -75,6 +81,7 @@ def fetch_page(session: requests.Session, filt: dict, cursor: str | None) -> dic
     }
     for attempt in range(1, MAX_RETRIES + 1):
         try:
+            # 200 = uğurlu cavab. Başqa kod və ya şəbəkə xətası: gözlə və yenidən cəhd et
             r = session.post(URL, json=body, headers=HEADERS, timeout=30)
             if r.status_code == 200:
                 data = r.json()
@@ -89,6 +96,8 @@ def fetch_page(session: requests.Session, filt: dict, cursor: str | None) -> dic
 
 
 def to_row(node: dict, snapshot_id: str, captured_at: str, did: str, bid: str) -> dict:
+    """Saytdan gələn bir elanı (JSON) CSV-nin bir sətrinə çevirir.
+    Rayon (did) və tikili növü (bid) elandan yox, sorğunun filtrindən götürülür — ona görə həmişə dəqiqdir."""
     area = node.get("area") or {}
     price = node.get("price") or {}
     loc = node.get("location") or {}
@@ -120,6 +129,7 @@ def to_row(node: dict, snapshot_id: str, captured_at: str, did: str, bid: str) -
 
 
 def main() -> int:
+    # Hər toplama ayrıca "snapshot"dur: adı tarix-saatdır (məs. 20261107_2344), köhnələr silinmir
     snapshot_id, captured_at = new_snapshot_id()
     out_dir = DATA_RAW / snapshot_id
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -134,7 +144,8 @@ def main() -> int:
     )
     logging.info("Snapshot %s başladı", snapshot_id)
 
-    session = requests.Session()
+    session = requests.Session()  # bir bağlantı bütün sorğular üçün (daha sürətli və saytı az yükləyir)
+    # meta — toplamanın "pasportu"; seen — artıq yazılmış elan nömrələri (təkrar düşməsin)
     meta = {"snapshot_id": snapshot_id, "captured_at": captured_at, "source": URL, "groups": []}
     seen: set[str] = set()
     rows_written = 0
@@ -142,8 +153,10 @@ def main() -> int:
     with open(out_dir / "listings_raw.csv", "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=COLUMNS)
         writer.writeheader()
+        # Əsas dövr: 13 rayon × 2 tikili növü = 26 qrup. Hər qrup səhifə-səhifə oxunur.
         for did, (dname, _) in DISTRICTS.items():
             for bid, bname in BUILDING_TYPES.items():
+                # Filtr: Bakı, bu tikili növü, yalnız kirayə (leased), günlük deyil, bu rayon
                 filt = {"cityId": "1", "categoryId": bid, "leased": True,
                         "paidDaily": False, "locationIds": [did]}
                 cursor, site_total, got = None, None, 0
@@ -158,14 +171,15 @@ def main() -> int:
                         writer.writerow(to_row(node, snapshot_id, captured_at, did, bid))
                         got += 1
                     time.sleep(PAUSE_SEC)
-                    if not conn["pageInfo"]["hasNextPage"]:
+                    if not conn["pageInfo"]["hasNextPage"]:  # son səhifə idi
                         break
-                    cursor = conn["pageInfo"]["endCursor"]
+                    cursor = conn["pageInfo"]["endCursor"]   # növbəti səhifənin başlanğıcı
                 rows_written += got
                 meta["groups"].append({"district": dname, "building_type": bname,
                                        "site_total": site_total, "collected": got})
                 logging.info("%-10s %-13s saytda=%5s toplandı=%5s", dname, bname, site_total, got)
 
+    # Tamlıq yoxlaması: toplanan say ÷ saytın özünün dediyi say
     meta["rows"] = rows_written
     site_sum = sum(g["site_total"] or 0 for g in meta["groups"])
     meta["completeness"] = round(rows_written / site_sum, 4) if site_sum else 0

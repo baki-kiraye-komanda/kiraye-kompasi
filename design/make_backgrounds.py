@@ -186,7 +186,7 @@ def page_method():
     c = PAGES["method"]["cards"]
     x, y, w, h = c["pipeline"]
     s = panel(x, y, w, h, C["cyan"], "Məlumatın yolu", "Hər addım ayrıca skriptdir · run_pipeline.bat həftədə bir dəfə hamısını işlədir")
-    nodes = [("globe", "bina.az", "GraphQL · 22 262 elan", C["blue"]),
+    nodes = [("globe", "bina.az", "GraphQL · bütün kirayə elanları", C["blue"]),
              ("code", "Python", "toplama: scrape.py", C["cyan"]), ("filter", "Təmizləmə", "10 qayda: clean.py", C["amber"]),
              ("db", "Oracle", "ulduz sxemi + view", C["coral"]), ("chart", "Power BI", "eyni ixrac qatı (CSV)", C["violet"]),
              ("spark", "Sayt + Gemini", "sadə dildə izah", C["magenta"])]

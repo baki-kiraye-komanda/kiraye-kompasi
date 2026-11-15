@@ -1,8 +1,9 @@
 # Kirayə Kompası — Bakıda kirayə: maaş nəyə çatır?
 
-Data final layihəsi. bina.az-dakı bütün aylıq kirayə elanları (22 262 xam → 17 347 unikal) Python ilə toplanır,
+Data final layihəsi. bina.az-dakı bütün aylıq kirayə elanları (hər toplamada ~20 min xam elan → ~16 min unikal mənzil) Python ilə toplanır,
 təmizlənir, Oracle-a yazılır, SQL view-larında hesablanır və iki yerdə göstərilir:
 **Power BI dashboard** və **Streamlit saytı** (Gemini AI izahı ilə). Maaş: Dövlət Statistika Komitəsi.
+Məlumat hər həftə yenilənir — dəqiq rəqəmlər və tarix saytın yuxarısında və dashboard-da göstərilir.
 
 🌐 **Sayt:** https://kiraye-kompasi.streamlit.app
 
@@ -10,7 +11,7 @@ təmizlənir, Oracle-a yazılır, SQL view-larında hesablanır və iki yerdə g
 | Qovluq | Nə var |
 |---|---|
 | `src/` | Python: `scrape.py` (toplama), `clean.py` (10 qayda), `load_oracle.py`, `fetch_salary.py`, `load_salary.py`, `export_data.py` |
-| `sql/` | Oracle: cədvəllər, view-lar, büdcə sorğusu, müdafiə sorğuları |
+| `sql/` | Oracle: `01_schema.sql` (cədvəllər), `02_views.sql` (5 view), `03_budget_query.sql` (büdcə sorğusu), `04_defense_queries.sql` (müdafiə sorğuları) |
 | `exports/`, `app/data/` | Bazadan çıxarılan CSV-lər (Power BI və sayt eyni faylları oxuyur) |
 | `powerbi/` | Dashboard (PBIP) |
 | `app/` | Sayt: `app.py` (Streamlit), `core.py` (hesablamalar), `ui.py` (dizayn), `ai.py` (Gemini) |
@@ -41,6 +42,9 @@ Bir dəfə `setup_autoupdate.bat` işlədin (Git lazımdır: https://git-scm.com
 Hər dəfə `run_pipeline.bat`: bina.az → təmizləmə → Oracle → CSV → **GitHub** → sayt 1–2 dəqiqəyə özü yenilənir.
 Toplama yarımçıqdırsa (elanların 95%-dən azı), köhnə tam məlumat qalır. Nəticə: `logs\pipeline.log`.
 Power BI faylı lokaldır: açanda **Refresh** basmaq kifayətdir.
+
+Təmizləmə qaydası və ya view dəyişəndə: `05_reprocess.bat` — bütün snapshotları yenidən emal edir (yenidən toplamadan).
+Müdafiə sorğularını yoxlamaq: `.venv\Scripts\python.exe src\db.py --selftest`.
 
 ## Sayt «yuxuya» getməsin
 Streamlit-in pulsuz planında bir neçə gün ziyarət olunmayan sayt yuxuya gedir.

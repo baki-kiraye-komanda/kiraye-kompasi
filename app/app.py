@@ -48,8 +48,8 @@ def data_version() -> str:
         return ""
 
 
-data = load_data(data_version())
-facts = core.market_facts(data)
+data = load_data(data_version())      # bütün CSV məlumatı (keşdən)
+facts = core.market_facts(data)        # bazar üzrə sabit faktlar (hero, bazar bölməsi və AI üçün)
 SECTOR_NONE = "— Özüm yazacam —"
 FEEDBACK_FORM = "https://forms.gle/gBcHsGWFEkGnqoBA8"  # Google Form: tools/google_form.gs ilə yaradılıb
 SECTORS = {f"{r.sector_name} · {ui.az(r.avg_salary_azn)} AZN": float(r.avg_salary_azn) for r in data.sectors.itertuples()}
@@ -59,8 +59,9 @@ date = data.captured_at[8:10] + "." + data.captured_at[5:7] + "." + data.capture
 show(ui.nav(facts["n"], date))
 show(ui.hero(facts))
 
+# Sürüşən zolaq üçün: rayonların median kirayəsi (ən azı MIN_N elanı olanlar, bahadan ucuza)
 med = data.listings.groupby("district_name").agg(size=("price_azn", "size"), median=("price_azn", "median"), m2=("price_per_m2", "median"))
-med = med[med["size"] >= 20].sort_values(["median", "m2"], ascending=False)  # bərabər median: 1 m² qiyməti həll edir (Power BI-dakı kimi)
+med = med[med["size"] >= core.MIN_N].sort_values(["median", "m2"], ascending=False)  # bərabər median: 1 m² qiyməti həll edir (Power BI-dakı kimi)
 items = [("2 otaqlı · Bakı", ui.az(facts["median_2_city"]) + " AZN", ui.C["amber"]),
          ("Lazım olan maaş", ui.az(facts["need_salary_2"]) + " AZN", ui.C["coral"]),
          ("Masazır · 2 otaq", ui.az(facts["masazir_2"]) + " AZN", ui.C["teal"]) if facts["masazir_2"] else None,
@@ -75,11 +76,13 @@ show(ui.section("kalkulyator", "1 · Kalkulyator", "Sənin vəziyyətin",
 
 
 def _sector_changed():
+    """Sahə seçiləndə maaş xanasına həmin sahənin orta maaşı yazılır (istifadəçi sonra dəyişə bilər)."""
     s = st.session_state.get("sector")
     if s and s != SECTOR_NONE:
         st.session_state["salary"] = int(round(SECTORS[s] / 10) * 10)
 
 
+# Başlanğıc dəyər: Bakıda orta maaş
 if "salary" not in st.session_state:
     st.session_state["salary"] = int(round(data.baku_salary))
 
@@ -100,6 +103,7 @@ with left:
                                     help="Bakı ətrafı = Abşeron rayonu (Masazır və s.)") or "Hamısı"
         owner = st.toggle("Yalnız sahibindən (vasitəçisiz) elanlar", key="owner")
 
+# Seçimlər -> hesablama (core.compute) -> nəticə kartları. Hər dəyişiklikdə Streamlit skripti yenidən işlədir.
 params = core.Params(salary=float(salary), share=share, people=int(people), rooms=rooms, btype=btype,
                      area=area, owner_only=owner)
 res = core.compute(data, params)
@@ -113,6 +117,7 @@ def district_map(dist) -> None:
     import pydeck as pdk
 
     d = dist.dropna(subset=["latitude", "longitude"]).copy()
+    # Dairənin ölçüsü — elan sayı (kvadrat kök: böyük rayon xəritəni tutmasın); rəngi — büdcəyə uyğun pay
     nmax = d["n"].max()
     d["radius"] = 450 + 1500 * (d["n"] / nmax) ** 0.5
     d["color"] = [ui.share_rgb(s) + [190] for s in d["share"]]
@@ -141,7 +146,7 @@ if len(res.districts):
     with m2:
         show(ui.district_bars(res.districts, params.budget))
 else:
-    st.info("Bu filtrlərlə ən azı 20 elanı olan rayon yoxdur — filtrləri genişləndir.")
+    st.info(f"Bu filtrlərlə ən azı {core.MIN_N} elanı olan rayon yoxdur — filtrləri genişləndir.")
 show('<div style="height:16px"></div>')
 show(ui.savings(res.savings, params.budget, res.cheap_names))
 
@@ -149,15 +154,15 @@ show(ui.savings(res.savings, params.budget, res.cheap_names))
 show(ui.section("elanlar", "3 · Real elanlar", "Büdcənə uyğun mənzillər",
                    "bina.az-dakı real elanlar. «Aç ↗» linki elanı bina.az-da açır. Əlaqə məlumatları saytda saxlanılmır."))
 with st.container(key="listings"):
-    seg = core.segment(data.listings, params)
-    fit = seg[seg["price_azn"] <= params.budget]
+    seg = core.segment(data.listings, params)          # filtrlərə uyğun elanlar
+    fit = seg[seg["price_azn"] <= params.budget]       # büdcəyə sığanlar
     a, b = st.columns([1, 1])
     with a:
         dopts = ["Bütün rayonlar"] + sorted(fit["district_name"].unique().tolist() if len(fit) else seg["district_name"].unique().tolist())
         dsel = st.selectbox("Rayon", dopts, key="ldist")
     with b:
         sort = st.segmented_control("Sıralama", ["Ən sərfəli (1 m²)", "Ən ucuz", "Ən geniş"], default="Ən sərfəli (1 m²)", key="lsort") or "Ən sərfəli (1 m²)"
-    rows = fit if len(fit) else seg
+    rows = fit if len(fit) else seg   # büdcəyə uyğun elan yoxdursa, ən ucuzlar göstərilir (xəbərdarlıqla)
     if not len(fit):
         st.warning(f"Büdcənə ({ui.az(params.budget)} AZN) uyğun elan tapılmadı. Aşağıda bu filtrlərdə ən ucuz elanlar göstərilir.")
     if dsel != "Bütün rayonlar":
@@ -181,8 +186,8 @@ with st.container(key="listings"):
 # ------------------------------------------------------------------ 4 · AI məsləhətçi
 show(ui.section("ai", "4 · Süni intellekt", "AI məsləhətçi",
                    "Gemini sənin rəqəmlərini oxuyur və sadə dillə izah edir: vəziyyət necədir və nə etmək olar."))
-ctx = ai.context(res, facts)
-cache = st.session_state.setdefault("ai_cache", {})
+ctx = ai.context(res, facts)   # AI-a veriləcək rəqəmlər (JSON): yalnız hesablanmış nəticələr
+cache = st.session_state.setdefault("ai_cache", {})   # eyni seçimlər üçün AI-dan təkrar soruşmamaq üçün
 with st.container(key="ai"):
     show(ui.ai_header())
     if not ai.available():
@@ -192,7 +197,7 @@ with st.container(key="ai"):
     k = ("explain", ctx)
     if go and k not in cache:
         with box:
-            try:
+            try:  # Gemini cavabı hissə-hissə (axınla) göstərilir; alınmasa — qaydaya əsaslanan avtomatik izah
                 with st.spinner("Gemini düşünür… (adətən 10–20 saniyə)"):
                     cache[k] = st.write_stream(ai.stream(ai.EXPLAIN.format(ctx=ctx)))
             except Exception:
@@ -204,6 +209,7 @@ with st.container(key="ai"):
             st.markdown(cache[k])
 
     show('<div style="height:6px"></div>')
+    # Sual-cavab: hazır suallar (düymələr) və ya sərbəst sual; tarixçə sessiyada saxlanılır
     hist = st.session_state.setdefault("chat", [])
     sugg = st.pills("Hazır suallar", ["Hansı rayonu seçim?", "Vasitəçisiz elan niyə ucuzdur?",
                                        "2 nəfər bölsək nə dəyişir?", "Maaşım nə qədər olmalıdır?"],
@@ -230,5 +236,6 @@ with st.container(key="ai"):
 show(ui.section("bazar", "5 · Bazar", "Bazar bir baxışda",
                    "Bakıda kirayə qiymətini nə müəyyən edir və kimin maaşı kirayəyə çatır — bütün elanlar üzrə."))
 show(ui.insight_cards(facts, core.sector_afford(data, "1", 1)))
+show(ui.trend_card(core.market_trend(data)))  # snapshotlar üzrə dinamika (2-dən az toplama varsa, boşdur)
 show(ui.feedback(FEEDBACK_FORM))
 show(ui.footer(facts, data.captured_at, data.rows_raw))

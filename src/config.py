@@ -13,6 +13,7 @@ for _stream in (sys.stdout, sys.stderr):
     if hasattr(_stream, "reconfigure"):
         _stream.reconfigure(encoding="utf-8", errors="replace")
 
+# ---- Qovluqlar (layihənin kök qovluğuna nəzərən)
 ROOT = Path(__file__).resolve().parents[1]
 DATA_RAW = ROOT / "data" / "raw"
 DATA_CLEAN = ROOT / "data" / "clean"

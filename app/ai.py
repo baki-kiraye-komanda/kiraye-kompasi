@@ -51,6 +51,7 @@ MƏLUMAT (JSON):
 
 
 def _key() -> str | None:
+    """Gemini açarını tapır: əvvəl Streamlit Secrets (internetdəki sayt), sonra .env (lokal kompüter)."""
     try:
         import streamlit as st
         k = st.secrets.get("GEMINI_API_KEY")
@@ -73,10 +74,12 @@ def _key() -> str | None:
 
 
 def available() -> bool:
+    """Açar varmı? (yoxdursa sayt AI-sız, avtomatik izahla işləyir)"""
     return _key() is not None
 
 
 def _models() -> list[str]:
+    """Sınanacaq modellərin sırası: əvvəl parametrdə yazılan (GEMINI_MODEL), sonra ehtiyat modellər."""
     first = None
     try:
         import streamlit as st
@@ -97,6 +100,7 @@ def stream(prompt: str) -> Iterator[str]:
     from google.genai import types
 
     client = genai.Client(api_key=key, http_options=types.HttpOptions(timeout=25_000))  # 25 san.-dən çox gözləmə
+    # system_instruction — AI-ın qaydaları (SYSTEM); temperature 0.4 — az «yaradıcılıq», daha sabit cavab
     base = dict(system_instruction=SYSTEM, temperature=0.4, max_output_tokens=4096)
     try:  # modelin «düşüncə» mətni cavaba qarışmasın
         cfg = types.GenerateContentConfig(**base, thinking_config=types.ThinkingConfig(include_thoughts=False))
@@ -151,6 +155,7 @@ def context(r, f: dict) -> str:
         "savings_path": [{"step": s, "median_azn": round(v)} for s, v in r.savings],
         "market": {"baku_avg_salary_azn": f["baku_salary"], "salary_year": f["salary_year"],
                    "median_2_rooms_baku_city": f["median_2_city"], "agency_median": f["agency"], "owner_median": f["owner"],
+                   "agency_premium_for_comparable_flats_pct": round(f["agency_like"] * 100) if f.get("agency_like") is not None else None,
                    "new_building_median": f["new"], "old_building_median": f["old"], "rooms_median": f["rooms"]},
     }
     return json.dumps(ctx, ensure_ascii=False)

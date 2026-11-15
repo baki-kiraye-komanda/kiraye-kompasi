@@ -613,13 +613,13 @@ table Vizual
 			VAR _m2 = CALCULATE([Median 1 m²], REMOVEFILTERS(), Rayon[Ərazi] = "Bakı şəhəri")
 			VAR _svg =
 				"<svg xmlns='http://www.w3.org/2000/svg' width='836' height='216' viewBox='0 0 836 216'><defs></defs><style>text{font-family:Segoe UI,Inter,sans-serif}.l{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#9AA6D6}.m{fill:#9AA6D6}.d{fill:#5B6699}.t{fill:#F2F5FF}</style>"
-							& "<text x='20' y='22' font-size='15' font-weight='600' fill='#9AA6D6' text-anchor='start'>Mərkəzi Bank · median kirayə (14.04.2026)</text>"
+							& "<text x='20' y='22' font-size='15' font-weight='600' fill='#9AA6D6' text-anchor='start'>Mərkəzi Bank · median aylıq kirayə, ölkə (aprel 2026)</text>"
 							& "<text x='20' y='64' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>onlar</text>"
 							& "<text x='80' y='66' font-size='26' font-weight='800' fill='#F2F5FF' text-anchor='start'>1 002 AZN</text>"
 							& "<text x='340' y='64' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>biz</text>"
 							& CONCATENATEX(GENERATESERIES(1, 12, 1), "<text x='380' y='66' font-size='26' font-weight='800' fill='#22E5FF' text-anchor='start' opacity='0'>" & "" & SUBSTITUTE(FORMAT(_m * (1 - POWER(1 - [Value] / 12, 3)), "#,0", "en-US"), ",", " ") & " AZN" & "<set attributeName='opacity' to='1' begin='" & FORMAT(0.0 + ([Value] - 1) * 0.0750, "0.000", "en-US") & "s' " & IF([Value] = 12, "fill='freeze'", "dur='0.0750s'") & "/></text>", "", [Value], ASC)
 							& "<g opacity='0'><animate attributeName='opacity' from='0' to='1' begin='1.0s' dur='0.4s' fill='freeze'/>" & "<text x='816' y='64' font-size='18' font-weight='800' fill='#2DF5C4' text-anchor='end'>" & "fərq " & FORMAT(ABS(DIVIDE(_m, 1002) - 1), "0%") & " ✓" & "</text>" & "</g>"
-							& "<text x='20' y='118' font-size='15' font-weight='600' fill='#9AA6D6' text-anchor='start'>JAM-News · 1 m² / ay (30.08.2026)</text>"
+							& "<text x='20' y='118' font-size='15' font-weight='600' fill='#9AA6D6' text-anchor='start'>JAM-News · Bakıda 1 m² / ay (avqust 2026)</text>"
 							& "<text x='20' y='160' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>onlar</text>"
 							& "<text x='80' y='162' font-size='26' font-weight='800' fill='#F2F5FF' text-anchor='start'>11 AZN</text>"
 							& "<text x='340' y='160' font-size='13' font-weight='400' fill='#5B6699' text-anchor='start'>biz</text>"
