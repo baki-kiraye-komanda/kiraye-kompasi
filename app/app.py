@@ -42,8 +42,10 @@ def load_data(version: str):
 
 
 def data_version() -> str:
+    """Məlumat fayllarının «barmaq izi»: hər CSV-nin adı, ölçüsü və dəyişmə vaxtı.
+    Hər hansı fayl yenilənəndə (həftəlik yeniləmə və ya yenidən emal) keş avtomatik təzələnir."""
     try:
-        return (core.DATA / "snapshot.csv").read_text(encoding="utf-8")
+        return "|".join(f"{f.name}:{f.stat().st_size}:{int(f.stat().st_mtime)}" for f in sorted(core.DATA.glob("*.csv")))
     except OSError:
         return ""
 
