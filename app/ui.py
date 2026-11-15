@@ -508,7 +508,7 @@ def trend_card(points: list[dict]) -> str:
     rows = "".join(
         hbar(f'{p["date"][8:10]}.{p["date"][5:7]}.{p["date"][:4]}', az(p["median"]) + " AZN", p["median"] / mx,
              C["coral"] if p["burden"] > .5 else C["amber"], .15 + i * .12,
-             sub=f'{az(p["listings"])} elan · maaşın {pct(p["burden"])}-i', lw=150, vw=96)
+             sub=f'{az(p["listings"])} elan · {pct(p["burden"])}', lw=150, vw=96)
         for i, p in enumerate(points))
     first, last = points[0], points[-1]
     diff = last["median"] - first["median"]
@@ -521,7 +521,7 @@ def trend_card(points: list[dict]) -> str:
     return f"""
 <div class="kk card" style="margin-top:16px;padding:18px 22px">
 <div class="eyebrow">5 · Qiymət zamanla necə dəyişir?</div>
-<div class="dim" style="font-size:.8rem;margin:2px 0 8px">2 otaqlı mənzil, Bakı şəhəri — hər toplamada median kirayə · məlumat hər həftə avtomatik yenilənir</div>
+<div class="dim" style="font-size:.8rem;margin:2px 0 8px">2 otaqlı mənzil, Bakı şəhəri — hər toplamada median kirayə; tarixin altında: təhlil olunan elan sayı və kirayənin Bakı maaşına nisbəti · məlumat hər həftə avtomatik yenilənir</div>
 {rows}
 <div style="font-size:.92rem;margin-top:8px">İlk toplamadan bəri {msg} <span class="dim">· median «dairəvi» qiymətlər (800, 850, 900) arasında sıçrayır, ona görə kiçik dəyişikliyi trend saymaq olmaz</span></div>
 </div>"""
