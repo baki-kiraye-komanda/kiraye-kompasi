@@ -237,7 +237,7 @@ def agency_premium_like(l: pd.DataFrame) -> float | None:
 def market_trend(data: Data, rooms: str = "2", last: int = 8) -> list[dict]:
     """Zamanla dəyişmə: hər toplama (snapshot) üçün Bakı şəhərində seçilmiş otaq sayının medianı,
     kirayə yükü və təhlil olunan elanların ümumi sayı. Köhnədən yeniyə, son `last` toplama."""
-    t = data.trend
+    t = getattr(data, "trend", None)  # keşdə köhnə versiyanın obyekti qala bilər (bu sahə olmadan)
     if t is None or t.empty:
         return []
     total = t.groupby("snapshot_id")["listings"].sum()
