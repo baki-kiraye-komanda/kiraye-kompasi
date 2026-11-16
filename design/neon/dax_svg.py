@@ -291,7 +291,7 @@ VAR _yr = CALCULATE(MAX('Maaş'[İl]), ALL('Maaş'))
 VAR _sec = FILTER(ADDCOLUMNS(FILTER(ALL('Maaş'[Sahə]), 'Maaş'[Sahə] <> "İqtisadiyyat üzrə - cəmi"), "@s",
     CALCULATE(MAX('Maaş'[Orta maaş (AZN)]), 'Maaş'[İl] = _yr)), NOT ISBLANK([@s]))
 VAR _need1 = CALCULATE([Median kirayə], Elanlar[Otaq] = "1", {CITY}) / 0.3
-VAR _ok = COUNTROWS(FILTER(_sec, [@s] >= _need1))
+VAR _ok = COUNTROWS(FILTER(_sec, [@s] >= _need1)) + 0
 VAR _ns = COUNTROWS(_sec)
 VAR _raw = [Xam elan sayı]
 VAR _an = [Analiz elan sayı]"""
@@ -545,7 +545,7 @@ VAR _rows = CONCATENATEX(_r,
     VAR _room = [Value1]
     VAR _m = CALCULATE([Median kirayə], REMOVEFILTERS(Elanlar), Elanlar[Otaq] = _room, {CITY}) / _ppl
     VAR _need = _m / 0.3
-    VAR _ok = COUNTROWS(FILTER(_sec, [@s] >= _need))
+    VAR _ok = COUNTROWS(FILTER(_sec, [@s] >= _need)) + 0
     VAR _y = 40 + [Value2] * 84
     VAR _dots = CONCATENATEX(GENERATESERIES(1, _ns, 1),
         "<circle cx='" & (14 + [Value] * 22) & "' cy='" & (_y + 44) & "' r='7' fill='" & IF([Value] <= _ok, "{C['teal']}", "#FFFFFF") & "' fill-opacity='" & IF([Value] <= _ok, "1", "0.10") & "' opacity='0'><set attributeName='opacity' to='1' begin='" & FORMAT(0.2 + [Value] * 0.03 + [Value2] * 0.25, "0.00", "en-US") & "s' fill='freeze'/></circle>", "", [Value], ASC)
