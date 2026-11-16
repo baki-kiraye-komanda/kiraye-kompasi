@@ -110,3 +110,5 @@ table Elanlar
 				in
 				    Renamed
 
+	annotation PBI_ResultType = Table
+
