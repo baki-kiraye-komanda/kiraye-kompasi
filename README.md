@@ -20,9 +20,9 @@ Məlumat hər həftə yenilənir — dəqiq rəqəmlər və tarix saytın yuxar�
 ## Lokal işə salma (Windows)
 1. `setup.bat` — mühit və paketlər (bir dəfə).
 2. `run_pipeline.bat` — toplama → təmizləmə → Oracle → maaş → ixrac.
-3. Power BI: `powerbi/BakuKiraye.pbip` → **Refresh**.
-   Başqa kompüterdə ilk dəfə açanda: **Home → Transform data → Edit parameters → ExportFolder** —
-   öz kompüterinizdəki `exports\` qovluğunun tam yolunu yazın (sonunda `\` olsun) → **Apply changes**.
+3. Power BI: `powerbi/BakuKiraye.pbip` → **Refresh**. Məlumat GitHub-dakı `exports/` CSV-lərindən oxunur — istənilən kompüterdə işləyir
+   (ilk Refresh-də «Access Web content» pəncərəsində **Anonymous → Connect**). Lokal qovluqdan oxumaq üçün:
+   **Home → Transform data → Edit parameters → ExportFolder** → `exports\` qovluğunun tam yolu (sonunda `\`).
 4. Sayt: `run_site.bat` → brauzerdə `http://localhost:8501`.
 
 Gizli parametrlər `.env` faylındadır (`env.example.txt`-ə baxın) və GitHub-a yüklənmir.

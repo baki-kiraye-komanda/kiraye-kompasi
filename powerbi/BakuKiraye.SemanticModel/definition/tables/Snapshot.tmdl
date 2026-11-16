@@ -42,7 +42,7 @@ table Snapshot
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(ExportFolder & "snapshot.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Source = Csv.Document((if Text.StartsWith(ExportFolder, "http") then Web.Contents(ExportFolder & "snapshot.csv") else File.Contents(ExportFolder & "snapshot.csv")), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    Typed = Table.TransformColumnTypes(Headers, {{"captured_at", type datetime}, {"rows_raw", Int64.Type}, {"rows_clean", Int64.Type}, {"rows_outlier", Int64.Type}, {"rows_duplicate", Int64.Type}}, "en-US"),
 				    Renamed = Table.RenameColumns(Typed, {{"snapshot_id", "Snapshot ID"}, {"captured_at", "Toplanma vaxtı"}, {"rows_raw", "Xam elan"}, {"rows_clean", "Təmiz elan"}, {"rows_outlier", "Qeyri-adi qiymət"}, {"rows_duplicate", "Təkrar elan"}})

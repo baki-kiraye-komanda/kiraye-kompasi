@@ -30,7 +30,7 @@ table 'Region maaşı'
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents(ExportFolder & "salary_region.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Source = Csv.Document((if Text.StartsWith(ExportFolder, "http") then Web.Contents(ExportFolder & "salary_region.csv") else File.Contents(ExportFolder & "salary_region.csv")), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    Typed = Table.TransformColumnTypes(Headers, {{"year", Int64.Type}, {"avg_salary_azn", type number}}, "en-US"),
 				    Renamed = Table.RenameColumns(Typed, {{"year", "İl"}, {"region_name", "Region"}, {"avg_salary_azn", "Orta maaş (AZN)"}, {"source_url", "Mənbə"}})

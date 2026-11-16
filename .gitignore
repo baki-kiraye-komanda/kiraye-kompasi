@@ -18,3 +18,8 @@ powerbi/**/.pbi/cache.abf
 _update.zip
 _apply_update.bat
 __pycache__/
+
+# Komandaya göndərmək üçün qovluq (pbix, docx) — repoya düşmür
+Paylasim/
+# Python ilə yaradılan fon şəkilləri (make_backgrounds.py yenidən yaradır)
+design/backgrounds/
