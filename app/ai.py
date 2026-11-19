@@ -160,6 +160,8 @@ def _discover(client) -> list[str]:
                     _found.append(name)
         except Exception as e:
             print(f"[AI] model siyahısı alınmadı: {type(e).__name__}", flush=True)
+        _found.sort(key=lambda n: ("preview" in n or "exp" in n, "lite" in n))  # əvvəl sabit, sonra sınaq modelləri
+        print(f"[AI] mövcud flash modellər: {', '.join(_found)}", flush=True)
     return list(_found)
 
 
