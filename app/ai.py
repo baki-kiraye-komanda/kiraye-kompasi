@@ -16,8 +16,10 @@ import os
 from pathlib import Path
 from typing import Iterator
 
-FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-3.8-flash", "gemini-3.5-flash-lite"]  # 08.11.2026 yoxlanılıb: 3.5-flash ~2 san.
+FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-flash-latest", "gemini-3.5-flash-lite", "gemini-flash-lite-latest"]
 RETIRED = ("gemini-2.5", "gemini-2.0", "gemini-1.5")  # artıq yeni istifadəçilər üçün yoxdur (404)
+MAX_TRIES = 6  # ən çox neçə model sınanır (pulsuz limit hər model üçün ayrıdır)
+SKIP = ("live", "image", "tts", "audio", "embedding", "thinking")  # mətn cavabı üçün uyğun olmayan modellər
 
 SYSTEM = """Sən «Kirayə Kompası» saytının məsləhətçisisən: Bakıda kirayə mənzil axtaran insanlara kömək edirsən.
 QAYDALAR:
@@ -106,8 +108,12 @@ def stream(prompt: str) -> Iterator[str]:
         cfg = types.GenerateContentConfig(**base, thinking_config=types.ThinkingConfig(include_thoughts=False))
     except Exception:
         cfg = types.GenerateContentConfig(**base)
-    last = None
-    for model in _models():
+    last, tried, models = None, [], _models()
+    while models and len(tried) < MAX_TRIES:
+        model = models.pop(0)
+        if model in tried:
+            continue
+        tried.append(model)
         try:
             got = False
             for chunk in client.models.generate_content_stream(model=model, contents=prompt, config=cfg):
@@ -118,10 +124,34 @@ def stream(prompt: str) -> Iterator[str]:
                 return
         except Exception as e:  # model yoxdur / limit / şəbəkə — növbəti modeli sına
             last = e
-            msg = str(e)
+            msg = str(e).replace(key, "***")
+            print(f"[AI] {model}: {type(e).__name__}: {msg[:200]}", flush=True)  # yalnız Streamlit loguna
             if "API key" in msg or "PERMISSION_DENIED" in msg:
                 break
+        if not models:  # siyahı bitdi — açarın icazə verdiyi modelləri Google-dan soruş
+            models = [m for m in _discover(client) if m not in tried]
     raise RuntimeError(f"Gemini cavab vermədi: {type(last).__name__ if last else 'boş cavab'}")
+
+
+_found: list[str] | None = None
+
+
+def _discover(client) -> list[str]:
+    """Google-dan bu açar üçün mövcud «flash» modellərini soruşur (model adları dəyişsə də sayt işləsin).
+    Nəticə bir dəfə alınır və yadda saxlanılır."""
+    global _found
+    if _found is None:
+        _found = []
+        try:
+            for m in client.models.list():
+                name = (m.name or "").removeprefix("models/")
+                acts = getattr(m, "supported_actions", None) or []
+                if ("flash" in name and "generateContent" in acts
+                        and not name.startswith(RETIRED) and not any(s in name for s in SKIP)):
+                    _found.append(name)
+        except Exception as e:
+            print(f"[AI] model siyahısı alınmadı: {type(e).__name__}", flush=True)
+    return list(_found)
 
 
 def _texts(chunk):

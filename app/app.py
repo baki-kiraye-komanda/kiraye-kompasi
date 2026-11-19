@@ -229,7 +229,9 @@ with st.container(key="ai"):
                 with st.spinner("Gemini düşünür…"):
                     ans = st.write_stream(ai.stream(ai.ASK.format(q=q, ctx=ctx)))
             except Exception:
-                ans = "AI hazırda əlçatan deyil. Yuxarıdakı kalkulyator və rayonlar bölməsi sualına cavab verir."
+                # AI cavab verməsə də istifadəçi boş qalmasın: eyni rəqəmlərlə avtomatik izah
+                ans = (ai.fallback(res) + "\n\n*AI hazırda cavab vermədi — sənin seçimlərinə görə avtomatik izah göstərildi. "
+                       "Bir az sonra yenidən soruşa bilərsən.*")
                 st.markdown(ans)
         hist += [("user", q), ("assistant", ans)]
         st.rerun()
