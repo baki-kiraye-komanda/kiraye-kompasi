@@ -280,8 +280,8 @@ def common(key):
     vis = []
     for i, (k, lab, _) in enumerate(NAV):
         vis.append(nav_button(f"nav_{key}_{k}", nav_rect(i), k, DISPLAY[k]))
-    # Ana səhifədə altında lent var (34 px); digər səhifələrdə 48 px — mətn kəsilmir
-    vis.append(card(f"src_{key}", (1100, 100, 796, 34 if key == "home" else 48), "Mənbə qeydi", 11, C["dim"], font="Segoe UI"))
+    # Mənbə qeydi: 48 px hündürlük — mətn kəsilmir
+    vis.append(card(f"src_{key}", (1100, 100, 796, 48), "Mənbə qeydi", 11, C["dim"], font="Segoe UI"))
     return vis
 
 
