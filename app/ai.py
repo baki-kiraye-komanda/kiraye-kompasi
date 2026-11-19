@@ -16,9 +16,10 @@ import os
 from pathlib import Path
 from typing import Iterator
 
-FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-flash-latest", "gemini-3.5-flash-lite", "gemini-flash-lite-latest"]
+FALLBACK_MODELS = ["gemini-3.5-flash", "gemini-3.1-flash-lite", "gemini-3.5-flash-lite"]  # 19.11.2026: hesabda mövcud
 RETIRED = ("gemini-2.5", "gemini-2.0", "gemini-1.5")  # artıq yeni istifadəçilər üçün yoxdur (404)
-MAX_TRIES = 6  # ən çox neçə model sınanır (pulsuz limit hər model üçün ayrıdır)
+MAX_TRIES = 4      # ən çox neçə model sınanır (pulsuz limit hər model üçün ayrıdır)
+TIMEOUT_MS = 15_000  # bir model 15 san.-də cavaba başlamasa — növbətisi
 SKIP = ("live", "image", "tts", "audio", "embedding", "thinking")  # mətn cavabı üçün uyğun olmayan modellər
 
 SYSTEM = """Sən «Kirayə Kompası» saytının məsləhətçisisən: Bakıda kirayə mənzil axtaran insanlara kömək edirsən.
@@ -101,33 +102,41 @@ def stream(prompt: str) -> Iterator[str]:
     from google import genai
     from google.genai import types
 
-    client = genai.Client(api_key=key, http_options=types.HttpOptions(timeout=25_000))  # 25 san.-dən çox gözləmə
+    client = genai.Client(api_key=key, http_options=types.HttpOptions(timeout=TIMEOUT_MS))
     # system_instruction — AI-ın qaydaları (SYSTEM); temperature 0.4 — az «yaradıcılıq», daha sabit cavab
     base = dict(system_instruction=SYSTEM, temperature=0.4, max_output_tokens=4096)
-    try:  # modelin «düşüncə» mətni cavaba qarışmasın
-        cfg = types.GenerateContentConfig(**base, thinking_config=types.ThinkingConfig(include_thoughts=False))
+    plain = types.GenerateContentConfig(**base)
+    try:  # «düşünmə» səviyyəsi aşağı: sadə izah üçün kifayətdir və cavab bir neçə saniyəyə gəlir
+        cfg = types.GenerateContentConfig(**base, thinking_config=types.ThinkingConfig(
+            include_thoughts=False, thinking_level="low"))
     except Exception:
-        cfg = types.GenerateContentConfig(**base)
+        cfg = plain
     last, tried, models = None, [], _models()
     while models and len(tried) < MAX_TRIES:
         model = models.pop(0)
         if model in tried:
             continue
         tried.append(model)
-        try:
-            got = False
-            for chunk in client.models.generate_content_stream(model=model, contents=prompt, config=cfg):
-                for t in _texts(chunk):
-                    got = True
-                    yield t
-            if got:
-                return
-        except Exception as e:  # model yoxdur / limit / şəbəkə — növbəti modeli sına
-            last = e
-            msg = str(e).replace(key, "***")
-            print(f"[AI] {model}: {type(e).__name__}: {msg[:200]}", flush=True)  # yalnız Streamlit loguna
-            if "API key" in msg or "PERMISSION_DENIED" in msg:
+        for conf in (cfg, plain) if cfg is not plain else (plain,):
+            try:
+                got = False
+                for chunk in client.models.generate_content_stream(model=model, contents=prompt, config=conf):
+                    for t in _texts(chunk):
+                        got = True
+                        yield t
+                if got:
+                    return
                 break
+            except Exception as e:  # model yoxdur / limit / şəbəkə — növbəti modeli sına
+                if got:  # cavabın bir hissəsi artıq göstərilib — ikinci cavab əlavə etmirik
+                    return
+                last = e
+                msg = str(e).replace(key, "***")
+                print(f"[AI] {model}: {type(e).__name__}: {msg[:200]}", flush=True)  # yalnız Streamlit loguna
+                if "API key" in msg or "PERMISSION_DENIED" in msg:
+                    raise RuntimeError("Gemini açarı qəbul olunmadı")
+                if not ("INVALID_ARGUMENT" in msg and "think" in msg.lower()):
+                    break  # yalnız «düşünmə» parametri qəbul olunmayanda eyni model sadə ayarla təkrar sınanır
         if not models:  # siyahı bitdi — açarın icazə verdiyi modelləri Google-dan soruş
             models = [m for m in _discover(client) if m not in tried]
     raise RuntimeError(f"Gemini cavab vermədi: {type(last).__name__ if last else 'boş cavab'}")

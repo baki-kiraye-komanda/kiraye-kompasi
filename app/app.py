@@ -19,7 +19,10 @@ import ui    # noqa: E402
 import importlib  # noqa: E402
 
 for _m in (core, ui, ai):  # kod dəyişəndə serveri yenidən başlatmadan yeni versiya götürülsün
-    importlib.reload(_m)
+    try:
+        importlib.reload(_m)
+    except ImportError:  # yeniləmə zamanı Streamlit modulu siyahıdan silə bilir — onda sadəcə yenidən import et
+        globals()[_m.__name__] = importlib.import_module(_m.__name__)
 
 st.set_page_config(page_title="Kirayə Kompası — Bakıda maaş nəyə çatır?", page_icon="🧭",
                    layout="wide", initial_sidebar_state="collapsed")
